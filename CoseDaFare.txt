@@ -1,0 +1,16 @@
+1. Gestire il caso in cui lo user non può muoversi -> END-GAME
+2. Bug dello screen di Vittoria: si blocca tutto non vedendosi niente. Si sente solo l'audio dei fuochi.
+3. Gestire il caso in cui, volendo fale la 'mangiata multipla', clicco una posizione, ma subito dopo ne tocco una sbagliata. Ora, così facendo, mangia,
+ma non mangia in modo multiplo. Si deve poter ricliccare da capo dopo che si è sbagliato.
+4. Bottoni: 
+   -nei vari pannelli, aggiungere quelli di 'back'
+   -nel playPanel, aggiungere quello di 'impostazioni' (non si pò mettere in pausa durante una partita in multiplayer).
+5. Schermata iniziale. -> aggiungere un logo.
+6. Sistemare le posizioni dei bottoni e del pannello 'sicuri di voler uscire' nei pannelli di 'fine gioco'
+7. Editor.
+8. Rete.
+
+Sistemare l'intelligenza delle dame nemiche quando mangia sotto a destra -> poi non mangia sopra a destra
+Es: a 0 0 0 0
+    0 x 0 x 0
+    0 0 0 0 0
