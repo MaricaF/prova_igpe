@@ -175,7 +175,10 @@ public class MyPlayPanel extends MyPanel {
 
 				if (!this.ai_cells.isEmpty() && !this.weContinue()) {
 					Variables.giocatore1_mangio = true;
-					this.game.getUser_player().moveByRightMouseClick(this.celle_per_pasto_consecutivo, this.ai_cells);
+					if(Variables.single_player)
+						this.game.getUser_player().moveByRightMouseClick(this.celle_per_pasto_consecutivo, this.ai_cells);
+						else
+							this.game.getUser_player().moveByRightMouseClickSenzaThread(this.celle_per_pasto_consecutivo, this.ai_cells);
 					this.pedina_che_diventera_dama = false;
 					this.first_right_click = true;
 				}

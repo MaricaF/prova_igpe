@@ -225,7 +225,8 @@ public abstract class Player {
 //	       Variables.canMove = false;
 //	       System.out.println("Player algorythmOfTransformationPlayer NO CAN MOVE");
 //	       Variables.giocatore1_mangio = false;
-	       ((AIPlayer)this.game.getAi_player()).moveByRightMouseClickUpdateteMovementMultiplayer(clicked_cells, opponent_cells);
+//	       ((AIPlayer)this.game.getAi_player()).moveByRightMouseClickUpdateteMovementMultiplayer(clicked_cells, opponent_cells);
+	       ((AIPlayer)this.game.getAi_player()).moveByRightMouseClickSenzaThread(clicked_cells, opponent_cells);
 	       
 	       
 	       
@@ -781,6 +782,82 @@ public abstract class Player {
 		multipleMovementMultiplayer.start();
 		
 //		Variables.mangiata_multipla = false;
+	}
+	
+
+	/**
+	 * E' la funzione che viene richiamata quando si può procedere a mangiare effettivamente le pedine avversarie selezionate prima
+	 * @param clicked_cells
+	 * @param ai_cells
+	 */
+	public void moveByRightMouseClickSenzaThread(ArrayList<Cell> clicked_cells, ArrayList<Cell> opponent_cells)
+	{
+		this.togliDoppioni(clicked_cells, opponent_cells);
+//		this.print(clicked_cells, opponent_cells);
+		
+		System.out.println("Mangiata multipla. invio. canMove: "+Variables.canMove+" update: "+Variables.update+
+				" giocator1_mangio: "+Variables.giocatore1_mangio);
+		((UserPlayer)this.game.getUser_player()).getClient().setMessageToSendToServer("");
+		String s_clicked_cells = this.CoordToString(clicked_cells);
+		String s_opponent_cells = this.CoordToString(this.opponent_cells);
+		this.setOutToServer(s_clicked_cells +  s_opponent_cells + "<END>");
+		((UserPlayer)this.game.getUser_player()).getClient().setMessageToSendToServer(this.getOutToServer());
+		((UserPlayer)this.game.getUser_player()).getClient().sendMessageToServer();
+		this.setOutToServer("");
+		 System.out.println("MultiplPlayerMovement NO CAN MOVE");
+		Variables.canMove = false;
+		
+		//cicla finché la sua size non è 1
+		while(clicked_cells.size() > 1)
+		{
+			System.out.println("cia");
+			//la iprec e la jprec saranno SEMPRE le coordinate della cella alla posizione 0 dell'array 'clicked cells'
+			//la iafter e la jafter saranno SEMPRE le coordinate della cella alla posizione 1 dell'array 'clicked cells'
+			//la pawn to eat avrà SEMPRE le coordinate della Cell alla posizione 0 dell'array 'ai_cells' 
+			if(!opponent_cells.isEmpty())
+				this.pawnToEat = this.game.getDama().getPawnAtPosition(opponent_cells.get(0).getI(), opponent_cells.get(0).getJ());
+			
+			if(!clicked_cells.isEmpty())
+			//la pawn first to move = alla pawn con coordinate della Cell in posizione 0 dell'array 'clicked cells'
+			this.pawnFirstTomove = this.game.getDama().getPawnAtPosition(clicked_cells.get(0).getI(), clicked_cells.get(0).getJ());
+			//la pawn aftermove = pawn after to move
+			this.pawnAfterMove = this.pawnFirstTomove;
+			this.passaDaPawnFirstMoveToPawnAfterMove(clicked_cells.get(0).getI(), clicked_cells.get(0).getJ(), 
+					clicked_cells.get(1).getI(), clicked_cells.get(1).getJ(), pawnToEat);
+			
+			//elimino l'elemento alla posizione 0 dell'array 'clicked cells'
+			//elimino l'elemento alla posizione 0 dell'array 'ai cells'
+			this.print(clicked_cells, opponent_cells);
+			
+			clicked_cells.remove(0);
+			if(!opponent_cells.isEmpty())
+			opponent_cells.remove(0);
+			
+			
+		}
+		
+		clicked_cells.clear();
+		opponent_cells.clear();
+		//viene richiamata solo alla fine di questa funzione ma se ci sono pedine da mangiare
+//		if(!ai_cells.isEmpty())
+		
+		Variables.mangiata_multipla = false;
+		System.out.println("Mangiata multipla. attesa. canMove: "+Variables.canMove+" update: "+Variables.update+
+				" giocator1_mangio: "+Variables.giocatore1_mangio);
+		System.out.println("siPassaDalloUserAllAi 1");
+		((UserPlayer) this.game.getUser_player()).getClient().miMettoInAttesaDelServer();
+		System.out.println("siPassaDalloUserAllAi 2");
+		((UserPlayer) this.game.getUser_player())
+				.setInFromServer(((UserPlayer) this.game.getUser_player()).getClient().getModifiedSentence()); // stringa
+																												// ricevuta
+																												// dall'altro
+																												// giocatore
+		// devo prendere la clientSentence del client ecc
+		((AIPlayer) this.game.getAi_player()).algorythmOfTransformationPlayer();
+		System.out.println("siPassaDalloUserAllAi 3");
+		 Variables.canMove = true;
+		 System.out.println("MultiplPlayerMovement CAN MOVE");
+		
 	}
 	
 	protected boolean controllaValiditaCoord(int i, int j)
