@@ -50,6 +50,7 @@ public class MultiplePlayerMovement extends Thread{
 			((UserPlayer)this.game.getUser_player()).getClient().setMessageToSendToServer(this.player.getOutToServer());
 			((UserPlayer)this.game.getUser_player()).getClient().sendMessageToServer();
 			this.player.setOutToServer("");
+			 System.out.println("MultiplPlayerMovement NO CAN MOVE");
 			Variables.canMove = false;
 		}
 		else
@@ -122,6 +123,7 @@ public class MultiplePlayerMovement extends Thread{
 				((AIPlayer) this.game.getAi_player()).algorythmOfTransformationPlayer();
 				System.out.println("siPassaDalloUserAllAi 3");
 				 Variables.canMove = true;
+				 System.out.println("MultiplPlayerMovement CAN MOVE");
 				 Variables.mangiata_multipla = false;
 			}
 			// this.moveByRightMouseClick(clicked_cells, opponent_cells);

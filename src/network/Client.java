@@ -233,10 +233,10 @@ public class Client {
 		if(!Variables.mangiata_multipla)
 		{
 		Variables.canMove = true;
-		System.err.println("Client CAN MOVE");
+		System.out.println("Client CAN MOVE");
 		}
 		else
-			System.err.println("Client NO CAN MOVE");
+			System.out.println("Client NO CAN MOVE");
 		
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
