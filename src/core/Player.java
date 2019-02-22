@@ -5,6 +5,7 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 import Utilities.Chronometer;
+import Utilities.MultipleMovementMultiplayer;
 import Utilities.MultiplePlayerMovement;
 import Utilities.SinglePlayerMovement;
 import audio.Sounds;
@@ -34,6 +35,7 @@ public abstract class Player {
     protected Chronometer timer;
     protected static SinglePlayerMovement singlePlayerMovement;
     protected static MultiplePlayerMovement multiplePlayerMovement;
+    protected static MultipleMovementMultiplayer multipleMovementMultiplayer;
     protected static Lock singleMovementlock, multipleMovementLock;
     protected ArrayList<Cell> opponent_cells;
     protected ArrayList<Cell> celle_per_pasto_consecutivo;
@@ -223,7 +225,7 @@ public abstract class Player {
 	       Variables.canMove = false;
 	       System.out.println("Player algorythmOfTransformationPlayer NO CAN MOVE");
 //	       Variables.giocatore1_mangio = false;
-	       ((AIPlayer)this.game.getAi_player()).moveByRightMouseClick(clicked_cells, opponent_cells);
+	       ((AIPlayer)this.game.getAi_player()).moveByRightMouseClickUpdateteMovementMultiplayer(clicked_cells, opponent_cells);
 //	       this.moveByRightMouseClick(clicked_cells, opponent_cells);
 	   }
 	   //muovo semplicemente, senza mangiare
@@ -765,53 +767,18 @@ public abstract class Player {
 //		Variables.mangiata_multipla = false;
 	}
 	
-	/**
-	 * E' la funzione che viene richiamata quando si può procedere a mangiare effettivamente le pedine avversarie selezionate prima
-	 * @param clicked_cells
-	 * @param ai_cells
-	 */
-//	public void moveByRightMouseClick(ArrayList<Cell> clicked_cells, ArrayList<Cell> opponent_cells)
-//	{
-//		this.togliDoppioni(clicked_cells, opponent_cells);
-////		this.print(clicked_cells, opponent_cells);
-//		
-//		//cicla finché la sua size non è 1
-//		while(clicked_cells.size() > 1)
-//		{
-//			System.out.println("cia");
-//			//la iprec e la jprec saranno SEMPRE le coordinate della cella alla posizione 0 dell'array 'clicked cells'
-//			//la iafter e la jafter saranno SEMPRE le coordinate della cella alla posizione 1 dell'array 'clicked cells'
-//			//la pawn to eat avrà SEMPRE le coordinate della Cell alla posizione 0 dell'array 'ai_cells' 
-//			if(!opponent_cells.isEmpty())
-//				this.pawnToEat = this.game.getDama().getPawnAtPosition(opponent_cells.get(0).getI(), opponent_cells.get(0).getJ());
-//			
-//			if(!clicked_cells.isEmpty())
-//			//la pawn first to move = alla pawn con coordinate della Cell in posizione 0 dell'array 'clicked cells'
-//			this.pawnFirstTomove = this.game.getDama().getPawnAtPosition(clicked_cells.get(0).getI(), clicked_cells.get(0).getJ());
-//			//la pawn aftermove = pawn after to move
-//			this.pawnAfterMove = this.pawnFirstTomove;
-//			this.passaDaPawnFirstMoveToPawnAfterMove(clicked_cells.get(0).getI(), clicked_cells.get(0).getJ(), 
-//					clicked_cells.get(1).getI(), clicked_cells.get(1).getJ(), pawnToEat);
-//			
-//			//elimino l'elemento alla posizione 0 dell'array 'clicked cells'
-//			//elimino l'elemento alla posizione 0 dell'array 'ai cells'
-//			this.print(clicked_cells, opponent_cells);
-//			
-//			clicked_cells.remove(0);
-//			if(!opponent_cells.isEmpty())
-//			opponent_cells.remove(0);
-//			
-//			
-//		}
-//		
-//		clicked_cells.clear();
-//		opponent_cells.clear();
-//		//viene richiamata solo alla fine di questa funzione ma se ci sono pedine da mangiare
-////		if(!ai_cells.isEmpty())
-//		if(this instanceof UserPlayer)
-//		   this.siPassaDalloUserAllAi();
-//		
-//	}
+	public void moveByRightMouseClickUpdateteMovementMultiplayer(ArrayList<Cell> clicked_cells, ArrayList<Cell> opponent_cells)
+	{
+//		Variables.mangiata_multipla = true;
+//		Variables.giocatore1_mangio = true;
+		//QUI DEVO MANDARE GLI ARRAY AL SERVER
+		
+		multipleMovementMultiplayer = new MultipleMovementMultiplayer();
+		multipleMovementMultiplayer.settaTuttoMultiple(this.game, multipleMovementLock, clicked_cells, opponent_cells, this);
+		multipleMovementMultiplayer.start();
+		
+//		Variables.mangiata_multipla = false;
+	}
 	
 	protected boolean controllaValiditaCoord(int i, int j)
 	{
