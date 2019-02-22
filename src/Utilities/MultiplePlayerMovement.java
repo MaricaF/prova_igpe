@@ -84,7 +84,7 @@ public class MultiplePlayerMovement extends Thread{
 			this.player.passaDaPawnFirstMoveToPawnAfterMove(clicked_cells.get(0).getI(), clicked_cells.get(0).getJ(), 
 					clicked_cells.get(1).getI(), clicked_cells.get(1).getJ(), this.player.getPawnToEat());
 			else
-				((AIPlayer)this.game.getAi_player()).passaDaPawnFirstMoveToPawnAfterMove(clicked_cells.get(0).getI(), clicked_cells.get(0).getJ(), 
+				((AIPlayer)this.game.getAi_player()).passaDaPawnFirstMoveToPawnAfterMoveAI(clicked_cells.get(0).getI(), clicked_cells.get(0).getJ(), 
 						clicked_cells.get(1).getI(), clicked_cells.get(1).getJ(), this.player.getPawnToEat());
 			
 			//elimino l'elemento alla posizione 0 dell'array 'clicked cells'
