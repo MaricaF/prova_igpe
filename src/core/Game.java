@@ -167,7 +167,11 @@ public class Game {
 	private void singlePlayer_cells_colours_matrix_assignment()
 	{
 		this.assignImagesAtGame();
+		
 		int cont = 1;
+		if(this.user_player.getStringColour().equals("black"))
+			cont = 24;
+			
 		Pawn p;
 		String tempCol = "";
 		String path = "";
@@ -186,13 +190,6 @@ public class Game {
 			{
 				for(int j = 0; j < StaticVariables.lenghtMatrix; j++)
 				{
-					if(this.user_player.getStringColour().equals("black"))
-						{
-							ic = i;
-							jc = j;
-							i = this.opponentCoord(i);
-							j = this.opponentCoord(j);
-						}
 					if(this.dama.getCellColour(i, j) == "black")
 					{
 						
@@ -209,16 +206,17 @@ public class Game {
 				        this.dama.getCellAtPosition(i, j).setPawn(p); //diamo a queste celle della matrice, una pedina
 				        this.facts.addObjectInput(p);
 				        
-				        cont++;
-					}
-					if(this.user_player.getStringColour().equals("black"))
-					{
-					i = ic;
-					j = jc;
+				        if(this.user_player.getStringColour().equals("black"))
+				        	cont--;
+				        else
+				           cont++;
 					}
 				}
 			}
 		
+			 if(this.user_player.getStringColour().equals("black"))
+		        	cont = 12;
+			 
 //			if(this.single_player)
 //			{
 		tempCol = this.ai_player.getStringColour();
@@ -229,12 +227,6 @@ public class Game {
 		{
 		  for(int j = 0; j < StaticVariables.lenghtMatrix; j++)
 				{
-					if (this.user_player.getStringColour().equals("black")) {
-						ic = i;
-						jc = j;
-						i = this.opponentCoord(i);
-						j = this.opponentCoord(j);
-					}
 					if(this.dama.getCellColour(i, j) == "black")
 					{
 						
@@ -248,12 +240,11 @@ public class Game {
 				        this.total_pawns.put(cont,p);
 				        this.dama.getCellAtPosition(i, j).setPawn(p);
 				        this.facts.addObjectInput(p);
+				        
+				        if(this.user_player.getStringColour().equals("black"))
+				        	cont--;
+				        else
 				        cont++;
-					}
-					if(this.user_player.getStringColour().equals("black"))
-					{
-					i = ic;
-					j = jc;
 					}
 				}
 			}
@@ -356,6 +347,8 @@ public class Game {
 		else {
 			user_player.setColour("white");
 			ai_player.setColour("black");
+//			user_player.setColour("black");
+//			ai_player.setColour("white");
 
 			try {
 				this.facts
