@@ -108,7 +108,7 @@ public class MultiplePlayerMovement extends Thread{
 
 		if (!Variables.single_player) {
 			if (!Variables.canMove && !Variables.update && Variables.giocatore1_mangio) {
-				
+				Variables.mangiata_multipla = false;
 				System.out.println("Mangiata multipla. attesa. canMove: "+Variables.canMove+" update: "+Variables.update+
 						" giocator1_mangio: "+Variables.giocatore1_mangio);
 				System.out.println("siPassaDalloUserAllAi 1");
@@ -124,7 +124,7 @@ public class MultiplePlayerMovement extends Thread{
 				System.out.println("siPassaDalloUserAllAi 3");
 				 Variables.canMove = true;
 				 System.out.println("MultiplPlayerMovement CAN MOVE");
-				 Variables.mangiata_multipla = false;
+				 
 			}
 			// this.moveByRightMouseClick(clicked_cells, opponent_cells);
 		}
