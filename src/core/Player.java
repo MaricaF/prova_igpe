@@ -237,7 +237,6 @@ public abstract class Player {
 	   ((UserPlayer)this.game.getUser_player()).getClient().setModifiedSentence("");
 	   ((UserPlayer)this.game.getUser_player()).getClient().setTemp("");
 	   Variables.update = false;
-	   Variables.canMove = true;
 	   System.err.println("stringa opponent_cells: "+stringa_opponent_cells);
 	   
     }
