@@ -822,7 +822,7 @@ public abstract class Player {
 			this.pawnFirstTomove = this.game.getDama().getPawnAtPosition(clicked_cells.get(0).getI(), clicked_cells.get(0).getJ());
 			//la pawn aftermove = pawn after to move
 			this.pawnAfterMove = this.pawnFirstTomove;
-			this.passaDaPawnFirstMoveToPawnAfterMove(clicked_cells.get(0).getI(), clicked_cells.get(0).getJ(), 
+			((AIPlayer)this.game.getAi_player()).passaDaPawnFirstMoveToPawnAfterMoveAI(clicked_cells.get(0).getI(), clicked_cells.get(0).getJ(), 
 					clicked_cells.get(1).getI(), clicked_cells.get(1).getJ(), pawnToEat);
 			
 			//elimino l'elemento alla posizione 0 dell'array 'clicked cells'
