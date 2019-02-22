@@ -227,22 +227,7 @@ public abstract class Player {
 //	       Variables.giocatore1_mangio = false;
 	       ((AIPlayer)this.game.getAi_player()).moveByRightMouseClickUpdateteMovementMultiplayer(clicked_cells, opponent_cells);
 	       
-	       Variables.mangiata_multipla = false;
-			System.out.println("Mangiata multipla. attesa. canMove: "+Variables.canMove+" update: "+Variables.update+
-					" giocator1_mangio: "+Variables.giocatore1_mangio);
-			System.out.println("siPassaDalloUserAllAi 1");
-			((UserPlayer) this.game.getUser_player()).getClient().miMettoInAttesaDelServer();
-			System.out.println("siPassaDalloUserAllAi 2");
-			((UserPlayer) this.game.getUser_player())
-					.setInFromServer(((UserPlayer) this.game.getUser_player()).getClient().getModifiedSentence()); // stringa
-																													// ricevuta
-																													// dall'altro
-																													// giocatore
-			// devo prendere la clientSentence del client ecc
-			((AIPlayer) this.game.getAi_player()).algorythmOfTransformationPlayer();
-			System.out.println("siPassaDalloUserAllAi 3");
-			 Variables.canMove = true;
-			 System.out.println("MultiplPlayerMovement CAN MOVE");
+	       
 	       
 //	       this.moveByRightMouseClick(clicked_cells, opponent_cells);
 	   }
