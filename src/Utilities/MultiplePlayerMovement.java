@@ -104,8 +104,8 @@ public class MultiplePlayerMovement extends Thread{
 		//viene richiamata solo alla fine di questa funzione ma se ci sono pedine da mangiare
 //		if(!ai_cells.isEmpty())
 		
-//		((MyPlayPanel) this.game.getPlay_panel()).setTurno_ai(true);
-//
+		((MyPlayPanel) this.game.getPlay_panel()).setTurno_ai(true);
+
 //		if (!Variables.single_player) {
 //			if (!Variables.canMove && !Variables.update && Variables.giocatore1_mangio) {
 //				Variables.mangiata_multipla = false;
@@ -129,7 +129,7 @@ public class MultiplePlayerMovement extends Thread{
 //			// this.moveByRightMouseClick(clicked_cells, opponent_cells);
 //		}
 //		((MyPlayPanel) this.game.getPlay_panel()).setTurno_ai(false);
-		
+//		
 		if(this.player instanceof UserPlayer)
 		{
 			if (Variables.single_player)
