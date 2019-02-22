@@ -122,6 +122,7 @@ public class MultiplePlayerMovement extends Thread{
 				((AIPlayer) this.game.getAi_player()).algorythmOfTransformationPlayer();
 				System.out.println("siPassaDalloUserAllAi 3");
 				 Variables.canMove = true;
+				 Variables.mangiata_multipla = false;
 			}
 			// this.moveByRightMouseClick(clicked_cells, opponent_cells);
 		}
@@ -135,7 +136,7 @@ public class MultiplePlayerMovement extends Thread{
 		System.out.println("FUORI");
 
 		
-		Variables.mangiata_multipla = false;
+		
 		Variables.giocatore1_mangio = false;
 		this.lock.unlock();
 		

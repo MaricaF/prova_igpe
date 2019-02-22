@@ -220,7 +220,7 @@ public abstract class Player {
 		   ArrayList<Cell> opponent_cells = new ArrayList<Cell>();
 	       this.stringToCoord(opponent_cells, array_parole[1]);
 	       Variables.canMove = false;
-	       Variables.giocatore1_mangio = false;
+//	       Variables.giocatore1_mangio = false;
 	       ((AIPlayer)this.game.getAi_player()).moveByRightMouseClick(clicked_cells, opponent_cells);
 //	       this.moveByRightMouseClick(clicked_cells, opponent_cells);
 	   }
