@@ -252,6 +252,19 @@ public abstract class Player {
 				// this.moveByRightMouseClick(clicked_cells, opponent_cells);
 			}
 			((MyPlayPanel) this.game.getPlay_panel()).setTurno_ai(false);
+			
+			
+			///////////mi metto in attesa del server 
+			System.out.println("Spostamento semplice. attesa canMove: "+Variables.canMove+" update: "+Variables.update +
+					" giocator1_mangio: "+Variables.giocatore1_mangio);
+		System.out.println("siPassaDalloUserAllAi 1");
+		((UserPlayer)this.game.getUser_player()).getClient().miMettoInAttesaDelServer();
+		System.out.println("siPassaDalloUserAllAi 2");
+		((UserPlayer)this.game.getUser_player()).setInFromServer(((UserPlayer)this.game.getUser_player()).getClient().getModifiedSentence()); //stringa ricevuta dall'altro giocatore
+		//devo prendere la clientSentence del client ecc
+		((UserPlayer)this.game.getUser_player()).algorythmOfTransformationPlayer();
+		System.out.println("siPassaDalloUserAllAi 3");
+			
 	       
 //	       this.moveByRightMouseClick(clicked_cells, opponent_cells);
 	   }
