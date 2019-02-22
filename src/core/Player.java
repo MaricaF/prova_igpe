@@ -753,11 +753,13 @@ public abstract class Player {
 //		Variables.mangiata_multipla = true;
 //		Variables.giocatore1_mangio = true;
 		//QUI DEVO MANDARE GLI ARRAY AL SERVER
+		System.out.println("1 moveByRightMouseClick");
 		
 		multiplePlayerMovement = new MultiplePlayerMovement();
 		multiplePlayerMovement.settaTuttoMultiple(this.game, multipleMovementLock, clicked_cells, opponent_cells, this);
 		multiplePlayerMovement.start();
 		
+		System.out.println("2 moveByRightMouseClick");
 //		Variables.mangiata_multipla = false;
 	}
 	
