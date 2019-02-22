@@ -753,6 +753,23 @@ public abstract class Player {
 //		Variables.mangiata_multipla = true;
 //		Variables.giocatore1_mangio = true;
 		//QUI DEVO MANDARE GLI ARRAY AL SERVER
+		if(!Variables.single_player && !Variables.update && Variables.canMove && Variables.giocatore1_mangio)
+		{
+			System.out.println("Mangiata multipla. invio. canMove: "+Variables.canMove+" update: "+Variables.update+
+					" giocator1_mangio: "+Variables.giocatore1_mangio);
+			((UserPlayer)this.game.getUser_player()).getClient().setMessageToSendToServer("");
+			String s_clicked_cells = this.CoordToString(clicked_cells);
+			String s_opponent_cells = this.CoordToString(this.opponent_cells);
+			this.setOutToServer(s_clicked_cells +  s_opponent_cells + "<END>");
+			((UserPlayer)this.game.getUser_player()).getClient().setMessageToSendToServer(this.getOutToServer());
+			((UserPlayer)this.game.getUser_player()).getClient().sendMessageToServer();
+			this.setOutToServer("");
+			Variables.canMove = false;
+		}
+		else
+		{
+			System.out.println("NON ENTRO :(. variables.update: "+Variables.update);
+		}
 		
 		multiplePlayerMovement = new MultiplePlayerMovement();
 		multiplePlayerMovement.settaTuttoMultiple(this.game, multipleMovementLock, clicked_cells, opponent_cells, this);

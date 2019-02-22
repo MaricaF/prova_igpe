@@ -39,23 +39,23 @@ public class MultiplePlayerMovement extends Thread{
 		
 		//dev'essere mandato solo se siamo in modalità multiplayer e non dobbiamo aggiornare il gioco dopo 
 		//i movimenti dell'avversario.
-		if(!Variables.single_player && !Variables.update && Variables.canMove && Variables.giocatore1_mangio)
-		{
-			System.out.println("Mangiata multipla. invio. canMove: "+Variables.canMove+" update: "+Variables.update+
-					" giocator1_mangio: "+Variables.giocatore1_mangio);
-			((UserPlayer)this.game.getUser_player()).getClient().setMessageToSendToServer("");
-			String s_clicked_cells = this.player.CoordToString(this.clicked_cells);
-			String s_opponent_cells = this.player.CoordToString(this.opponent_cells);
-			this.player.setOutToServer(s_clicked_cells +  s_opponent_cells + "<END>");
-			((UserPlayer)this.game.getUser_player()).getClient().setMessageToSendToServer(this.player.getOutToServer());
-			((UserPlayer)this.game.getUser_player()).getClient().sendMessageToServer();
-			this.player.setOutToServer("");
-			Variables.canMove = false;
-		}
-		else
-		{
-			System.out.println("NON ENTRO :(. variables.update: "+Variables.update);
-		}
+//		if(!Variables.single_player && !Variables.update && Variables.canMove && Variables.giocatore1_mangio)
+//		{
+//			System.out.println("Mangiata multipla. invio. canMove: "+Variables.canMove+" update: "+Variables.update+
+//					" giocator1_mangio: "+Variables.giocatore1_mangio);
+//			((UserPlayer)this.game.getUser_player()).getClient().setMessageToSendToServer("");
+//			String s_clicked_cells = this.player.CoordToString(this.clicked_cells);
+//			String s_opponent_cells = this.player.CoordToString(this.opponent_cells);
+//			this.player.setOutToServer(s_clicked_cells +  s_opponent_cells + "<END>");
+//			((UserPlayer)this.game.getUser_player()).getClient().setMessageToSendToServer(this.player.getOutToServer());
+//			((UserPlayer)this.game.getUser_player()).getClient().sendMessageToServer();
+//			this.player.setOutToServer("");
+//			Variables.canMove = false;
+//		}
+//		else
+//		{
+//			System.out.println("NON ENTRO :(. variables.update: "+Variables.update);
+//		}
 		
 		System.out.println("DENTRO");
 		while(clicked_cells.size() > 1)
