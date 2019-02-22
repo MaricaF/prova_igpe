@@ -230,8 +230,8 @@ public class Client {
 //		this.modifiedSentence = "";
 //		this.temp = "";
 		
-		if(!Variables.mangiata_multipla)
-		Variables.canMove = true;
+//		if(!Variables.mangiata_multipla)
+//		Variables.canMove = true;
 		
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
