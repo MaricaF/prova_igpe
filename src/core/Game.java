@@ -186,15 +186,16 @@ public class Game {
 			{
 				for(int j = 0; j < StaticVariables.lenghtMatrix; j++)
 				{
+					if(this.user_player.getStringColour().equals("black"))
+						{
+							ic = i;
+							jc = j;
+							i = this.opponentCoord(i);
+							j = this.opponentCoord(j);
+						}
 					if(this.dama.getCellColour(i, j) == "black")
 					{
-//						if(this.user_player.getStringColour().equals("black"))
-//						{
-//							ic = i;
-//							jc = j;
-//							i = this.opponentCoord(i);
-//							j = this.opponentCoord(j);
-//						}
+						
 						p = new Pawn(cont,i,j,tempCol);
 						System.out.println("ciao4");
 						immagine = new Immagine(idImm,path,cont);
@@ -210,11 +211,11 @@ public class Game {
 				        
 				        cont++;
 					}
-//					if(this.user_player.getStringColour().equals("black"))
-//					{
-//					i = ic;
-//					j = jc;
-//					}
+					if(this.user_player.getStringColour().equals("black"))
+					{
+					i = ic;
+					j = jc;
+					}
 				}
 			}
 		
@@ -228,15 +229,15 @@ public class Game {
 		{
 		  for(int j = 0; j < StaticVariables.lenghtMatrix; j++)
 				{
+					if (this.user_player.getStringColour().equals("black")) {
+						ic = i;
+						jc = j;
+						i = this.opponentCoord(i);
+						j = this.opponentCoord(j);
+					}
 					if(this.dama.getCellColour(i, j) == "black")
 					{
-//						if(this.user_player.getStringColour().equals("black"))
-//						{
-//							ic = i;
-//							jc = j;
-//							i = this.opponentCoord(i);
-//							j = this.opponentCoord(j);
-//						}
+						
 						p = new Pawn(cont,i,j,tempCol);
 						immagine = new Immagine(idImm,path,cont);
 						immagine.setVisible(true);
@@ -249,16 +250,17 @@ public class Game {
 				        this.facts.addObjectInput(p);
 				        cont++;
 					}
-//					if(this.user_player.getStringColour().equals("black"))
-//					{
-//					i = ic;
-//					j = jc;
-//					}
+					if(this.user_player.getStringColour().equals("black"))
+					{
+					i = ic;
+					j = jc;
+					}
 				}
 			}
 //			}
 	  
-	  
+	  System.out.println("QUIIIIIIIIIIII");
+	  this.dama.printMatrix();
 	    
 	  System.out.println("ciao5");
 		Immagine i = new Immagine(StaticVariables.ID_CELLA_EVIDENZIATA, StaticVariables.PATH_CELLA_EVIDENZIATA,-1);
