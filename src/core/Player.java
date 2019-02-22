@@ -222,8 +222,8 @@ public abstract class Player {
 		   System.out.println("algorythmOfTransformationPlayer qui");
 		   ArrayList<Cell> opponent_cells = new ArrayList<Cell>();
 	       this.stringToCoord(opponent_cells, array_parole[1]);
-	       Variables.canMove = false;
-	       System.out.println("Player algorythmOfTransformationPlayer NO CAN MOVE");
+//	       Variables.canMove = false;
+//	       System.out.println("Player algorythmOfTransformationPlayer NO CAN MOVE");
 //	       Variables.giocatore1_mangio = false;
 	       ((AIPlayer)this.game.getAi_player()).moveByRightMouseClickUpdateteMovementMultiplayer(clicked_cells, opponent_cells);
 //	       this.moveByRightMouseClick(clicked_cells, opponent_cells);
