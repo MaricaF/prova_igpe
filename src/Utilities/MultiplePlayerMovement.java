@@ -121,7 +121,7 @@ public class MultiplePlayerMovement extends Thread{
 				// devo prendere la clientSentence del client ecc
 				((AIPlayer) this.game.getAi_player()).algorythmOfTransformationPlayer();
 				System.out.println("siPassaDalloUserAllAi 3");
-				 Variables.canMove = true;
+//				 Variables.canMove = true;
 				 Variables.mangiata_multipla = false;
 			}
 			// this.moveByRightMouseClick(clicked_cells, opponent_cells);
