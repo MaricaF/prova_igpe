@@ -224,6 +224,8 @@ public abstract class Player {
 	       System.out.println("Player algorythmOfTransformationPlayer NO CAN MOVE");
 //	       Variables.giocatore1_mangio = false;
 	       ((AIPlayer)this.game.getAi_player()).moveByRightMouseClick(clicked_cells, opponent_cells);
+	       Variables.canMove = true;
+	       System.out.println("Player algorythmOfTransformationPlayer CAN MOVE");
 //	       this.moveByRightMouseClick(clicked_cells, opponent_cells);
 	   }
 	   //muovo semplicemente, senza mangiare
