@@ -186,6 +186,7 @@ public abstract class Player {
 			this.sendMovimentoSemplice(iprec, jprec, iafter, jafter);
 			((UserPlayer) this.game.getUser_player()).getClient().setModifiedSentence("");
 			((UserPlayer) this.game.getUser_player()).getClient().setTemp("");
+			System.out.println("passaDaPawnFirstMoveToPawnAfterMove NO CAN MOVE");
 			Variables.canMove = false;
 		}
 		

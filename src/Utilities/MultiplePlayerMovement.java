@@ -98,6 +98,7 @@ public class MultiplePlayerMovement extends Thread{
 			if (!Variables.canMove && !Variables.update && Variables.giocatore1_mangio) {
 				this.player.receiveMangiataMultipla();
 				Variables.interpostaTraMovMultiploEnon = false;
+				System.out.println("MultiplePlayerMovement receive CAN MOVE");
 				Variables.canMove = true;
 			}
 			else

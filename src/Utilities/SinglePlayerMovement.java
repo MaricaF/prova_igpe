@@ -94,6 +94,7 @@ public class SinglePlayerMovement extends Thread{
 			if(!Variables.canMove && !Variables.mangiata_multipla && !Variables.update)
 			{
 				this.player.receiveSemplice();
+				System.out.println("SinglePlayerMovement receive CAN MOVE");
 				Variables.canMove = true;
 			}
 //			Variables.canMove = true;
