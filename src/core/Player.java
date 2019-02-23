@@ -295,6 +295,7 @@ public abstract class Player {
 	    
 	    if(array_parole[0].contains("end"))
 	    {
+	    	System.out.println("algorytme close socket");
 	    	((UserPlayer)this.game.getUser_player()).getClient().closeConnection();
 	    	this.game.getPlay_panel().getMenu().setPanelsVisibility(this.game.getPlay_panel().getMenu().getCurrent_panel(), false);
 	    	this.game.getPlay_panel().getMenu().setPanelProperties(this.game.getPlay_panel().getMenu().getMyMenuPanel(), true);
