@@ -39,7 +39,7 @@ public class MultiplePlayerMovement extends Thread{
 		
 //		//dev'essere mandato solo se siamo in modalità multiplayer e non dobbiamo aggiornare il gioco dopo 
 //		//i movimenti dell'avversario.
-		if (!Variables.single_player && !Variables.update && Variables.canMove && Variables.giocatore1_mangio) {
+		if (!Variables.single_player && !Variables.update && Variables.canMove && !Variables.giocatore1_mangio) {
 			this.player.sendMangiataMultipla(clicked_cells, opponent_cells);
 		} else {
 			System.out.println("NON ENTRO :(. variables.update: " + Variables.update);
