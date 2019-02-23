@@ -22,10 +22,10 @@ public interface StaticVariables {
 	final static int screen_width = (int) screenSize.getWidth();
 	final static int screen_height = (int) screenSize.getHeight();
 	
-//	final static int finestra_width = (int) screenSize.getWidth();
-//	final static int finestra_height = (int) screenSize.getHeight();
-	final static int finestra_width = 800;
-	final static int finestra_height = 600;
+	final static int finestra_width = (int) screenSize.getWidth();
+	final static int finestra_height = (int) screenSize.getHeight();
+//	final static int finestra_width = 800;
+//	final static int finestra_height = 600;
 	
 	final static int RIGHE_COLONNE = 8;
 	
