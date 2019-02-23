@@ -301,7 +301,8 @@ public abstract class Player {
 	    	this.game.getPlay_panel().getMenu().setPanelsVisibility(this.game.getPlay_panel().getMenu().getCurrent_panel(), false);
 	    	this.game.getPlay_panel().getMenu().setPanelProperties(this.game.getPlay_panel().getMenu().getMyMenuPanel(), true);
 	    }
-	    
+	    else
+	    {
 		   this.stringToCoord(clicked_cells, array_parole[0]);
 	   //la seconda riga di opponent_cells dell'avversario
 	   String stringa_opponent_cells = "";
@@ -335,6 +336,7 @@ public abstract class Player {
 //	   ((UserPlayer)this.game.getUser_player()).getClient().setTemp("");
 	   Variables.update = false;
 	   System.err.println("stringa opponent_cells: "+stringa_opponent_cells);
+	    }
 	   
     }
     
