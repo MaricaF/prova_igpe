@@ -79,7 +79,7 @@ public class MultipleMovementMultiplayer extends Thread{
 		clicked_cells.clear();
 		opponent_cells.clear();
 		
-		this.player.receiveMangiataMultipla();
+//		this.player.receiveMangiataMultipla();
 		
 		this.lock.unlock();
 		
