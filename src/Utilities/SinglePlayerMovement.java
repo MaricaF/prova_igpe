@@ -97,6 +97,9 @@ public class SinglePlayerMovement extends Thread{
 				System.out.println("SinglePlayerMovement receive CAN MOVE");
 				Variables.canMove = true;
 			}
+			else
+				System.out.println("SinglePlayerMovement no attesa. canMove"+Variables.canMove+" update: "+Variables.update+
+						" giocator1_mangio: "+Variables.giocatore1_mangio);
 //			Variables.canMove = true;
 //			this.moveByRightMouseClick(clicked_cells, opponent_cells);
 		}
