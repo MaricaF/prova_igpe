@@ -185,7 +185,10 @@ public class MyPlayPanel extends MyPanel {
 					}
 					
 					System.out.println("DENTRO");
+					if(!Variables.single_player)
 					this.game.getUser_player().moveByRightMouseClick(this.celle_per_pasto_consecutivo, this.ai_cells);
+					else
+						this.game.getUser_player().moveByRightMouseClickUpdateteMovementMultiplayer(this.celle_per_pasto_consecutivo, this.ai_cells);
 					
 					if (!Variables.single_player && Variables.giocatore1_mangio) {
 						((UserPlayer)this.game.getUser_player()).receiveMangiataMultipla();
