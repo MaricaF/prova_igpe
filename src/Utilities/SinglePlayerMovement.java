@@ -99,7 +99,7 @@ public class SinglePlayerMovement extends Thread{
 			}
 			else
 				System.out.println("SinglePlayerMovement no attesa. canMove"+Variables.canMove+" update: "+Variables.update+
-						" giocator1_mangio: "+Variables.giocatore1_mangio);
+						" giocator1_mangio: "+Variables.giocatore1_mangio+ " interposta: "+Variables.interpostaTraMovMultiploEnon);
 //			Variables.canMove = true;
 //			this.moveByRightMouseClick(clicked_cells, opponent_cells);
 		}

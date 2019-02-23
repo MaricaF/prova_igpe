@@ -103,7 +103,7 @@ public class MultiplePlayerMovement extends Thread{
 			}
 			else
 				System.out.println("multiplePlayerMovement no attesa. canMove"+Variables.canMove+" update: "+Variables.update+
-					" giocator1_mangio: "+Variables.giocatore1_mangio);
+					" giocator1_mangio: "+Variables.giocatore1_mangio+ " interposta: "+Variables.interpostaTraMovMultiploEnon);
 //			// this.moveByRightMouseClick(clicked_cells, opponent_cells);
 		}
 		((MyPlayPanel) this.game.getPlay_panel()).setTurno_ai(false);

@@ -162,7 +162,7 @@ public abstract class Player {
 //		   ((UserPlayer)this.game.getUser_player()).getClient().setTemp("");
 		Variables.mangiata_multipla = false;
 		System.out.println("Mangiata multipla. attesa. canMove: "+Variables.canMove+" update: "+Variables.update+
-				" giocator1_mangio: "+Variables.giocatore1_mangio+" mangiata_multipla: "+Variables.mangiata_multipla);
+				" giocator1_mangio: "+Variables.giocatore1_mangio+" mangiata_multipla: "+Variables.mangiata_multipla+ " interposta: "+Variables.interpostaTraMovMultiploEnon);
 		System.out.println("siPassaDalloUserAllAi 1");
 		((UserPlayer) this.game.getUser_player()).getClient().miMettoInAttesaDelServer();
 		System.out.println("siPassaDalloUserAllAi 2");
