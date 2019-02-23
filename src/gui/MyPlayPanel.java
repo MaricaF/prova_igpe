@@ -190,7 +190,6 @@ public class MyPlayPanel extends MyPanel {
 					else
 					{
 						this.game.getUser_player().moveByRightMouseClick(this.celle_per_pasto_consecutivo, this.ai_cells);
-						Variables.canMove = true;
 					}
 //						this.game.getUser_player().moveByRightMouseClickUpdateteMovementMultiplayer(this.celle_per_pasto_consecutivo, this.ai_cells);
 					

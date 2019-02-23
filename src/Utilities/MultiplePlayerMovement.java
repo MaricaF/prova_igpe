@@ -98,6 +98,7 @@ public class MultiplePlayerMovement extends Thread{
 			if (!Variables.canMove && !Variables.update && Variables.giocatore1_mangio) {
 				this.player.receiveMangiataMultipla();
 				Variables.interpostaTraMovMultiploEnon = false;
+				Variables.canMove = true;
 			}
 //			// this.moveByRightMouseClick(clicked_cells, opponent_cells);
 		}
