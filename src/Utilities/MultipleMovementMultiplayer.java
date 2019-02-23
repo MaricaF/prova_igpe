@@ -87,7 +87,7 @@ public class MultipleMovementMultiplayer extends Thread{
 //		this.player.receiveMangiataMultipla();
 		
 //		Variables.giocatore1_mangio = false;
-		Variables.mangiata_multipla = false;
+//		Variables.mangiata_multipla = false;
 		this.lock.unlock();
 		
 	}
