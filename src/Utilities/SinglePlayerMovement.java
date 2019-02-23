@@ -91,7 +91,7 @@ public class SinglePlayerMovement extends Thread{
 		
 		if (!Variables.single_player)
 		{
-			if(!Variables.canMove && !Variables.mangiata_multipla && !Variables.update)
+			if(!Variables.canMove && !Variables.mangiata_multipla && !Variables.update && Variables.giocatore1_mangio)
 				this.player.receiveSemplice();
 //			Variables.canMove = true;
 //			this.moveByRightMouseClick(clicked_cells, opponent_cells);
