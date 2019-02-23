@@ -167,6 +167,7 @@ public class Client {
      */
 	public void closeConnection() {
 		try {
+			System.out.println("Colse connection");
 			this.inFromServer.close();
 			this.outToServer.close();
 			this.clientSocket.close();

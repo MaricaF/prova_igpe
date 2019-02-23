@@ -293,7 +293,7 @@ public abstract class Player {
 		//la prima righe di my_cells dell'avversario
 	    ArrayList<Cell> clicked_cells =  new ArrayList<Cell>();
 	    
-	    if(array_parole[0].equals("end"))
+	    if(array_parole[0].contains("end"))
 	    {
 	    	((UserPlayer)this.game.getUser_player()).getClient().closeConnection();
 	    	this.game.getPlay_panel().getMenu().setPanelsVisibility(this.game.getPlay_panel().getMenu().getCurrent_panel(), false);
