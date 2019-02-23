@@ -137,8 +137,8 @@ public abstract class Player {
 	public void receiveSemplice()
 	{
 		if (!Variables.interpostaTraMovMultiploEnon) {
-			((UserPlayer) this.game.getUser_player()).getClient().setModifiedSentence("");
-			((UserPlayer) this.game.getUser_player()).getClient().setTemp("");
+//			((UserPlayer) this.game.getUser_player()).getClient().setModifiedSentence("");
+//			((UserPlayer) this.game.getUser_player()).getClient().setTemp("");
 			System.out.println("Spostamento semplice. attesa canMove: " + Variables.canMove + " update: "
 					+ Variables.update + " giocator1_mangio: " + Variables.giocatore1_mangio + " mangiata_multipla: "
 					+ Variables.mangiata_multipla+" interposta: "+Variables.interpostaTraMovMultiploEnon);
@@ -158,8 +158,8 @@ public abstract class Player {
 	
 	public void receiveMangiataMultipla()
 	{
-		((UserPlayer)this.game.getUser_player()).getClient().setModifiedSentence("");
-		   ((UserPlayer)this.game.getUser_player()).getClient().setTemp("");
+//		((UserPlayer)this.game.getUser_player()).getClient().setModifiedSentence("");
+//		   ((UserPlayer)this.game.getUser_player()).getClient().setTemp("");
 		Variables.mangiata_multipla = false;
 		System.out.println("Mangiata multipla. attesa. canMove: "+Variables.canMove+" update: "+Variables.update+
 				" giocator1_mangio: "+Variables.giocatore1_mangio+" mangiata_multipla: "+Variables.mangiata_multipla);
@@ -184,6 +184,8 @@ public abstract class Player {
 		// devo mangiare pedina, ma devo mandargli tutte quelle posizioni in un'altra funzione
 		if (!Variables.single_player && Variables.canMove && !Variables.giocatore1_mangio && !Variables.update) {
 			this.sendMovimentoSemplice(iprec, jprec, iafter, jafter);
+			((UserPlayer) this.game.getUser_player()).getClient().setModifiedSentence("");
+			((UserPlayer) this.game.getUser_player()).getClient().setTemp("");
 			Variables.canMove = false;
 		}
 		

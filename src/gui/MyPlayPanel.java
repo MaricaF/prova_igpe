@@ -179,6 +179,8 @@ public class MyPlayPanel extends MyPanel {
 					//i movimenti dell'avversario.
 					if (!Variables.single_player && Variables.giocatore1_mangio) {
 						((UserPlayer)this.game.getUser_player()).sendMangiataMultipla(this.celle_per_pasto_consecutivo, this.ai_cells);
+						((UserPlayer) this.game.getUser_player()).getClient().setModifiedSentence("");
+						((UserPlayer) this.game.getUser_player()).getClient().setTemp("");
 						Variables.canMove = false;
 //						Variables.giocatore1_mangio = false; //la metto qui erché altrimenti si mette in attesa anche nel thread 'singleMovement'
 					} else {
