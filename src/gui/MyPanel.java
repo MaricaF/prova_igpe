@@ -21,8 +21,6 @@ public abstract class MyPanel extends JPanel implements MouseListener, MouseMoti
 	protected CaricatoreImmagini caricatore_immagini;
 	protected Menu menu;
 	protected boolean mainButtonsVisible; //è la booleana che indica se i bottoni Play ed Exit sono visibili e premibili.
-	protected Font font;
-	protected AttributedString font_string;
 	protected int tavolo_w, tavolo_h, tavolo_x, tavolo_y;
 	protected MyButton back_button;
 	
@@ -31,10 +29,11 @@ public abstract class MyPanel extends JPanel implements MouseListener, MouseMoti
 		this.menu = menu;
 	    this.panel_name = panel_name;
 	    this.caricatore_immagini = new CaricatoreImmagini();
-	    this.proporziona = new ProporzionaImmagine(this.caricatore_immagini);
+	    this.proporziona = new ProporzionaImmagine(this.caricatore_immagini); 
 	    this.proporziona.setSizeBAckgroundAndScacchiera(StaticVariables.finestra_width,StaticVariables.finestra_height);
 //	    this.proporziona.setSizeBAckgroundAndScacchiera(this.menu.getWidth(),this.menu.getHeight()); //qui proporziono lo sfondo e la scacchiera, prima che venga creato il panel con il rendering
         this.proporziona.resizeOtherPopups();
+       
         this.back_button = new MyButton(new Immagine(StaticVariables.ID_BACK_BUTTON, StaticVariables.PATH_BACKBUTTON,-1), 
         		new Immagine(StaticVariables.ID_PRESSEBACKBUTTON, StaticVariables.PATH_BACKBUTTON,-1), 
         		StaticVariables.BACK_NAME);

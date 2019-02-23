@@ -254,6 +254,13 @@ public class ProporzionaImmagine {
        	this.caricatore_immagini.getScacchieraSfondo().get(StaticVariables.ID_TAVOLO_LEGNO).setX(this.moveToRight-this.pawnCellWidth);
        	this.caricatore_immagini.getScacchieraSfondo().get(StaticVariables.ID_TAVOLO_LEGNO).setY(this.moveToDown-this.pawnCellWidth);
        	
+    	this.caricatore_immagini.getScacchieraSfondo().get(StaticVariables.ID_LOGO).setImageWidth(this.pawnCellWidth*6);
+       	this.caricatore_immagini.getScacchieraSfondo().get(StaticVariables.ID_LOGO).setImageHeight(this.pawnCellWidth*3);
+       	this.caricatore_immagini.getScacchieraSfondo().get(StaticVariables.ID_LOGO).setX(StaticVariables.finestra_width-
+       			(this.caricatore_immagini.getScacchieraSfondo().get(StaticVariables.ID_LOGO).getImageWidth()+StaticVariables.finestra_width/20));
+       	this.caricatore_immagini.getScacchieraSfondo().get(StaticVariables.ID_LOGO).setY(
+       			this.caricatore_immagini.getScacchieraSfondo().get(StaticVariables.ID_LOGO).getImageHeight()/2);
+       	
 //       	System.err.println("w frame: "+width+" pawncellwidth: "+this.pawnCellWidth+ " wframe/pawncellwidth: "+this.moveToRight);
        	
        	

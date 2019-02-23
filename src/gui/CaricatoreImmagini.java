@@ -17,6 +17,7 @@ public class CaricatoreImmagini {
 		this.scacchieraSfondo.put(StaticVariables.ID_SFONDO1, new Immagine(StaticVariables.ID_SFONDO1,this.pathImmagini(StaticVariables.ID_SFONDO1),-1));
 		this.scacchieraSfondo.put(StaticVariables.ID_TAVOLO, new Immagine(StaticVariables.ID_TAVOLO,this.pathImmagini(StaticVariables.ID_TAVOLO),-1));
 		this.scacchieraSfondo.put(StaticVariables.ID_TAVOLO_LEGNO, new Immagine(StaticVariables.ID_TAVOLO_LEGNO,this.pathImmagini(StaticVariables.ID_TAVOLO_LEGNO),-1));
+		this.scacchieraSfondo.put(StaticVariables.ID_LOGO, new Immagine(StaticVariables.ID_LOGO, StaticVariables.PATH_LOGO, -1));
 		
 		this.scacchieraSfondo.put(StaticVariables.ID_PAPER_YOUWON, new Immagine(StaticVariables.ID_PAPER_YOUWON,StaticVariables.PATH_PAPER_YOUWON,-1));
 		this.scacchieraSfondo.put(StaticVariables.ID_PAPER_YOULOST, new Immagine(StaticVariables.ID_PAPER_YOULOST,StaticVariables.PATH_PAPER_YOULOST,-1));
@@ -76,6 +77,7 @@ public class CaricatoreImmagini {
 		case(StaticVariables.ID_TAVOLO_UNIVERSO): p = StaticVariables.PATH_TAVOLO_UNIVERSO; break;
 		case(StaticVariables.ID_TAVOLO_VERDE): p = StaticVariables.PATH_TAVOLO_VERDE; break;
 		case(StaticVariables.ID_EDITOR_BUTTON): p = StaticVariables.PATH_EDITOR_BUTTON; break;
+		case(StaticVariables.ID_LOGO): p = StaticVariables.PATH_LOGO; break;
 		
 		default: break;
 		}

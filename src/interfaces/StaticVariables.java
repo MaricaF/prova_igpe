@@ -89,6 +89,7 @@ public interface StaticVariables {
 	final static int ID_SAVE_BUTTONPRESSED = 59;
 	final static int ID_AI_PAWN = 60;
 	final static int ID_USER_PAWN = 61;
+	final static int ID_LOGO = 62;
 	
 	
 	
@@ -129,6 +130,7 @@ public interface StaticVariables {
 	final static String PATH_TAVOLO_UNIVERSO_PRESSED = "Images/tavoloneropressed.png";
 	final static String PATH_TAVOLO_VERDE = "Images/tavolo_verde.png";
 	final static String PATH_TAVOLO_VERDE_PRESSED = "Images/tavolo_verdepressed.png";
+	final static String PATH_LOGO = "Images/Dama.png";
 	
 	
 	

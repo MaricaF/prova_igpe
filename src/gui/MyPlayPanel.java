@@ -31,6 +31,8 @@ public class MyPlayPanel extends MyPanel {
 	private ArrayList<Cell> celle_per_pasto_consecutivo;
 	private ArrayList<Cell> ai_cells;
 	private boolean pedina_che_diventera_dama;
+	private AttributedString font_string, string_multiplayer;
+	private Font font;
 
 	public MyPlayPanel(Menu menu, String panel_name) {
 		super(menu, panel_name);
@@ -56,6 +58,25 @@ public class MyPlayPanel extends MyPanel {
 		this.pedina_che_diventera_dama = false;
 		
 		this.caricatore_immagini.getScacchieraSfondo().get(StaticVariables.ID_TAVOLO_LEGNO).setVisible(true);
+		
+		if(!Variables.single_player)
+		{
+			
+			
+			if(this.game.getUser_player().getStringColour().equals("white"))
+			{
+				this.string_multiplayer = new AttributedString("It's your turn...");
+				// System.out.println("current time: "+this.chronometer.getCurrentTime());
+				
+			}
+			else
+			{
+				
+			}
+			
+			this.font_string.addAttribute(TextAttribute.FONT, font);
+				this.font_string.addAttribute(TextAttribute.FOREGROUND, Color.orange, 0, 7);
+		}
 		
 		
 		if(Variables.editor)
@@ -107,6 +128,11 @@ public class MyPlayPanel extends MyPanel {
 		this.createChronometerString();
 		g.drawString(font_string.getIterator(), (StaticVariables.finestra_width / 15) * 7,
 				StaticVariables.finestra_height / 10);
+		
+			if (!Variables.single_player) {
+				g.drawString(font_string.getIterator(), (StaticVariables.finestra_width / 15) * 7,
+						StaticVariables.finestra_height / 10);
+			}
 		}catch(Exception e)
 		{
 			System.err.println("eccezione");
@@ -118,7 +144,7 @@ public class MyPlayPanel extends MyPanel {
 		this.font_string = new AttributedString(this.chronometer.getCurrentTime());
 		// System.out.println("current time: "+this.chronometer.getCurrentTime());
 		this.font_string.addAttribute(TextAttribute.FONT, font);
-		this.font_string.addAttribute(TextAttribute.FOREGROUND, Color.red, 0, 7);
+		this.font_string.addAttribute(TextAttribute.FOREGROUND, Color.orange, 0, 7);
 		this.repaint();
 	}
 
