@@ -276,9 +276,9 @@ public abstract class Player {
 //    	String string_dascindere = "2,0 1,5\n4,5\n";
     	//divido la string mandatami dal server in base agli \n, suddividendola in 3 righe dell'avversario:
     	//my_cells, opponent_cell(le mie praticamente) e <END>. 
-    	System.out.println("dopo inFromServer: "+this.inFromServer);
-		String [] array_parole = this.inFromServer.split("\n");
-		System.out.println("dopo array_parole size: "+array_parole.length+ " inFromServer: "+this.inFromServer);
+    	System.out.println("dopo inFromServer: "+((UserPlayer) this.game.getUser_player()).getClient().getModifiedSentence());
+		String [] array_parole = ((UserPlayer) this.game.getUser_player()).getClient().getModifiedSentence().split("\n");
+		System.out.println("dopo array_parole size: "+array_parole.length+ " modifiedSentence: "+((UserPlayer) this.game.getUser_player()).getClient().getModifiedSentence());
 		//la prima righe di my_cells dell'avversario
 	    ArrayList<Cell> clicked_cells =  new ArrayList<Cell>();
 		   this.stringToCoord(clicked_cells, array_parole[0]);
