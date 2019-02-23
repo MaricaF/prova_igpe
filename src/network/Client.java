@@ -236,7 +236,7 @@ public class Client {
 				System.out.println("Client CAN MOVE");
 			} else {
 				System.out.println("Client NO CAN MOVE");
-//				Variables.canMove = false;
+				Variables.canMove = false;
 			}
 		
 		} catch (IOException e) {
