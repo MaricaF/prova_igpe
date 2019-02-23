@@ -190,7 +190,7 @@ public class MyPlayPanel extends MyPanel {
 					else
 						this.game.getUser_player().moveByRightMouseClickUpdateteMovementMultiplayer(this.celle_per_pasto_consecutivo, this.ai_cells);
 					
-					if (!Variables.single_player && Variables.giocatore1_mangio) {
+					if (!Variables.single_player && !Variables.giocatore1_mangio) {
 						((UserPlayer)this.game.getUser_player()).receiveMangiataMultipla();
 						Variables.mangiata_multipla = false;
 					} else {
