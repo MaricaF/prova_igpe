@@ -170,7 +170,7 @@ public abstract class Player {
 				.setInFromServer(((UserPlayer) this.game.getUser_player()).getClient().getModifiedSentence()); // stringa
 																												// ricevuta
 																												// dall'altro
-																												// giocatore
+		System.out.println("modified sentence: "+((UserPlayer) this.game.getUser_player()).getClient().getModifiedSentence());																			// giocatore
 		// devo prendere la clientSentence del client ecc
 		((AIPlayer) this.game.getAi_player()).algorythmOfTransformationPlayer();
 		System.out.println("siPassaDalloUserAllAi 3");
