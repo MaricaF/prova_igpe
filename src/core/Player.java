@@ -136,6 +136,8 @@ public abstract class Player {
 	
 	public void receiveSemplice()
 	{
+		((UserPlayer)this.game.getUser_player()).getClient().setModifiedSentence("");
+		   ((UserPlayer)this.game.getUser_player()).getClient().setTemp("");
 		System.out.println("Spostamento semplice. attesa canMove: "+Variables.canMove+" update: "+Variables.update +
 				" giocator1_mangio: "+Variables.giocatore1_mangio);
 	System.out.println("siPassaDalloUserAllAi 1");
@@ -149,6 +151,8 @@ public abstract class Player {
 	
 	public void receiveMangiataMultipla()
 	{
+		((UserPlayer)this.game.getUser_player()).getClient().setModifiedSentence("");
+		   ((UserPlayer)this.game.getUser_player()).getClient().setTemp("");
 		Variables.mangiata_multipla = false;
 		System.out.println("Mangiata multipla. attesa. canMove: "+Variables.canMove+" update: "+Variables.update+
 				" giocator1_mangio: "+Variables.giocatore1_mangio);
@@ -294,8 +298,8 @@ public abstract class Player {
 				   clicked_cells.get(1).getI(), clicked_cells.get(1).getJ(), null);
 	   }
 	   
-	   ((UserPlayer)this.game.getUser_player()).getClient().setModifiedSentence("");
-	   ((UserPlayer)this.game.getUser_player()).getClient().setTemp("");
+//	   ((UserPlayer)this.game.getUser_player()).getClient().setModifiedSentence("");
+//	   ((UserPlayer)this.game.getUser_player()).getClient().setTemp("");
 	   Variables.update = false;
 	   System.err.println("stringa opponent_cells: "+stringa_opponent_cells);
 	   
