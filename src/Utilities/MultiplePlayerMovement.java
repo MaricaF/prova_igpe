@@ -35,15 +35,16 @@ public class MultiplePlayerMovement extends Thread{
 		this.lock.lock();
 //		Variables.giocatore1_mangio = true;
 		Variables.mangiata_multipla = true;
+		Variables.interpostaTraMovMultiploEnon = true;
 		this.player.togliDoppioni(clicked_cells, opponent_cells);
 		
 //		//dev'essere mandato solo se siamo in modalità multiplayer e non dobbiamo aggiornare il gioco dopo 
 //		//i movimenti dell'avversario.
-		if (!Variables.single_player && !Variables.update && Variables.canMove && Variables.giocatore1_mangio) {
-			this.player.sendMangiataMultipla(clicked_cells, opponent_cells);
-		} else {
-			System.out.println("NON ENTRO :(. variables.update: " + Variables.update);
-		}
+//		if (!Variables.single_player && !Variables.update && Variables.canMove && Variables.giocatore1_mangio) {
+//			this.player.sendMangiataMultipla(clicked_cells, opponent_cells);
+//		} else {
+//			System.out.println("NON ENTRO :(. variables.update: " + Variables.update);
+//		}
 //		
 //		System.out.println("DENTRO");
 		while(clicked_cells.size() > 1)
@@ -96,7 +97,7 @@ public class MultiplePlayerMovement extends Thread{
 		if (!Variables.single_player) {
 			if (!Variables.canMove && !Variables.update && Variables.giocatore1_mangio) {
 				this.player.receiveMangiataMultipla();
-				 
+				Variables.interpostaTraMovMultiploEnon = false;
 			}
 //			// this.moveByRightMouseClick(clicked_cells, opponent_cells);
 		}
