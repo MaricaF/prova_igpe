@@ -28,7 +28,8 @@ public class Variables {
 	//è true quando una pedina deve mangiare
 	public static boolean giocatore1_mangio = false;
 	public static boolean giocatore2_mangio = false;
-	
+		
+	public static boolean interpostaTraMovMultiploEnon = false;
 	//se è il mio turno di muovere, me lo dirà il server la prima volta, nel caso del multiplayer
 	//dopo verrà settata a false ogni qual volta muoverò.
 	//di default è true per la modalità single player

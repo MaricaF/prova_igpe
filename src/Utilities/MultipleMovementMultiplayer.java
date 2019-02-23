@@ -36,6 +36,7 @@ public class MultipleMovementMultiplayer extends Thread{
 //		Variables.giocatore1_mangio = true;
 		this.player.togliDoppioni(clicked_cells, opponent_cells);
 		Variables.mangiata_multipla = true;
+		Variables.interpostaTraMovMultiploEnon = true;
 		
 		//dev'essere mandato solo se siamo in modalità multiplayer e non dobbiamo aggiornare il gioco dopo 
 		//i movimenti dell'avversario.
@@ -81,6 +82,7 @@ public class MultipleMovementMultiplayer extends Thread{
 		clicked_cells.clear();
 		opponent_cells.clear();
 		Variables.mangiata_multipla = false;
+		Variables.interpostaTraMovMultiploEnon = false;
 		
 //		if (!Variables.single_player && Variables.giocatore1_mangio) {
 //			((UserPlayer)this.game.getUser_player()).receiveMangiataMultipla();
