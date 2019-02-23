@@ -116,7 +116,7 @@ public abstract class Player {
 					((UserPlayer)this.game.getUser_player()).getClient().sendMessageToServer();
 					this.outToServer = "";
 					 System.out.println("Player passaDaPawnFirstMoveToPawnAfterMove NO CAN MOVE");
-					Variables.canMove = false;
+//					Variables.canMove = false;
 	}
 	
 	public void sendMangiataMultipla(ArrayList<Cell> clicked_cells, ArrayList<Cell> opponent_cells)
@@ -131,7 +131,7 @@ public abstract class Player {
 			((UserPlayer)this.game.getUser_player()).getClient().sendMessageToServer();
 			this.setOutToServer("");
 			 System.out.println("MultiplPlayerMovement NO CAN MOVE");
-			Variables.canMove = false;
+//			Variables.canMove = false;
 	}
 	
 	public void receiveSemplice()
@@ -182,8 +182,10 @@ public abstract class Player {
 	{
 		//se devo solo muovere, mando al server queste posizioni, altrimenti no, perché significa che
 		// devo mangiare pedina, ma devo mandargli tutte quelle posizioni in un'altra funzione
-		if(!Variables.single_player && Variables.canMove && !Variables.giocatore1_mangio && !Variables.update)
-		this.sendMovimentoSemplice(iprec, jprec, iafter, jafter);
+		if (!Variables.single_player && Variables.canMove && !Variables.giocatore1_mangio && !Variables.update) {
+			this.sendMovimentoSemplice(iprec, jprec, iafter, jafter);
+			Variables.canMove = false;
+		}
 		
 		if(this instanceof AIPlayer)
 			System.out.println("passaDaPawnFirstMoveToPawnAfterMove AI PLAYER");
