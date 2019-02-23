@@ -317,8 +317,11 @@ public class MyPlayPanel extends MyPanel {
 			if ((i_cell_before == i_cell_after && j_cell_before != j_cell_after)
 					|| (i_cell_before != i_cell_after && j_cell_before == j_cell_after)
 					|| (i_cell_before != i_cell_after && j_cell_before != j_cell_after))
+			{
+				Variables.interpostaTraMovMultiploEnon = false;
 				this.game.getUser_player().movePawn(this.game.getDama().getPawnAtPosition(i_cell_before, j_cell_before),
 						i_cell_before, j_cell_before, i_cell_after, j_cell_after);
+			}
 
 			this.enter = false;
 			this.initIJplayPanel();
