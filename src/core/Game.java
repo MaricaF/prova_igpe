@@ -335,7 +335,7 @@ public class Game {
 
 		// se è il multiplayer
 		if (!Variables.single_player) {
-			((UserPlayer)this.user_player).setClient(new Client("192.168.1.27", 80, this));
+			((UserPlayer)this.user_player).setClient(new Client("192.168.1.3", 80, this));
 			System.out.println("ciao");
 			if (this.user_player.getStringColour().equals("white"))
 				ai_player.setColour("black");
