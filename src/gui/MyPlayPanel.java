@@ -243,7 +243,9 @@ public class MyPlayPanel extends MyPanel {
 		if((e.getX() >= this.back_button.getX() && e.getX() <= (this.back_button.getX()+this.back_button.getWidth())) && (e.getY() >= this.back_button.getY() && e.getY() <= (this.back_button.getY()+this.back_button.getHeight())))
 		  {
 			  System.out.println("back playpanel");
+			  if(!Variables.single_player)
 			  this.game.getUser_player().sendMovimentoSemplice(-1, -1, -1, -1, true);
+			  
 			  this.menu.setPanelsVisibility(this.menu.getCurrent_panel(), false);
 			  this.menu.setPanelProperties(this.menu.getMyMenuPanel(), true);
 		  }
