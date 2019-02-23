@@ -92,18 +92,8 @@ public class SinglePlayerMovement extends Thread{
 		if (!Variables.single_player)
 		{
 			if(!Variables.canMove && !Variables.mangiata_multipla && !Variables.update)
-			{
-				System.out.println("Spostamento semplice. attesa canMove: "+Variables.canMove+" update: "+Variables.update +
-						" giocator1_mangio: "+Variables.giocatore1_mangio);
-			System.out.println("siPassaDalloUserAllAi 1");
-			((UserPlayer)this.game.getUser_player()).getClient().miMettoInAttesaDelServer();
-			System.out.println("siPassaDalloUserAllAi 2");
-			((UserPlayer)this.game.getUser_player()).setInFromServer(((UserPlayer)this.game.getUser_player()).getClient().getModifiedSentence()); //stringa ricevuta dall'altro giocatore
-			//devo prendere la clientSentence del client ecc
-			((UserPlayer)this.game.getUser_player()).algorythmOfTransformationPlayer();
-			System.out.println("siPassaDalloUserAllAi 3");
+				this.player.receiveSemplice();
 //			Variables.canMove = true;
-			}
 //			this.moveByRightMouseClick(clicked_cells, opponent_cells);
 		}
 	

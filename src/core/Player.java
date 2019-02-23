@@ -106,22 +106,74 @@ public abstract class Player {
 		
 	}
 	
+	public void sendMovimentoSemplice(int iprec, int jprec, int iafter, int jafter)
+	{
+					System.out.println("Spostamento semplice. invio canMove: "+Variables.canMove+" update: "+Variables.update +
+							" giocator1_mangio: "+Variables.giocatore1_mangio);
+					((UserPlayer)this.game.getUser_player()).getClient().setMessageToSendToServer("");
+					this.outToServer += iprec + "," + jprec + " " + iafter + "," + jafter +"\n\n<END>";
+					((UserPlayer)this.game.getUser_player()).getClient().setMessageToSendToServer(this.outToServer);
+					((UserPlayer)this.game.getUser_player()).getClient().sendMessageToServer();
+					this.outToServer = "";
+					 System.out.println("Player passaDaPawnFirstMoveToPawnAfterMove NO CAN MOVE");
+					Variables.canMove = false;
+	}
+	
+	public void sendMangiataMultipla(ArrayList<Cell> clicked_cells, ArrayList<Cell> opponent_cells)
+	{
+			System.out.println("Mangiata multipla. invio. canMove: "+Variables.canMove+" update: "+Variables.update+
+					" giocator1_mangio: "+Variables.giocatore1_mangio);
+			((UserPlayer)this.game.getUser_player()).getClient().setMessageToSendToServer("");
+			String s_clicked_cells = this.CoordToString(clicked_cells);
+			String s_opponent_cells = this.CoordToString(opponent_cells);
+			this.setOutToServer(s_clicked_cells +  s_opponent_cells + "<END>");
+			((UserPlayer)this.game.getUser_player()).getClient().setMessageToSendToServer(this.getOutToServer());
+			((UserPlayer)this.game.getUser_player()).getClient().sendMessageToServer();
+			this.setOutToServer("");
+			 System.out.println("MultiplPlayerMovement NO CAN MOVE");
+			Variables.canMove = false;
+	}
+	
+	public void receiveSemplice()
+	{
+		System.out.println("Spostamento semplice. attesa canMove: "+Variables.canMove+" update: "+Variables.update +
+				" giocator1_mangio: "+Variables.giocatore1_mangio);
+	System.out.println("siPassaDalloUserAllAi 1");
+	((UserPlayer)this.game.getUser_player()).getClient().miMettoInAttesaDelServer();
+	System.out.println("siPassaDalloUserAllAi 2");
+	((UserPlayer)this.game.getUser_player()).setInFromServer(((UserPlayer)this.game.getUser_player()).getClient().getModifiedSentence()); //stringa ricevuta dall'altro giocatore
+	//devo prendere la clientSentence del client ecc
+	((UserPlayer)this.game.getUser_player()).algorythmOfTransformationPlayer();
+	System.out.println("siPassaDalloUserAllAi 3");
+	}
+	
+	public void receiveMangiataMultipla()
+	{
+		Variables.mangiata_multipla = false;
+		System.out.println("Mangiata multipla. attesa. canMove: "+Variables.canMove+" update: "+Variables.update+
+				" giocator1_mangio: "+Variables.giocatore1_mangio);
+		System.out.println("siPassaDalloUserAllAi 1");
+		((UserPlayer) this.game.getUser_player()).getClient().miMettoInAttesaDelServer();
+		System.out.println("siPassaDalloUserAllAi 2");
+		((UserPlayer) this.game.getUser_player())
+				.setInFromServer(((UserPlayer) this.game.getUser_player()).getClient().getModifiedSentence()); // stringa
+																												// ricevuta
+																												// dall'altro
+																												// giocatore
+		// devo prendere la clientSentence del client ecc
+		((AIPlayer) this.game.getAi_player()).algorythmOfTransformationPlayer();
+		System.out.println("siPassaDalloUserAllAi 3");
+		 Variables.canMove = true;
+		 System.out.println("MultiplPlayerMovement CAN MOVE");
+	}
+	
 	public void passaDaPawnFirstMoveToPawnAfterMove(int iprec, int jprec, int iafter, int jafter, Pawn pawnToEat)
 	{
 		//se devo solo muovere, mando al server queste posizioni, altrimenti no, perché significa che
 		// devo mangiare pedina, ma devo mandargli tutte quelle posizioni in un'altra funzione
 		if(!Variables.single_player && Variables.canMove && !Variables.giocatore1_mangio && !Variables.update)
-		{
-			System.out.println("Spostamento semplice. invio canMove: "+Variables.canMove+" update: "+Variables.update +
-					" giocator1_mangio: "+Variables.giocatore1_mangio);
-			((UserPlayer)this.game.getUser_player()).getClient().setMessageToSendToServer("");
-			this.outToServer += iprec + "," + jprec + " " + iafter + "," + jafter +"\n\n<END>";
-			((UserPlayer)this.game.getUser_player()).getClient().setMessageToSendToServer(this.outToServer);
-			((UserPlayer)this.game.getUser_player()).getClient().sendMessageToServer();
-			this.outToServer = "";
-			 System.out.println("Player passaDaPawnFirstMoveToPawnAfterMove NO CAN MOVE");
-			Variables.canMove = false;
-		}
+		this.sendMovimentoSemplice(iprec, jprec, iafter, jafter);
+		
 		if(this instanceof AIPlayer)
 			System.out.println("passaDaPawnFirstMoveToPawnAfterMove AI PLAYER");
 			else
@@ -795,68 +847,42 @@ public abstract class Player {
 		this.togliDoppioni(clicked_cells, opponent_cells);
 //		this.print(clicked_cells, opponent_cells);
 		
-		System.out.println("Mangiata multipla. invio. canMove: "+Variables.canMove+" update: "+Variables.update+
-				" giocator1_mangio: "+Variables.giocatore1_mangio);
-		((UserPlayer)this.game.getUser_player()).getClient().setMessageToSendToServer("");
-		String s_clicked_cells = this.CoordToString(clicked_cells);
-		String s_opponent_cells = this.CoordToString(this.opponent_cells);
-		this.setOutToServer(s_clicked_cells +  s_opponent_cells + "<END>");
-		((UserPlayer)this.game.getUser_player()).getClient().setMessageToSendToServer(this.getOutToServer());
-		((UserPlayer)this.game.getUser_player()).getClient().sendMessageToServer();
-		this.setOutToServer("");
-		 System.out.println("MultiplPlayerMovement NO CAN MOVE");
-		Variables.canMove = false;
+		this.sendMangiataMultipla(clicked_cells, opponent_cells);
 		
 		//cicla finché la sua size non è 1
 		while(clicked_cells.size() > 1)
 		{
 			System.out.println("cia");
+//			this.hasArrayAnElement(clicked_cells, ai_cells);
 			//la iprec e la jprec saranno SEMPRE le coordinate della cella alla posizione 0 dell'array 'clicked cells'
 			//la iafter e la jafter saranno SEMPRE le coordinate della cella alla posizione 1 dell'array 'clicked cells'
 			//la pawn to eat avrà SEMPRE le coordinate della Cell alla posizione 0 dell'array 'ai_cells' 
 			if(!opponent_cells.isEmpty())
-				this.pawnToEat = this.game.getDama().getPawnAtPosition(opponent_cells.get(0).getI(), opponent_cells.get(0).getJ());
+				this.setPawnToEat(this.game.getDama().getPawnAtPosition(opponent_cells.get(0).getI(), opponent_cells.get(0).getJ()));
 			
 			if(!clicked_cells.isEmpty())
 			//la pawn first to move = alla pawn con coordinate della Cell in posizione 0 dell'array 'clicked cells'
-			this.pawnFirstTomove = this.game.getDama().getPawnAtPosition(clicked_cells.get(0).getI(), clicked_cells.get(0).getJ());
+				this.setPawnFirstTomove(this.game.getDama().getPawnAtPosition(clicked_cells.get(0).getI(), clicked_cells.get(0).getJ()));
 			//la pawn aftermove = pawn after to move
-			this.pawnAfterMove = this.pawnFirstTomove;
-			((AIPlayer)this.game.getAi_player()).passaDaPawnFirstMoveToPawnAfterMoveAI(clicked_cells.get(0).getI(), clicked_cells.get(0).getJ(), 
-					clicked_cells.get(1).getI(), clicked_cells.get(1).getJ(), pawnToEat);
+			this.setPawnAfterMove(this.getPawnFirstTomove());
+			
+				((AIPlayer)this.game.getAi_player()).passaDaPawnFirstMoveToPawnAfterMoveAI(clicked_cells.get(0).getI(), clicked_cells.get(0).getJ(), 
+						clicked_cells.get(1).getI(), clicked_cells.get(1).getJ(), this.getPawnToEat());
 			
 			//elimino l'elemento alla posizione 0 dell'array 'clicked cells'
 			//elimino l'elemento alla posizione 0 dell'array 'ai cells'
-			this.print(clicked_cells, opponent_cells);
+//			this.player.print(clicked_cells, opponent_cells);
 			
 			clicked_cells.remove(0);
 			if(!opponent_cells.isEmpty())
 			opponent_cells.remove(0);
 			
-			
 		}
 		
 		clicked_cells.clear();
 		opponent_cells.clear();
-		//viene richiamata solo alla fine di questa funzione ma se ci sono pedine da mangiare
-//		if(!ai_cells.isEmpty())
 		
-		Variables.mangiata_multipla = false;
-		System.out.println("Mangiata multipla. attesa. canMove: "+Variables.canMove+" update: "+Variables.update+
-				" giocator1_mangio: "+Variables.giocatore1_mangio);
-		System.out.println("siPassaDalloUserAllAi 1");
-		((UserPlayer) this.game.getUser_player()).getClient().miMettoInAttesaDelServer();
-		System.out.println("siPassaDalloUserAllAi 2");
-		((UserPlayer) this.game.getUser_player())
-				.setInFromServer(((UserPlayer) this.game.getUser_player()).getClient().getModifiedSentence()); // stringa
-																												// ricevuta
-																												// dall'altro
-																												// giocatore
-		// devo prendere la clientSentence del client ecc
-		((AIPlayer) this.game.getAi_player()).algorythmOfTransformationPlayer();
-		System.out.println("siPassaDalloUserAllAi 3");
-		 Variables.canMove = true;
-		 System.out.println("MultiplPlayerMovement CAN MOVE");
+		this.receiveMangiataMultipla();
 		
 	}
 	

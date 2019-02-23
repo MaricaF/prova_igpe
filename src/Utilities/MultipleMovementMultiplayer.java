@@ -79,22 +79,7 @@ public class MultipleMovementMultiplayer extends Thread{
 		clicked_cells.clear();
 		opponent_cells.clear();
 		
-		Variables.mangiata_multipla = false;
-		System.out.println("Mangiata multipla. attesa. canMove: "+Variables.canMove+" update: "+Variables.update+
-				" giocator1_mangio: "+Variables.giocatore1_mangio);
-		System.out.println("siPassaDalloUserAllAi 1");
-		((UserPlayer) this.game.getUser_player()).getClient().miMettoInAttesaDelServer();
-		System.out.println("siPassaDalloUserAllAi 2");
-		((UserPlayer) this.game.getUser_player())
-				.setInFromServer(((UserPlayer) this.game.getUser_player()).getClient().getModifiedSentence()); // stringa
-																												// ricevuta
-																												// dall'altro
-																												// giocatore
-		// devo prendere la clientSentence del client ecc
-		((AIPlayer) this.game.getAi_player()).algorythmOfTransformationPlayer();
-		System.out.println("siPassaDalloUserAllAi 3");
-		 Variables.canMove = true;
-		 System.out.println("MultiplPlayerMovement CAN MOVE");
+		this.player.receiveMangiataMultipla();
 		
 		this.lock.unlock();
 		
