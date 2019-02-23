@@ -130,7 +130,7 @@ public interface StaticVariables {
 	final static String PATH_TAVOLO_UNIVERSO_PRESSED = "Images/tavoloneropressed.png";
 	final static String PATH_TAVOLO_VERDE = "Images/tavolo_verde.png";
 	final static String PATH_TAVOLO_VERDE_PRESSED = "Images/tavolo_verdepressed.png";
-	final static String PATH_LOGO = "Images/Dama.png";
+	final static String PATH_LOGO = "Images/pedinem.png";
 	
 	
 	
