@@ -231,16 +231,13 @@ public class Client {
 //		this.temp = "";
 		
 		
-		if(!Variables.mangiata_multipla)
-		{
-		Variables.canMove = true;
-		System.out.println("Client CAN MOVE");
-		}
-		else
-		{
-			System.out.println("Client NO CAN MOVE");
-			Variables.canMove = false;
-		}
+			if (!Variables.mangiata_multipla) {
+				Variables.canMove = true;
+				System.out.println("Client CAN MOVE");
+			} else {
+				System.out.println("Client NO CAN MOVE");
+//				Variables.canMove = false;
+			}
 		
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
