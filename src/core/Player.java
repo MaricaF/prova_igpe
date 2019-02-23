@@ -277,8 +277,8 @@ public abstract class Player {
 //	       Variables.canMove = false;
 //	       System.out.println("Player algorythmOfTransformationPlayer NO CAN MOVE");
 //	       Variables.giocatore1_mangio = false;
-//	       ((AIPlayer)this.game.getAi_player()).moveByRightMouseClickUpdateteMovementMultiplayer(clicked_cells, opponent_cells);
-	       ((AIPlayer)this.game.getAi_player()).moveByRightMouseClickSenzaThread(clicked_cells, opponent_cells);
+	       ((AIPlayer)this.game.getAi_player()).moveByRightMouseClickUpdateteMovementMultiplayer(clicked_cells, opponent_cells);
+//	       ((AIPlayer)this.game.getAi_player()).moveByRightMouseClickSenzaThread(clicked_cells, opponent_cells);
 	       
 	       
 	       
@@ -315,9 +315,10 @@ public abstract class Player {
     	for(String i: array_parole)
     	{
     		array_coord_string = i.toCharArray();
+    		System.out.println("pos 0: "+array_coord_string[0]+" pos 2: "+array_coord_string[2]);
     		array.add(new Cell(Character.getNumericValue(array_coord_string[0]), Character.getNumericValue(array_coord_string[2]),this.game.getAi_player().getStringColour()));
 //    		final_string += array_coord_string[0] +","+ array_coord_string[2]+" ";
-    		System.out.println("pos 0: "+array_coord_string[0]+" pos 2: "+array_coord_string[2]);
+    		
     		
     	}
     }

@@ -175,10 +175,22 @@ public class MyPlayPanel extends MyPanel {
 
 				if (!this.ai_cells.isEmpty() && !this.weContinue()) {
 					Variables.giocatore1_mangio = true;
-					if(Variables.single_player)
-						this.game.getUser_player().moveByRightMouseClick(this.celle_per_pasto_consecutivo, this.ai_cells);
-						else
-							this.game.getUser_player().moveByRightMouseClickSenzaThread(this.celle_per_pasto_consecutivo, this.ai_cells);
+					//dev'essere mandato solo se siamo in modalità multiplayer e non dobbiamo aggiornare il gioco dopo 
+					//i movimenti dell'avversario.
+					if (!Variables.single_player && Variables.giocatore1_mangio) {
+						((UserPlayer)this.game.getUser_player()).sendMangiataMultipla(this.celle_per_pasto_consecutivo, this.ai_cells);
+					} else {
+						System.out.println("NON ENTRO receive mangiata multipla:(. variables.update: " + Variables.update);
+					}
+					
+					System.out.println("DENTRO");
+					this.game.getUser_player().moveByRightMouseClick(this.celle_per_pasto_consecutivo, this.ai_cells);
+					
+					if (!Variables.single_player && Variables.giocatore1_mangio) {
+						((UserPlayer)this.game.getUser_player()).receiveMangiataMultipla();
+					} else {
+						System.out.println("NON ENTRO receive mangiata multipla:(. variables.update: " + Variables.update);
+					}
 					this.pedina_che_diventera_dama = false;
 					this.first_right_click = true;
 				}
