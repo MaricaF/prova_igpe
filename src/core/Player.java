@@ -106,15 +106,25 @@ public abstract class Player {
 		
 	}
 	
-	public void sendMovimentoSemplice(int iprec, int jprec, int iafter, int jafter)
+	public void sendMovimentoSemplice(int iprec, int jprec, int iafter, int jafter, boolean exit)
 	{
 					System.out.println("Spostamento semplice. invio canMove: "+Variables.canMove+" update: "+Variables.update +
 							" giocator1_mangio: "+Variables.giocatore1_mangio);
 					((UserPlayer)this.game.getUser_player()).getClient().setMessageToSendToServer("");
-					this.outToServer += iprec + "," + jprec + " " + iafter + "," + jafter +"\n\n<END>";
+					if(!exit)
+					   this.outToServer += iprec + "," + jprec + " " + iafter + "," + jafter +"\n\n<END>";
+					else
+						this.outToServer += "end\n\n<END>"; //la mando in caso volessi uscire dal gioco
+					
 					((UserPlayer)this.game.getUser_player()).getClient().setMessageToSendToServer(this.outToServer);
 					((UserPlayer)this.game.getUser_player()).getClient().sendMessageToServer();
 					this.outToServer = "";
+					
+					if(exit)
+					{
+						this.game.getPlay_panel().getMenu().setPanelsVisibility(this.game.getPlay_panel().getMenu().getCurrent_panel(), false);
+						this.game.getPlay_panel().getMenu().setPanelProperties(this.game.getPlay_panel().getMenu().getMyMenuPanel(), true);
+					}
 					 System.out.println("Player passaDaPawnFirstMoveToPawnAfterMove NO CAN MOVE");
 //					Variables.canMove = false;
 	}
@@ -183,7 +193,7 @@ public abstract class Player {
 		//se devo solo muovere, mando al server queste posizioni, altrimenti no, perché significa che
 		// devo mangiare pedina, ma devo mandargli tutte quelle posizioni in un'altra funzione
 		if (!Variables.single_player && Variables.canMove && !Variables.giocatore1_mangio && !Variables.update) {
-			this.sendMovimentoSemplice(iprec, jprec, iafter, jafter);
+			this.sendMovimentoSemplice(iprec, jprec, iafter, jafter, false);
 			((UserPlayer) this.game.getUser_player()).getClient().setModifiedSentence("");
 			((UserPlayer) this.game.getUser_player()).getClient().setTemp("");
 			System.out.println("passaDaPawnFirstMoveToPawnAfterMove NO CAN MOVE");
@@ -282,6 +292,14 @@ public abstract class Player {
 		System.out.println("dopo array_parole size: "+array_parole.length+ " modifiedSentence: "+((UserPlayer) this.game.getUser_player()).getClient().getModifiedSentence());
 		//la prima righe di my_cells dell'avversario
 	    ArrayList<Cell> clicked_cells =  new ArrayList<Cell>();
+	    
+	    if(array_parole[0].equals("end"))
+	    {
+	    	((UserPlayer)this.game.getUser_player()).getClient().closeConnection();
+	    	this.game.getPlay_panel().getMenu().setPanelsVisibility(this.game.getPlay_panel().getMenu().getCurrent_panel(), false);
+	    	this.game.getPlay_panel().getMenu().setPanelProperties(this.game.getPlay_panel().getMenu().getMyMenuPanel(), true);
+	    }
+	    
 		   this.stringToCoord(clicked_cells, array_parole[0]);
 	   //la seconda riga di opponent_cells dell'avversario
 	   String stringa_opponent_cells = "";
