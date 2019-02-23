@@ -122,6 +122,7 @@ public abstract class Player {
 					
 					if(exit)
 					{
+						((UserPlayer)this.game.getUser_player()).getClient().closeConnection();
 						this.game.getPlay_panel().getMenu().setPanelsVisibility(this.game.getPlay_panel().getMenu().getCurrent_panel(), false);
 						this.game.getPlay_panel().getMenu().setPanelProperties(this.game.getPlay_panel().getMenu().getMyMenuPanel(), true);
 					}
