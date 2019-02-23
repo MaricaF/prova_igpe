@@ -262,7 +262,7 @@ public abstract class Player {
     	//divido la string mandatami dal server in base agli \n, suddividendola in 3 righe dell'avversario:
     	//my_cells, opponent_cell(le mie praticamente) e <END>. 
 		String [] array_parole = this.inFromServer.split("\n");
-		System.out.println("array_parole size: "+array_parole.length);
+		System.out.println("array_parole size: "+array_parole.length+ " inFromServer: "+this.inFromServer);
 		//la prima righe di my_cells dell'avversario
 	    ArrayList<Cell> clicked_cells =  new ArrayList<Cell>();
 		   this.stringToCoord(clicked_cells, array_parole[0]);
