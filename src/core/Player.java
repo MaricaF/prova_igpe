@@ -277,8 +277,8 @@ public abstract class Player {
 //	       Variables.canMove = false;
 //	       System.out.println("Player algorythmOfTransformationPlayer NO CAN MOVE");
 //	       Variables.giocatore1_mangio = false;
-//	       ((AIPlayer)this.game.getAi_player()).moveByRightMouseClickUpdateteMovementMultiplayer(clicked_cells, opponent_cells);
-	       ((AIPlayer)this.game.getAi_player()).moveByRightMouseClickSenzaThread(clicked_cells, opponent_cells);
+	       ((AIPlayer)this.game.getAi_player()).moveByRightMouseClickUpdateteMovementMultiplayer(clicked_cells, opponent_cells);
+//	       ((AIPlayer)this.game.getAi_player()).moveByRightMouseClickSenzaThread(clicked_cells, opponent_cells);
 	       
 	       
 	       

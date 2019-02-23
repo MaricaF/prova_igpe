@@ -39,11 +39,11 @@ public class MultiplePlayerMovement extends Thread{
 		
 //		//dev'essere mandato solo se siamo in modalità multiplayer e non dobbiamo aggiornare il gioco dopo 
 //		//i movimenti dell'avversario.
-//		if (!Variables.single_player && !Variables.update && Variables.canMove && Variables.giocatore1_mangio) {
-//			this.player.sendMangiataMultipla(clicked_cells, opponent_cells);
-//		} else {
-//			System.out.println("NON ENTRO :(. variables.update: " + Variables.update);
-//		}
+		if (!Variables.single_player && !Variables.update && Variables.canMove && Variables.giocatore1_mangio) {
+			this.player.sendMangiataMultipla(clicked_cells, opponent_cells);
+		} else {
+			System.out.println("NON ENTRO :(. variables.update: " + Variables.update);
+		}
 //		
 //		System.out.println("DENTRO");
 		while(clicked_cells.size() > 1)
@@ -91,31 +91,16 @@ public class MultiplePlayerMovement extends Thread{
 		//viene richiamata solo alla fine di questa funzione ma se ci sono pedine da mangiare
 //		if(!ai_cells.isEmpty())
 		
-//		((MyPlayPanel) this.game.getPlay_panel()).setTurno_ai(true);
+		((MyPlayPanel) this.game.getPlay_panel()).setTurno_ai(true);
 //
-//		if (!Variables.single_player) {
-//			if (!Variables.canMove && !Variables.update && Variables.giocatore1_mangio) {
-				Variables.mangiata_multipla = false;
-				System.out.println("Mangiata multipla. attesa. canMove: "+Variables.canMove+" update: "+Variables.update+
-						" giocator1_mangio: "+Variables.giocatore1_mangio);
-				System.out.println("siPassaDalloUserAllAi 1");
-				((UserPlayer) this.game.getUser_player()).getClient().miMettoInAttesaDelServer();
-				System.out.println("siPassaDalloUserAllAi 2");
-				((UserPlayer) this.game.getUser_player())
-						.setInFromServer(((UserPlayer) this.game.getUser_player()).getClient().getModifiedSentence()); // stringa
-																														// ricevuta
-																														// dall'altro
-																														// giocatore
-				// devo prendere la clientSentence del client ecc
-				((AIPlayer) this.game.getAi_player()).algorythmOfTransformationPlayer();
-				System.out.println("siPassaDalloUserAllAi 3");
-				 Variables.canMove = true;
-				 System.out.println("MultiplPlayerMovement CAN MOVE");
-//				 
-//			}
+		if (!Variables.single_player) {
+			if (!Variables.canMove && !Variables.update && Variables.giocatore1_mangio) {
+				this.player.receiveMangiataMultipla();
+				 
+			}
 //			// this.moveByRightMouseClick(clicked_cells, opponent_cells);
-//		}
-//		((MyPlayPanel) this.game.getPlay_panel()).setTurno_ai(false);
+		}
+		((MyPlayPanel) this.game.getPlay_panel()).setTurno_ai(false);
 		
 		if(this.player instanceof UserPlayer)
 		{
