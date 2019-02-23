@@ -65,6 +65,7 @@ public class MultipleMovementMultiplayer extends Thread{
 				((AIPlayer)this.game.getAi_player()).passaDaPawnFirstMoveToPawnAfterMoveAI(clicked_cells.get(0).getI(), clicked_cells.get(0).getJ(), 
 						clicked_cells.get(1).getI(), clicked_cells.get(1).getJ(), this.player.getPawnToEat());
 			
+				
 			//elimino l'elemento alla posizione 0 dell'array 'clicked cells'
 			//elimino l'elemento alla posizione 0 dell'array 'ai cells'
 //			this.player.print(clicked_cells, opponent_cells);
@@ -79,12 +80,12 @@ public class MultipleMovementMultiplayer extends Thread{
 		clicked_cells.clear();
 		opponent_cells.clear();
 		
-//		if (!Variables.single_player && Variables.giocatore1_mangio) {
-//			((UserPlayer)this.game.getUser_player()).receiveMangiataMultipla();
-//		} else {
-//			System.out.println("NON ENTRO receive mangiata multipla:(. variables.update: " + Variables.update);
-//		}
-//		this.player.receiveMangiataMultipla();
+		if (!Variables.single_player && !Variables.giocatore1_mangio) {
+			((UserPlayer)this.game.getUser_player()).receiveMangiataMultipla();
+			Variables.mangiata_multipla = false;
+		} else {
+			System.out.println("NON ENTRO receive mangiata multipla:(. variables.update: " + Variables.update);
+		}
 		
 //		Variables.giocatore1_mangio = false;
 //		Variables.mangiata_multipla = false;
