@@ -192,7 +192,7 @@ public class MyPlayPanel extends MyPanel {
 					
 					if (!Variables.single_player && !Variables.giocatore1_mangio) {
 						((UserPlayer)this.game.getUser_player()).receiveMangiataMultipla();
-						Variables.mangiata_multipla = false;
+//						Variables.mangiata_multipla = false;
 					} else {
 						System.out.println("NON ENTRO receive mangiata multipla:(. variables.update: " + Variables.update);
 					}
