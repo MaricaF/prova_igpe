@@ -230,15 +230,17 @@ public class Client {
 //		this.modifiedSentence = "";
 //		this.temp = "";
 		
+		
+		if(!Variables.mangiata_multipla)
+		{
 		Variables.canMove = true;
-//		
-//		if(!Variables.mangiata_multipla)
-//		{
-//		Variables.canMove = true;
-//		System.out.println("Client CAN MOVE");
-//		}
-//		else
-//			System.out.println("Client NO CAN MOVE");
+		System.out.println("Client CAN MOVE");
+		}
+		else
+		{
+			System.out.println("Client NO CAN MOVE");
+			Variables.canMove = false;
+		}
 		
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
