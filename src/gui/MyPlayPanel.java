@@ -71,7 +71,7 @@ public class MyPlayPanel extends MyPanel {
 			}
 			else
 			{
-				
+				this.string_multiplayer = new AttributedString("It's opponent player turn...");
 			}
 			
 			this.font_string.addAttribute(TextAttribute.FONT, font);
@@ -130,8 +130,8 @@ public class MyPlayPanel extends MyPanel {
 				StaticVariables.finestra_height / 10);
 		
 			if (!Variables.single_player) {
-				g.drawString(font_string.getIterator(), (StaticVariables.finestra_width / 15) * 7,
-						StaticVariables.finestra_height / 10);
+				g.drawString(this.string_multiplayer.getIterator(), (StaticVariables.finestra_width / 15) * 7,
+						StaticVariables.finestra_height / 8);
 			}
 		}catch(Exception e)
 		{
