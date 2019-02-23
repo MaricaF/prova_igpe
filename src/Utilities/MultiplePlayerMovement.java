@@ -115,7 +115,8 @@ public class MultiplePlayerMovement extends Thread{
 		}
 		System.out.println("FUORI");
 
-		
+		if(Variables.single_player)
+			Variables.mangiata_multipla = false;
 		
 		Variables.giocatore1_mangio = false;
 		this.lock.unlock();
