@@ -140,10 +140,11 @@ public class MyPlayPanel extends MyPanel {
 	}
 
 	public void createChronometerString() {
+		String time = this.chronometer.getCurrentTime().toString();
 		this.font_string = new AttributedString(this.chronometer.getCurrentTime());
 		// System.out.println("current time: "+this.chronometer.getCurrentTime());
 		this.font_string.addAttribute(TextAttribute.FONT, font);
-		this.font_string.addAttribute(TextAttribute.FOREGROUND, Color.orange, 0, this.font_string.toString().length());
+		this.font_string.addAttribute(TextAttribute.FOREGROUND, Color.orange, 0, time.length());
 		this.repaint();
 	}
 
