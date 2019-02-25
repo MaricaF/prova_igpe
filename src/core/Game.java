@@ -1,16 +1,8 @@
 package core;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Random;
 import java.util.Set;
-import java.util.stream.IntStream;
-
-import javax.swing.JOptionPane;
-
-import audio.Sounds;
-import gui.FinalPanel;
 import gui.Immagine;
-import gui.Menu;
 import gui.MyPanel;
 import gui.MyPlayPanel;
 import interfaces.StaticVariables;
@@ -35,11 +27,10 @@ public class Game {
 	private String type_of_intelligence;
 	private int idImmUser, idImmAi;
 	private String pathImmUser, pathImmAi;
-	private String secondPlayer_colour;
 	
 	public Game(MyPanel play_panel)
 	{
-		this.type_of_intelligence = this.secondPlayer_colour = "";
+		this.type_of_intelligence = "";
 		this.dama = new Dama();
 		this.play_panel = play_panel;
 		
@@ -178,7 +169,6 @@ public class Game {
 		int idImm = 0;
 		Immagine immagine = null;
 		System.out.println("ciao3");
-		int ic = 0, jc = 0;
 		
 		try {
 		
@@ -248,9 +238,7 @@ public class Game {
 					}
 				}
 			}
-//			}
 	  
-	  System.out.println("QUIIIIIIIIIIII");
 	  this.dama.printMatrix();
 	    
 	  System.out.println("ciao5");
@@ -297,15 +285,6 @@ public class Game {
 						}
 	}
 	
-	/**
-	 * Restituisce la coordinata opposta
-	 * @param x
-	 * @return
-	 */
-	private int opponentCoord(int x)
-	{
-		return (StaticVariables.RIGHE_COLONNE-1)-x;
-	}
 	
 	private void initAIandASP()
 	{

@@ -37,7 +37,7 @@ public class Immagine{
 		this.x = 0;
 	    this.y = 0;
 	    
-	    if(this.id == StaticVariables.ID_SFONDO1 || this.id == StaticVariables.ID_LOGO)
+	    if(this.id == StaticVariables.ID_SFONDO1 ||  this.id == StaticVariables.ID_NASTRO)
 	    	this.visible = true;
 	    else
 	        this.visible = false;

@@ -89,7 +89,7 @@ public interface StaticVariables {
 	final static int ID_SAVE_BUTTONPRESSED = 59;
 	final static int ID_AI_PAWN = 60;
 	final static int ID_USER_PAWN = 61;
-	final static int ID_LOGO = 62;
+	final static int ID_NASTRO = 62;
 	
 	
 	
@@ -130,8 +130,7 @@ public interface StaticVariables {
 	final static String PATH_TAVOLO_UNIVERSO_PRESSED = "Images/tavoloneropressed.png";
 	final static String PATH_TAVOLO_VERDE = "Images/tavolo_verde.png";
 	final static String PATH_TAVOLO_VERDE_PRESSED = "Images/tavolo_verdepressed.png";
-	final static String PATH_LOGO = "Images/pedinem.png";
-	
+	final static String PATH_NASTRO = "Images/nastrod.png";
 	
 	
 	final static String PATH_PLAYBUTTON = "Images/play_gold.png";
@@ -158,7 +157,7 @@ public interface StaticVariables {
 	final static String PATH_SAVE_BUTTONPRESSED = "Images/save.png";
 	final static String PATH_AI_PAWN = "Images/ai_pawn.png";
 	final static String PATH_USER_PAWN ="Images/user_pawn.png";
-	final static String PATH_EDITOR_BUTTON = "Images/editor.png";
+	final static String PATH_EDITOR_BUTTON = "Images/editor22.png";
 	
 	final static String PATH_AUDIO_PROVA = "audios/click_x.wav";
 	final static String PATH_AUDIO_SOUNDTRACK = "audios/tick.wav";

@@ -70,11 +70,17 @@ public class MultiplePlayerMovement extends Thread{
 			}
 			
 			if(!Variables.update)
+			{
+				System.out.println("sto acca1");
 			this.player.passaDaPawnFirstMoveToPawnAfterMove(clicked_cells.get(0).getI(), clicked_cells.get(0).getJ(), 
 					clicked_cells.get(1).getI(), clicked_cells.get(1).getJ(), this.player.getPawnToEat());
+			}
 			else
+			{
+				System.out.println("sto acca2");
 				((AIPlayer)this.game.getAi_player()).passaDaPawnFirstMoveToPawnAfterMoveAI(clicked_cells.get(0).getI(), clicked_cells.get(0).getJ(), 
 						clicked_cells.get(1).getI(), clicked_cells.get(1).getJ(), this.player.getPawnToEat());
+			}
 			
 			//elimino l'elemento alla posizione 0 dell'array 'clicked cells'
 			//elimino l'elemento alla posizione 0 dell'array 'ai cells'

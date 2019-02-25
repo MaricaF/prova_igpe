@@ -123,6 +123,7 @@ public abstract class Player {
 					if(exit)
 					{
 						((UserPlayer)this.game.getUser_player()).getClient().closeConnection();
+						Variables.single_player = true;
 						this.game.getPlay_panel().getMenu().setPanelsVisibility(this.game.getPlay_panel().getMenu().getCurrent_panel(), false);
 						this.game.getPlay_panel().getMenu().setPanelProperties(this.game.getPlay_panel().getMenu().getMyMenuPanel(), true);
 					}
@@ -298,6 +299,7 @@ public abstract class Player {
 	    {
 	    	System.out.println("algorytme close socket");
 	    	((UserPlayer)this.game.getUser_player()).getClient().closeConnection();
+	    	Variables.single_player = true;
 	    	this.game.getPlay_panel().getMenu().setPanelsVisibility(this.game.getPlay_panel().getMenu().getCurrent_panel(), false);
 	    	this.game.getPlay_panel().getMenu().setPanelProperties(this.game.getPlay_panel().getMenu().getMyMenuPanel(), true);
 	    }
@@ -386,75 +388,6 @@ public abstract class Player {
     	return final_stringa + "\n";
     }
     
-    private void updateOpponentPlayerMovement(int iprec, int jprec, int iafter, int jafter, Pawn pawnToEat)
-    {
-    	 this.move(iprec, jprec, iafter, jafter, pawnToEat);
- 		
- 		//Qui, nel caso in cui l'array che contiene le posizioni in cui si dovrebbero muovere le medine per mangiare, fosse pieno, l'immagine della cella
- 				// selezionata non si deve più vedere.
- 				if(!this.valid_mycells_to_eat.isEmpty())
- 				{
- 					this.changeCellaEvidenziataProperties(false);
- 					this.valid_mycells_to_eat.clear();
- 					this.pedine_che_devono_mangiare.clear();
- 					this.game.getPlay_panel().repaint();
- 				}
- 				this.changePedinaPremutaProperties(false, iprec, jprec);
-// 		System.out.println("move");
-// 		this.pawnAfterMove = this.pawnFirstTomove;
- 		
- 		this.pawnAfterMove.setIJ(iafter, jafter);
- 		this.game.getDama().getCellAtPosition(iprec, jprec).setSvuotaCella();
- 		this.game.getDama().getCellAtPosition(iafter, jafter).setPawn(this.pawnAfterMove);
- 		this.game.getTotal_pawns().get(this.pawnFirstTomove.getId()).setIJ(iafter, jafter);
- 		this.pawns.get(this.pawnFirstTomove.getId()).setIJ(iafter, jafter);
- 		
- 		//verifico se la pedina appena mossa può essere promossa a dama
- 		if(this.id_user == 1)
- 		{
- 			System.out.println("--------------------move dello user player---------------------");
- 			if(this.pawnAfterMove.getI() == 0)
- 				this.graduatePawnToDama();
- 		}
- 		else if(this.id_user == 2)
- 		{
- 			System.out.println("--------------------move dell'ai player--------------------------");
- 			if(this.pawnAfterMove.getI() == StaticVariables.RIGHE_COLONNE-1)
- 				this.graduatePawnToDama();
- 		}
- 		
- 	
- 		this.pawnAnimation(iprec,jprec,iafter,jafter);
- 		
- 		((MyPlayPanel)this.game.getPlay_panel()).setEnter(false);
- 		((MyPlayPanel)this.game.getPlay_panel()).initIJplayPanel();
- 		
- 		if(this.pawnToEat != null)
- 		{
-// 		    this.game.eatPawn(this.pawnToEat);
- 			System.out.println("prima di mangiare");
- 			this.game.getDama().printMatrix();
- 			if(this instanceof UserPlayer)
- 			{
- 				if(this.pawnToEat.isDama())
- 				conta_dame_ai--;
- 			}
- 			this.eatOpponentPawn(this.pawnToEat);
- 			System.out.println("dopo aver aver mangiato");
- 			this.game.getDama().printMatrix();
- 			
- 			
- 			
- 			if(this.verifyEndGame())
- 			{
- 				this.game.getPlay_panel().repaint();
-// 				this.game.getMenu().dispose();
- 				//deve uscire la schermata di win o perso
- 				return;
- 			}
- 		    this.pawnToEat = null;
- }
-    }
 	
 	protected void pawnAnimation(int iprec, int jprec, int iafter, int jafter) {
 		// TODO Auto-generated method stub
@@ -952,21 +885,6 @@ public abstract class Player {
 		}
 	}
 	
-	private void print(ArrayList<Cell> clicked_cells, ArrayList<Cell> ai_cells)
-	{
-		System.out.println("moveByRightMouseClick");
-		System.out.println("cliched cells: ");
-		for(Cell c: clicked_cells)
-			System.out.print("<"+c.getI()+","+c.getJ()+"> ");
-		System.out.println();
-		System.out.println("ai cells");
-		if(Variables.single_player)
-		{
-		for(Cell c: ai_cells)
-			System.out.print("<"+c.getI()+","+c.getJ()+"> ");
-		}
-	}
-
 	public void setId(int id) {
 		this.id_user = id;
 	}
