@@ -31,8 +31,9 @@ public class MyPlayPanel extends MyPanel {
 	private ArrayList<Cell> celle_per_pasto_consecutivo;
 	private ArrayList<Cell> ai_cells;
 	private boolean pedina_che_diventera_dama;
-	private AttributedString font_string, string_multiplayer;
+	private AttributedString font_string, font_multiplayer;
 	private Font font;
+	private String string_multiplayer;
 
 	public MyPlayPanel(Menu menu, String panel_name) {
 		super(menu, panel_name);
@@ -59,24 +60,19 @@ public class MyPlayPanel extends MyPanel {
 		
 		this.caricatore_immagini.getScacchieraSfondo().get(StaticVariables.ID_TAVOLO_LEGNO).setVisible(true);
 		
-		if(!Variables.single_player)
-		{
-			
-			
-			if(this.game.getUser_player().getStringColour().equals("white"))
-			{
-				this.string_multiplayer = new AttributedString("It's your turn...");
-				// System.out.println("current time: "+this.chronometer.getCurrentTime());
-				
-			}
-			else
-			{
-				this.string_multiplayer = new AttributedString("It's opponent player turn...");
-			}
-			
-			this.font_string.addAttribute(TextAttribute.FONT, font);
-				this.font_string.addAttribute(TextAttribute.FOREGROUND, Color.orange, 0, 7);
-		}
+//		if(!Variables.single_player)
+//		{
+//			
+//			
+//			if(this.game.getUser_player().getStringColour().equals("white"))
+//				this.string_multiplayer = "It's your turn...";
+//			else
+//				this.string_multiplayer = "It's opponent player turn...";
+//			
+//			this.font_multiplayer = new AttributedString(this.string_multiplayer);
+//			this.font_string.addAttribute(TextAttribute.FONT, font);
+//				this.font_string.addAttribute(TextAttribute.FOREGROUND, Color.orange, 0, 20);
+//		}
 		
 		
 		if(Variables.editor)
@@ -130,8 +126,11 @@ public class MyPlayPanel extends MyPanel {
 				StaticVariables.finestra_height / 10);
 		
 			if (!Variables.single_player) {
-				g.drawString(this.string_multiplayer.getIterator(), (StaticVariables.finestra_width / 15) * 7,
-						StaticVariables.finestra_height / 8);
+				
+				System.out.println("string multiplayer: "+this.string_multiplayer);
+				this.inizializeStringMultiplayer();
+				g.drawString(this.font_multiplayer.getIterator(), 0,
+						0);
 			}
 		}catch(Exception e)
 		{
@@ -725,6 +724,21 @@ public class MyPlayPanel extends MyPanel {
 	public void mouseDragged(MouseEvent e) {
 		// TODO Auto-generated method stub
 
+	}
+	
+	
+	public void inizializeStringMultiplayer()
+	{
+			
+			if(this.game.getUser_player().getStringColour().equals("white"))
+				this.string_multiplayer = "It's your turn...";
+			else
+				this.string_multiplayer = "It's opponent player turn...";
+			
+			this.font_multiplayer = new AttributedString(this.string_multiplayer);
+			this.font_multiplayer.addAttribute(TextAttribute.FONT, font);
+				this.font_multiplayer.addAttribute(TextAttribute.FOREGROUND, Color.orange, 0, 7);
+				
 	}
 
 	public boolean isFirst_click() {

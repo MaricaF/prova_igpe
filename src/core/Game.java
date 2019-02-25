@@ -62,8 +62,10 @@ public class Game {
 		}
 		else
 		{
+			
 			this.playersColours();
 		    this.singlePlayer_cells_colours_matrix_assignment();
+		    ((MyPlayPanel)this.play_panel).inizializeStringMultiplayer();
 		    
 		}
 		
