@@ -10,9 +10,10 @@ public class FinalPanel extends MyPanel{
 	private MyButton retry;
 	private MyButton exit;
 	private boolean win;
-	private boolean exitOrNot;
 	private Immagine immagine;
 	private int dispose_state;
+	private MyButton yes;
+	private MyButton no;
 	
 	public FinalPanel(Menu menu, String panel_name, boolean win, int tavolo_w, int tavolo_h, int tavolo_x, int tavolo_y) {
 		super(menu, panel_name);
@@ -22,6 +23,7 @@ public class FinalPanel extends MyPanel{
 		this.tavolo_h = tavolo_h;
 		this.tavolo_x = tavolo_x;
 		this.tavolo_y = tavolo_y;
+		
 		this.init();
 		//verrà chiamata l'init quando mi servirà davvero il pannello
 		
@@ -30,21 +32,30 @@ public class FinalPanel extends MyPanel{
 	@Override
 	public void paint(Graphics g) {
 		super.paint(g);
-
+         if(this.mainButtonsVisible)
+         {
 			for (Immagine i : this.caricatore_immagini.getScacchieraSfondo().values())
 			{
 				if(i.isVisible())
 				  g.drawImage(i.getImage(), i.getX(), i.getY(), i.getImageWidth(), i.getImageHeight(), this);
 			}
-			
-			 if(this.mainButtonsVisible)
-			    {
-			        for(Immagine i: this.retry.getBottoni())
+			 for(Immagine i: this.retry.getBottoni())
 				         if(i.isVisible())
 			               g.drawImage( i.getImage(), i.getX(), i.getY(), i.getImageWidth(), i.getImageHeight(), this); 
 			
 			        for(Immagine i: this.exit.getBottoni())
 				        if(i.isVisible())
+				              g.drawImage( i.getImage(), i.getX(), i.getY(), i.getImageWidth(), i.getImageHeight(), this);
+         }
+         else       
+			    {
+        	 
+			        	for(Immagine i: this.yes.getBottoni())
+				            if(i.isVisible())
+			                  g.drawImage( i.getImage(), i.getX(), i.getY(), i.getImageWidth(), i.getImageHeight(), this); 
+			
+			           for(Immagine i: this.no.getBottoni())
+				           if(i.isVisible())
 				              g.drawImage( i.getImage(), i.getX(), i.getY(), i.getImageWidth(), i.getImageHeight(), this);
 			    }
 	}
@@ -59,29 +70,41 @@ public class FinalPanel extends MyPanel{
 				  this.dispose_state = 1;
 			  else
 				  this.dispose_state = 2;
-			  System.out.println("WOOOOOOOO retry button");
 			  //si ricomincia il gioco
-			  this.menu.replay(this,this.dispose_state, false);
+			  this.menu.replay(this,this.dispose_state, false, this.menu.getMyTypeOfOpponentPanel());
 		  }
 		  else if((e.getX() >= this.exit.getX() && e.getX() <= (this.exit.getX()+this.exit.getWidth())) && (e.getY() >= this.exit.getY() && e.getY() <= (this.exit.getY()+this.exit.getHeight())))
 		  {
-			  if(win)
-				  this.dispose_state = 1;
-			  else
-				  this.dispose_state = 2;
 		  
-		      System.out.println("WOOOOOOOOO exit button");
-			  this.menu.disposeFrame(this.dispose_state, true);
+			  this.exitOrNot(StaticVariables.PATH_EXITIMAGE, false);
 		  }
 		 }
+		else //se play ed exit non sono più visibili e premibili
+		{
+			if((e.getX() >= this.yes.getX() && e.getX() <= (this.yes.getX()+this.yes.getWidth())) && (e.getY() >= this.yes.getY() && e.getY() <= (this.yes.getY()+this.yes.getHeight())))
+			{
+				
+			   this.menu.disposeFrame(0, true); //chiude il frame.
+			}
+			else if((e.getX() >= this.no.getX() && e.getX() <= (this.no.getX()+this.no.getWidth())) && (e.getY() >= this.no.getY() && e.getY() <= (this.no.getY()+this.yes.getHeight())))
+			{
+				this.exitOrNot(StaticVariables.PATH_SFONDO1, true);
+			}
+		}
 	}
 	
 	public void init()
 	{
+		
+		this.yes = new MyButton(new Immagine(StaticVariables.ID_YESBUTTON,StaticVariables.PATH_YESBUTTON,-1), new Immagine(StaticVariables.ID_PRESSEDYESBUTTON,StaticVariables.PATH_PRESSEDYESBUTTON,-1), StaticVariables.YES_NAME);
+	    this.yes.proporzionaB(this.proporziona, this);
+	        
+	    this.no = new MyButton(new Immagine(StaticVariables.ID_NOBUTTON,StaticVariables.PATH_NOBUTTON,-1), new Immagine(StaticVariables.ID_PRESSEDNOBUTTON,StaticVariables.PATH_PRESSEDNOBUTTON,-1), StaticVariables.NO_NAME);
+	    this.no.proporzionaB(this.proporziona, this);
+		this.mainButtonsVisible = true;
+		
 		this.back_button.getBottoni().get(0).setVisible(false);
 		this.dispose_state = 0;
-		this.mainButtonsVisible = this.exitOrNot = false;
-		System.out.println("final panel w: "+this.menu.getWidth()+", h: "+this.menu.getHeight());
 		this.exit =  new MyButton(new Immagine(StaticVariables.ID_EXITBUTTON, StaticVariables.PATH_EXITBUTTON, -1),new Immagine(StaticVariables.ID_PRESSEDEXITBUTTON, StaticVariables.PATH_PRESSEDEXITBUTTON, -1),StaticVariables.EXIT_NAME);
 		this.exit.proporzionaB(this.proporziona, this);
 		this.retry = new MyButton(new Immagine(StaticVariables.ID_RETRY_BUTTON, StaticVariables.PATH_RETRYBUTTON, -1),new Immagine(StaticVariables.ID_PRESSEDRETRYBUTTON, StaticVariables.PATH_PRESSEDRETRYBUTTON, -1),StaticVariables.RETRY_NAME);
@@ -104,7 +127,6 @@ public class FinalPanel extends MyPanel{
 	    
 	    this.immagine.setXYWH(this.tavolo_x, this.tavolo_y, this.tavolo_w, this.tavolo_h);
 	    this.immagine.setVisible(true);
-		this.mainButtonsVisible = true;
 	}
 	
 	
@@ -137,6 +159,32 @@ public class FinalPanel extends MyPanel{
 				this.repaint();
 			}
 	  }
+	 else
+		{
+			if((e.getX() >= this.yes.getX() && e.getX() <= (this.yes.getX()+this.yes.getWidth())) && (e.getY() >= this.yes.getY() && e.getY() <= (this.yes.getY()+this.yes.getHeight())))
+			{
+				this.yes.changeImage();
+				this.repaint();
+			}
+			
+			else
+			{
+				this.yes.returnToFirstImage();
+				this.repaint();
+			}
+			
+		    if((e.getX() >= this.no.getX() && e.getX() <= (this.no.getX()+this.no.getWidth())) && (e.getY() >= this.no.getY() && e.getY() <= (this.no.getY()+this.no.getHeight())))
+			{
+				this.no.changeImage();
+				this.repaint();
+			}
+			 
+			 else
+				{
+					this.no.returnToFirstImage();
+					this.repaint();
+				}
+		}
 		
 	}
 

@@ -45,7 +45,6 @@ public class Game {
 	
 	public void play()
 	{
-//		this.assignImagesAtGame();
 		this.user_player = new UserPlayer(this);
 		
 		//se giocheremo contro l'intelligenza, verrà usata come giocatore;
@@ -65,18 +64,16 @@ public class Game {
 			
 			this.playersColours();
 		    this.singlePlayer_cells_colours_matrix_assignment();
-		    ((MyPlayPanel)this.play_panel).inizializeStringMultiplayer();
+//		    ((MyPlayPanel)this.play_panel).inizializeStringMultiplayer();
 		    
 		}
 		
+		 ((MyPlayPanel)this.play_panel).inizializeStringMultiplayer();
 		((MyPlayPanel)this.play_panel).setPawnsAreVisible(true);
 		System.out.println("user pawns: ");
 		user_player.printSetPawns();
-//		if(this.single_player)
-//		{
-		  System.out.println("ai pawns: ");
+		 System.out.println("ai pawns: ");
 		  ai_player.printSetPawns();
-//		}
 		
 		//this.answerSets();
 	}
@@ -94,7 +91,6 @@ public class Game {
 
 			this.pathImmUser = Variables.PATH_PEDINA1;
 			this.pathImmAi = Variables.PATH_PEDINA2;
-			System.out.println("cazzu iu GAME. editor: "+Variables.editor);
 		}
 		else
 		{
@@ -170,7 +166,6 @@ public class Game {
 		String path = "";
 		int idImm = 0;
 		Immagine immagine = null;
-		System.out.println("ciao3");
 		
 		try {
 		
@@ -186,7 +181,6 @@ public class Game {
 					{
 						
 						p = new Pawn(cont,i,j,tempCol);
-						System.out.println("ciao4");
 						immagine = new Immagine(idImm,path,cont);
 						immagine.setVisible(true);
 						
@@ -243,7 +237,6 @@ public class Game {
 	  
 	  this.dama.printMatrix();
 	    
-	  System.out.println("ciao5");
 		Immagine i = new Immagine(StaticVariables.ID_CELLA_EVIDENZIATA, StaticVariables.PATH_CELLA_EVIDENZIATA,-1);
 		i.setXYWH(0, 0, this.play_panel.getCaricatore_immagini().getPaws_images().get(StaticVariables.ID_PEDINA_NERA).getImageWidth(),
 				this.play_panel.getCaricatore_immagini().getPaws_images().get(StaticVariables.ID_PEDINA_NERA).getImageHeight());
@@ -317,12 +310,10 @@ public class Game {
 		// se è il multiplayer
 		if (!Variables.single_player) {
 			((UserPlayer)this.user_player).setClient(new Client("192.168.1.3", 80, this));
-			System.out.println("ciao");
 			if (this.user_player.getStringColour().equals("white"))
 				ai_player.setColour("black");
 			else
 				ai_player.setColour("white");
-			System.out.println("ciao2");
 		}
 
 		else {

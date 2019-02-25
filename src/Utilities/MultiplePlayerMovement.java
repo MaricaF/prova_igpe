@@ -40,17 +40,8 @@ public class MultiplePlayerMovement extends Thread{
 		
 //		//dev'essere mandato solo se siamo in modalità multiplayer e non dobbiamo aggiornare il gioco dopo 
 //		//i movimenti dell'avversario.
-//		if (!Variables.single_player && !Variables.update && Variables.canMove && Variables.giocatore1_mangio) {
-//			this.player.sendMangiataMultipla(clicked_cells, opponent_cells);
-//		} else {
-//			System.out.println("NON ENTRO :(. variables.update: " + Variables.update);
-//		}
-//		
-//		System.out.println("DENTRO");
 		while(clicked_cells.size() > 1)
 		{
-			System.out.println("cia");
-//			this.hasArrayAnElement(clicked_cells, ai_cells);
 			//la iprec e la jprec saranno SEMPRE le coordinate della cella alla posizione 0 dell'array 'clicked cells'
 			//la iafter e la jafter saranno SEMPRE le coordinate della cella alla posizione 1 dell'array 'clicked cells'
 			//la pawn to eat avrà SEMPRE le coordinate della Cell alla posizione 0 dell'array 'ai_cells' 
@@ -71,46 +62,31 @@ public class MultiplePlayerMovement extends Thread{
 			
 			if(!Variables.update)
 			{
-				System.out.println("sto acca1");
 			this.player.passaDaPawnFirstMoveToPawnAfterMove(clicked_cells.get(0).getI(), clicked_cells.get(0).getJ(), 
 					clicked_cells.get(1).getI(), clicked_cells.get(1).getJ(), this.player.getPawnToEat());
 			}
 			else
 			{
-				System.out.println("sto acca2");
 				((AIPlayer)this.game.getAi_player()).passaDaPawnFirstMoveToPawnAfterMoveAI(clicked_cells.get(0).getI(), clicked_cells.get(0).getJ(), 
 						clicked_cells.get(1).getI(), clicked_cells.get(1).getJ(), this.player.getPawnToEat());
 			}
-			
-			//elimino l'elemento alla posizione 0 dell'array 'clicked cells'
-			//elimino l'elemento alla posizione 0 dell'array 'ai cells'
-//			this.player.print(clicked_cells, opponent_cells);
-			
 			clicked_cells.remove(0);
 			if(!opponent_cells.isEmpty())
 			opponent_cells.remove(0);
-			
 			
 		}
 		
 		clicked_cells.clear();
 		opponent_cells.clear();
 		//viene richiamata solo alla fine di questa funzione ma se ci sono pedine da mangiare
-//		if(!ai_cells.isEmpty())
 		
 		((MyPlayPanel) this.game.getPlay_panel()).setTurno_ai(true);
-//
 		if (!Variables.single_player) {
 			if (!Variables.canMove && !Variables.update && Variables.giocatore1_mangio) {
 				this.player.receiveMangiataMultipla();
 				Variables.interpostaTraMovMultiploEnon = false;
-				System.out.println("MultiplePlayerMovement receive CAN MOVE");
 				Variables.canMove = true;
 			}
-			else
-				System.out.println("multiplePlayerMovement no attesa. canMove"+Variables.canMove+" update: "+Variables.update+
-					" giocator1_mangio: "+Variables.giocatore1_mangio+ " interposta: "+Variables.interpostaTraMovMultiploEnon);
-//			// this.moveByRightMouseClick(clicked_cells, opponent_cells);
 		}
 		((MyPlayPanel) this.game.getPlay_panel()).setTurno_ai(false);
 		
@@ -119,7 +95,6 @@ public class MultiplePlayerMovement extends Thread{
 			if (Variables.single_player)
 				this.player.siPassaDalloUserAllAi();
 		}
-		System.out.println("FUORI");
 
 		if(Variables.single_player)
 			Variables.mangiata_multipla = false;

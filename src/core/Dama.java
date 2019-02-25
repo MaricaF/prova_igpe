@@ -7,12 +7,10 @@ import it.unical.mat.embasp.languages.asp.ASPInputProgram;
 public class Dama {
 	
 	private Cell [][] matrix;
-	private Pawn pawn;
 
 	public Dama()
 	{
 		this.matrix = new Cell [StaticVariables.lenghtMatrix][StaticVariables.lenghtMatrix];
-		this.pawn = null;
 		//this.createCells();
 		//this.printMatrix();
 	}
@@ -83,7 +81,6 @@ public class Dama {
     {
     	if(this.getCellAtPosition(i, j).getPawn() == null)
     		return false;
-//    	System.err.println("isThereaPawn. i: "+i+" j: "+j);
     	return true;
     }
     

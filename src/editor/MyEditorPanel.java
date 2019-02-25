@@ -1,11 +1,14 @@
-package gui;
+package editor;
 
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.util.HashMap;
-
 import javax.swing.JOptionPane;
-
+import gui.Immagine;
+import gui.Menu;
+import gui.MyButton;
+import gui.MyPanel;
+import gui.MyPlayPanel;
 import interfaces.StaticVariables;
 import interfaces.Variables;
 
@@ -36,10 +39,6 @@ public class MyEditorPanel extends MyPanel{
 		this.add(StaticVariables.ID_TAVOLO_VERDE,StaticVariables.PATH_TAVOLO_VERDE,StaticVariables.ID_TAVOLO_VERDE_PRESSED,StaticVariables.TAVOLOVERDE_NAME, StaticVariables.PATH_TAVOLO_VERDE_PRESSED);
 		
 		this.back_button.proporzionaEditorButton(this.proporziona);
-//		this.back_button.getBottoni().get(0).setX((StaticVariables.finestra_width/10)*3);
-//		this.back_button.setX(this.back_button.getBottoni().get(0).getX());
-//		this.save.getBottoni().get(0).setX(StaticVariables.finestra_width/2);
-//		this.save.setX(this.save.getBottoni().get(0).getX());
 		this.path_image = this.path_dama = "";
 		this.user_pawn = new MyButton(new Immagine(StaticVariables.ID_USER_PAWN, StaticVariables.PATH_USER_PAWN,-1), 
 				new Immagine(StaticVariables.ID_USER_PAWN, StaticVariables.PATH_USER_PAWN,-1), StaticVariables.USER_PAWN_NAME);
@@ -129,7 +128,6 @@ public class MyEditorPanel extends MyPanel{
 		  {
 			this.click_ai_pawn = this.click_user_pawn = this.click_table = false;
 			this.id_table_pressed = this.id_ai_pressed = this.id_user_pressed = -1;
-			  System.out.println("back playpanel");
 			  this.menu.setPanelsVisibility(this.menu.getCurrent_panel(), false);
 			  this.menu.setPanelProperties(this.menu.getMyTypeOfOpponentPanel(), true);
 			  

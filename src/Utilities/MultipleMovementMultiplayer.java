@@ -2,12 +2,10 @@ package Utilities;
 
 import java.util.ArrayList;
 import java.util.concurrent.locks.Lock;
-
 import core.AIPlayer;
 import core.Cell;
 import core.Game;
 import core.Player;
-import core.UserPlayer;
 import interfaces.Variables;
 
 //Serve solo per le modifiche di mangiate multiple dell'avversario
@@ -33,7 +31,6 @@ public class MultipleMovementMultiplayer extends Thread{
 		super.run();
 		
 		this.lock.lock();
-//		Variables.giocatore1_mangio = true;
 		this.player.togliDoppioni(clicked_cells, opponent_cells);
 		Variables.mangiata_multipla = true;
 		Variables.interpostaTraMovMultiploEnon = true;
@@ -41,10 +38,8 @@ public class MultipleMovementMultiplayer extends Thread{
 		//dev'essere mandato solo se siamo in modalità multiplayer e non dobbiamo aggiornare il gioco dopo 
 		//i movimenti dell'avversario.
 		
-		System.out.println("DENTRO");
 		while(clicked_cells.size() > 1)
 		{
-			System.out.println("cia");
 //			this.hasArrayAnElement(clicked_cells, ai_cells);
 			//la iprec e la jprec saranno SEMPRE le coordinate della cella alla posizione 0 dell'array 'clicked cells'
 			//la iafter e la jafter saranno SEMPRE le coordinate della cella alla posizione 1 dell'array 'clicked cells'
@@ -70,31 +65,14 @@ public class MultipleMovementMultiplayer extends Thread{
 				
 			//elimino l'elemento alla posizione 0 dell'array 'clicked cells'
 			//elimino l'elemento alla posizione 0 dell'array 'ai cells'
-//			this.player.print(clicked_cells, opponent_cells);
-			
 			clicked_cells.remove(0);
 			if(!opponent_cells.isEmpty())
 			opponent_cells.remove(0);
 			
-			
 		}
-		
 		clicked_cells.clear();
 		opponent_cells.clear();
-		
-		
 		Variables.mangiata_multipla = false;
-//		Variables.interpostaTraMovMultiploEnon = false;
-		
-//		if (!Variables.single_player && Variables.giocatore1_mangio) {
-//			((UserPlayer)this.game.getUser_player()).receiveMangiataMultipla();
-//		} else {
-//			System.out.println("NON ENTRO receive mangiata multipla:(. variables.update: " + Variables.update);
-//		}
-//		this.player.receiveMangiataMultipla();
-		
-//		Variables.giocatore1_mangio = false;
-//		Variables.mangiata_multipla = false;
 		this.lock.unlock();
 		
 	}

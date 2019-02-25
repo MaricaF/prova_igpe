@@ -76,10 +76,7 @@ public class MyPlayPanel extends MyPanel {
 		
 		
 		if(Variables.editor)
-		{
-			System.out.println("construct playPanel. editor");
 			this.caricatore_immagini.getScacchieraSfondo().get(StaticVariables.ID_TAVOLO).setPath(Variables.PATH_TAVOLO);
-		}
 		
 		this.caricatore_immagini.getScacchieraSfondo().get(StaticVariables.ID_TAVOLO).setVisible(true);
 		
@@ -126,8 +123,6 @@ public class MyPlayPanel extends MyPanel {
 				StaticVariables.finestra_height / 10);
 		
 			if (!Variables.single_player) {
-				
-				System.out.println("string multiplayer: "+this.string_multiplayer);
 				this.inizializeStringMultiplayer();
 				g.drawString(this.font_multiplayer.getIterator(), 0,
 						StaticVariables.finestra_height/7);
@@ -142,7 +137,6 @@ public class MyPlayPanel extends MyPanel {
 	public void createChronometerString() {
 		String time = this.chronometer.getCurrentTime().toString();
 		this.font_string = new AttributedString(this.chronometer.getCurrentTime());
-		// System.out.println("current time: "+this.chronometer.getCurrentTime());
 		this.font_string.addAttribute(TextAttribute.FONT, font);
 		this.font_string.addAttribute(TextAttribute.FOREGROUND, Color.orange, 0, time.length());
 		this.repaint();
@@ -150,20 +144,12 @@ public class MyPlayPanel extends MyPanel {
 
 	public void createFinalPanel(boolean winOrNot) {
 		
-		System.out.println("A");
-		
 		Sounds.getSounds().stop(StaticVariables.PATH_AUDIO_SOUNDTRACK);
 		
 		if(winOrNot)
-		{
-			System.out.println("audio win");
 			Sounds.getSounds().loop(StaticVariables.PATH_AUDIO_WIN);
-		}
 		else
-		{
-			System.out.println("audio lose");
 			Sounds.getSounds().loop(StaticVariables.PATH_AUDIO_GAME_OVER);
-		}
 		
 		this.menu.setPanelsVisibility(this.menu.getCurrent_panel(), false);
 		// lo creo solo per eitare il null pointer, ma poi le verrà settata un'altra istanza veritiera
@@ -188,16 +174,12 @@ public class MyPlayPanel extends MyPanel {
 		if(Variables.canMove)
 		{
 		if (e.getButton() == MouseEvent.BUTTON3) {
-			System.out.println("caaaaaaaaaaaaaaasaaaaaaaaa");
 			int i_prima = this.proporziona.coordI(e.getY());
 			int j_prima = this.proporziona.coordJ(e.getX());
 
 			if (this.controllaValiditaCoord(i_prima, j_prima)) {
 				((UserPlayer)this.game.getUser_player()).changePedinaPremutaProperties(true, i_prima, j_prima);
 				this.celle_per_pasto_consecutivo.add(new Cell(i_prima, j_prima, ""));
-				// this.print(this.celle_per_pasto_consecutivo, "nome celle per pasto
-				// consecutivo: ");
-				// this.print(this.ai_cells, "ai_cells: ");
 
 				if (!this.ai_cells.isEmpty() && !this.weContinue()) {
 					Variables.giocatore1_mangio = true;
@@ -208,43 +190,24 @@ public class MyPlayPanel extends MyPanel {
 						((UserPlayer) this.game.getUser_player()).getClient().setModifiedSentence("");
 						((UserPlayer) this.game.getUser_player()).getClient().setTemp("");
 						Variables.canMove = false;
-//						Variables.giocatore1_mangio = false; //la metto qui erché altrimenti si mette in attesa anche nel thread 'singleMovement'
-					} else {
-						System.out.println("NON ENTRO receive mangiata multipla:(. variables.update: " + Variables.update);
-					}
+					} 
 					
-					System.out.println("DENTRO");
 					if(Variables.single_player)
 					this.game.getUser_player().moveByRightMouseClick(this.celle_per_pasto_consecutivo, this.ai_cells);
 					else
 					{
 						this.game.getUser_player().moveByRightMouseClick(this.celle_per_pasto_consecutivo, this.ai_cells);
 					}
-//						this.game.getUser_player().moveByRightMouseClickUpdateteMovementMultiplayer(this.celle_per_pasto_consecutivo, this.ai_cells);
-					
-//					if (!Variables.single_player && !Variables.giocatore1_mangio) {
-//						((UserPlayer)this.game.getUser_player()).receiveMangiataMultipla();
-//						Variables.interpostaTraMovMultiploEnon = false;
-////						Variables.mangiata_multipla = false;
-//					} else {
-//						System.out.println("NON ENTRO receive mangiata multipla:(. variables.update: " + Variables.update);
-//					}
 					this.pedina_che_diventera_dama = false;
 					this.first_right_click = true;
 				}
 			} else {
 				((UserPlayer)this.game.getUser_player()).changePedinaPremutaProperties(false, i_prima, j_prima);
-				System.out.println("non è più il first click");
 				this.first_right_click = true;
 				this.pedina_che_diventera_dama = false;
 				this.celle_per_pasto_consecutivo.clear();
 				this.ai_cells.clear();
 			}
-
-			// System.out.println("celle per pasto consecutivo: ");
-			// for(Cell c: this.celle_per_pasto_consecutivo)
-			// System.out.print("<"+c.getI()+","+c.getJ()+"> ");
-
 		} else if(e.getButton() == MouseEvent.BUTTON1) {
 
 			this.first_right_click = true;
@@ -256,24 +219,19 @@ public class MyPlayPanel extends MyPanel {
 				if (this.enter) // al secondo click
 					this.onSecondClick(e);
 				else {
-					System.out.println("tre. <icellbefore,jcellbefore>: <" + this.i_cell_before + ","
-							+ this.j_cell_before + ">. <icellafter,jcellafter>: <" + this.i_cell_after + ","
-							+ this.j_cell_after + ">");
 					this.enter = false;
 				}
-				System.out.println("mouse clicked print");
-				this.game.getDama().printMatrix();
 			}
 		}
 		}//fine if(canMove)
 		if((e.getX() >= this.back_button.getX() && e.getX() <= (this.back_button.getX()+this.back_button.getWidth())) && (e.getY() >= this.back_button.getY() && e.getY() <= (this.back_button.getY()+this.back_button.getHeight())))
 		  {
-			  System.out.println("back playpanel");
 			  if(!Variables.single_player)
 			  this.game.getUser_player().sendMovimentoSemplice(-1, -1, -1, -1, true);
 			  
-			  this.menu.setPanelsVisibility(this.menu.getCurrent_panel(), false);
-			  this.menu.setPanelProperties(this.menu.getMyMenuPanel(), true);
+			  this.menu.replay(this,0, true, this.menu.getMyTypeOfOpponentPanel());
+//			  this.menu.setPanelsVisibility(this.menu.getCurrent_panel(), false);
+//			  this.menu.setPanelProperties(this.menu.getMyMenuPanel(), true);
 		  }
 		
 	}
@@ -307,21 +265,9 @@ public class MyPlayPanel extends MyPanel {
 							.getStringColour())
 						this.enter = true;
 					((UserPlayer)this.game.getUser_player()).changePedinaPremutaProperties(true, i_cell_before, j_cell_after);
-					// else
-					// System.out.println("uno. premuta una pedina dell'avversario");
 				}
-				// else
-				// System.out.println("uno. non c'è nessuna pedina sulla cella");
 			}
-			// else
-			// System.out.println("uno. coordinate sbagliate");
-
 		}
-		// else
-		// System.out.println("uno. o il cont != 0 oppure enter è true o entrambe.
-		// enter: "+this.enter);
-
-		System.out.println("uno");
 	}
 
 	private void onSecondClick(MouseEvent e) {
@@ -330,18 +276,13 @@ public class MyPlayPanel extends MyPanel {
 
 		if (this.i_cell_after >= 0 && this.i_cell_after < StaticVariables.RIGHE_COLONNE && this.j_cell_after >= 0
 				&& this.j_cell_after < StaticVariables.RIGHE_COLONNE) {
-			System.out.println("due. il range è corretto. icellbefore: " + i_cell_before + " jcellbefore: "
-					+ j_cell_before + " icellafter: " + i_cell_after + " jcellafter: " + j_cell_after);
 			this.isOrNotAPawnOnaCell(e);
 		} else
 			this.enter = false;
-		System.out.println("due");
 	}
 
 	private void isOrNotAPawnOnaCell(MouseEvent e) {
-		// System.out.println("init due. wer");
 		if (!this.game.getDama().isThereaPawn(i_cell_after, j_cell_after))
-
 		{
 			if ((i_cell_before == i_cell_after && j_cell_before != j_cell_after)
 					|| (i_cell_before != i_cell_after && j_cell_before == j_cell_after)
@@ -355,7 +296,6 @@ public class MyPlayPanel extends MyPanel {
 			this.enter = false;
 			this.initIJplayPanel();
 		} else if (this.game.getDama().isThereaPawn(i_cell_after, j_cell_after)) {
-			// System.out.println(" after due. Ritorno ad uno");
 			this.enter = false;
 			this.onFirstClick(e);
 
@@ -384,12 +324,9 @@ public class MyPlayPanel extends MyPanel {
 			this.ai_cells.clear();
 			if (this.game.getDama().isThereaPawn(i, j)
 					&& this.game.getDama().getPawnColour(i, j) == this.game.getUser_player().getStringColour()) {
-				System.out.println("prima volta che clicco una cella su cui c'è una pedina dello user player");
-				System.out.print("<" + i + "," + j + "> ");
 				this.first_right_click = false;
 				return true;
-			} else
-				System.out.println("Q");
+			} 
 		}
 		// dopo la prima volta, la cella dev'essere vuota
 		else {
@@ -403,7 +340,6 @@ public class MyPlayPanel extends MyPanel {
 				// == 2)
 
 				if (Math.abs(this.celle_per_pasto_consecutivo.get(this.celle_per_pasto_consecutivo.size() - 1).getI()- i) == 2) {///
-					System.out.println("cella cliccata miao: <" + i + "," + j + "> ");
 					// sopra
 					if (this.comandoSiaPerLeDameCheNon_controllaValiditaCoord(i, j))
 						return true;
@@ -422,8 +358,7 @@ public class MyPlayPanel extends MyPanel {
 											.getStringColour()) {
 								this.ai_cells.add(new Cell(i - 1, j - 1, ""));
 								return true;
-							} else
-								System.out.println("...");
+							} 
 							// se la cella cliccata è sotto a sinistra della cella cliccaa in precendenza
 							if (i - 1 >= 0 && j + 1 <= StaticVariables.RIGHE_COLONNE - 1
 									&& (j - this.celle_per_pasto_consecutivo
@@ -433,23 +368,15 @@ public class MyPlayPanel extends MyPanel {
 											.getStringColour()) {
 								this.ai_cells.add(new Cell(i - 1, j + 1, ""));
 								return true;
-							} else
-								System.out.println("---");
-
+							} 
 							if (this.comandoSiaPerLeDameCheNon_controllaValiditaCoord(i, j))
 								return true;
 
-						} else
-							System.out.println("11");
-					} else
-						System.out.println("10");
-				} else
-					System.out.println("3");
-			} else
-				System.out.println("1");
+						} 
+					} 
+				} 
+			} 
 		}
-
-		System.out.println("fuori");
 		return false;
 
 	}
@@ -462,10 +389,6 @@ public class MyPlayPanel extends MyPanel {
 	 */
 	private boolean weContinue() {
 
-		System.err.println("ULTIMA CELLA AGGIUNTA: <"
-				+ this.celle_per_pasto_consecutivo.get(this.celle_per_pasto_consecutivo.size() - 2).getI() + ","
-				+ this.celle_per_pasto_consecutivo.get(this.celle_per_pasto_consecutivo.size() - 2).getJ() + ">");
-
 		if (this.celle_per_pasto_consecutivo.size() >= 2) {
 			// se il verso di gioco è sopra
 			if ((this.celle_per_pasto_consecutivo.get(0).getI()-this.celle_per_pasto_consecutivo.get(this.celle_per_pasto_consecutivo.size()-1).getI()) > 0) {
@@ -475,8 +398,7 @@ public class MyPlayPanel extends MyPanel {
 				{
 					this.pedina_che_diventera_dama = false;
 					return true;
-				}else
-					System.out.println("SSS");
+				}
 			}
 			// se il verso di gioco è sotto
 			else {
@@ -486,13 +408,9 @@ public class MyPlayPanel extends MyPanel {
 				{
 					if (this.comandoSoloPerLeDame_weContinue())
 						return true;
-					System.err.println("5 comandoSoloPerLeDame_weContinue() FALSE");
-
-				} else
-					System.err.println("6 NON è UNA DAMA");
+				} 
 			}
-		}else
-			System.out.println("this.celle_per_pasto_consecutivo.size() < 2 ");
+		}
 		
 		//se l'ultima poszione cliccata è 0, significa che la nostra pedina diventerà dama, quindi richiamo la  this.comandoSoloPerLeDame_weContinue()
 		//per verificare se ci sono ancora pedine avversarie da mangiare
@@ -530,8 +448,7 @@ public class MyPlayPanel extends MyPanel {
 					&& this.game.getDama().getPawnColour(i + 1,j - 1) != this.game.getUser_player().getStringColour()) {
 				this.ai_cells.add(new Cell(i + 1, j - 1, ""));
 				return true;
-			} else
-				System.out.println("C");
+			} 
 			// se la cella cliccata è sopra a sinistra della cella cliccaa in precendenza
 			if (i + 1 <= StaticVariables.RIGHE_COLONNE - 1 && j + 1 <= StaticVariables.RIGHE_COLONNE - 1
 					&& (j - this.celle_per_pasto_consecutivo.get(this.celle_per_pasto_consecutivo.size() - 1).getJ()) < 0
@@ -539,10 +456,8 @@ public class MyPlayPanel extends MyPanel {
 							j + 1) != this.game.getUser_player().getStringColour()) {
 				this.ai_cells.add(new Cell(i + 1, j + 1, ""));
 				return true;
-			} else
-				System.out.println("B");
-		} else
-			System.out.println("A");
+			} 
+		} 
 
 		return false;
 	}
@@ -567,10 +482,8 @@ public class MyPlayPanel extends MyPanel {
 							this.celle_per_pasto_consecutivo.get(this.celle_per_pasto_consecutivo.size() - 1).getI()-2,
 							this.celle_per_pasto_consecutivo.get(this.celle_per_pasto_consecutivo.size() - 1).getJ()-2) &&
 					!this.isCellAlreadyThere(new Cell(this.celle_per_pasto_consecutivo.get(this.celle_per_pasto_consecutivo.size() - 1).getI()-2,this.celle_per_pasto_consecutivo.get(this.celle_per_pasto_consecutivo.size() - 1).getJ()-2, ""))) {
-				System.err.println("comandoSiaPerLeDameCheNon_weContinue we continue -1: alto a sinistra");
 				return true;
-			} else
-				System.err.println("comandoSiaPerLeDameCheNon_weContinue we continue FUORI -1: alto a sinistra");
+			} 
 		}
 		// se c'è una pedina avversaria, 1 celle sopra a destra della pedina dello user
 		// player, si può continuare
@@ -592,10 +505,8 @@ public class MyPlayPanel extends MyPanel {
 							this.celle_per_pasto_consecutivo.get(this.celle_per_pasto_consecutivo.size() - 1).getI()-2,
 							this.celle_per_pasto_consecutivo.get(this.celle_per_pasto_consecutivo.size() - 1).getJ()+2) &&
 					!this.isCellAlreadyThere(new Cell(this.celle_per_pasto_consecutivo.get(this.celle_per_pasto_consecutivo.size() - 1).getI()-2,this.celle_per_pasto_consecutivo.get(this.celle_per_pasto_consecutivo.size() - 1).getJ()+2, ""))) {
-				System.err.println("comandoSiaPerLeDameCheNon_weContinue we continue 0: alto a destra");
 				return true;
-			} else
-				System.err.println("comandoSiaPerLeDameCheNon_weContinue we continue FUORI 0: alto a destra");
+			} 
 		}
 		return false;
 
@@ -623,13 +534,9 @@ public class MyPlayPanel extends MyPanel {
 							this.celle_per_pasto_consecutivo.get(this.celle_per_pasto_consecutivo.size() - 1).getI()+2,
 							this.celle_per_pasto_consecutivo.get(this.celle_per_pasto_consecutivo.size() - 1).getJ()-2) &&
 					!this.isCellAlreadyThere(new Cell(this.celle_per_pasto_consecutivo.get(this.celle_per_pasto_consecutivo.size() - 1).getI()+2,this.celle_per_pasto_consecutivo.get(this.celle_per_pasto_consecutivo.size() - 1).getJ()-2, ""))) {
-				System.err.println("comandoSoloPerLeDame_weContinue we continue 1: giù a sinistra");
 				return true;
-			} else
-				System.err.println("comandoSoloPerLeDame_weContinue we continue FUORI 1: giù a sinistra");
-
-		}else
-			System.out.println("comandoSoloPerLeDame_weContinue we continue FUORI 1.1");
+			} 
+		}
 		// se una cella più giù a destra, c'è una pedina avversaria
 		//HO TOLTO L'ELSE PER VEDERE UNA COSA IL 23/01 ALL 1:39
 		/*else*/ if (this.celle_per_pasto_consecutivo.get(this.celle_per_pasto_consecutivo.size() - 1).getI()+1 <= StaticVariables.RIGHE_COLONNE-1
@@ -648,17 +555,9 @@ public class MyPlayPanel extends MyPanel {
 							this.celle_per_pasto_consecutivo.get(this.celle_per_pasto_consecutivo.size() - 1).getI()+2,
 							this.celle_per_pasto_consecutivo.get(this.celle_per_pasto_consecutivo.size() - 1).getJ()+2) &&
 					!this.isCellAlreadyThere(new Cell(this.celle_per_pasto_consecutivo.get(this.celle_per_pasto_consecutivo.size() - 1).getI()+2,this.celle_per_pasto_consecutivo.get(this.celle_per_pasto_consecutivo.size() - 1).getJ()+2, ""))) {
-				System.err.println("comandoSoloPerLeDame_weContinue we continue 2: giù a destra");
 				return true;
-			} else
-				System.err.println("comandoSoloPerLeDame_weContinue we continue FUORI 2: giù a destra");
-		}else
-			System.err.println("comandoSoloPerLeDame_weContinue we continue FUORI 2.2: giù a sinistra");
-
-		System.err.println("prima dell'ultimo if (comandoSoloPerLeDame_weContinue)");
-//		this.cella_per_pasto_consecutivo_temp = this.celle_per_pasto_consecutivo.get(this.celle_per_pasto_consecutivo.size()-1);
-//		this.game.getUser_player().moveByRightMouseClick(this.celle_per_pasto_consecutivo, this.ai_cells);
-//	    this.celle_per_pasto_consecutivo.add(this.cella_per_pasto_consecutivo_temp);
+			} 
+		}
 		if (this.comandoSiaPerLeDameCheNon_weContinue())
 			return true;
 		return false;

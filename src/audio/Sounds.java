@@ -20,7 +20,6 @@ public class Sounds {
 	private static Sounds instance = null;
 	
 	private Sounds() {
-		System.out.println("Audio");
 		this.init();
 		// TODO Auto-generated constructor stub
 	}
@@ -133,7 +132,6 @@ public class Sounds {
 		if(!this.audios_volume.containsKey(file_name))
 		{
 		  FloatControl gainControl = (FloatControl) this.clips.get(file_name).getControl(FloatControl.Type.MASTER_GAIN);
-	      System.out.println("prima: "+gainControl.getValue());
 	      this.audios_volume.put(file_name, gainControl);
 		}
 		

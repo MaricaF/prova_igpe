@@ -1,11 +1,8 @@
 package gui;
 
 import java.util.ArrayList;
-
 import javax.swing.JPanel;
-
 import core.ProporzionaImmagine;
-import interfaces.StaticVariables;
 
 public class MyButton {
 

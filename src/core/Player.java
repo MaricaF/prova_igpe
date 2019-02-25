@@ -96,20 +96,12 @@ public abstract class Player {
 	 */
 	public void move(int iprec, int jprec, int iafter, int jafter, Pawn pawnToEat)
 	{	
-		System.out.println("move");
 		this.changePedinaPremutaProperties(true, iprec, jprec);
-//		long cont = 1;
-//	    while(cont < 100000000)
-//	    	cont++;
 		this.pawnAfterMove = this.pawnFirstTomove;
-//		this.passaDaPawnFirstMoveToPawnAfterMove(iprec, jprec, iafter, jafter, pawnToEat);
-		
 	}
 	
 	public void sendMovimentoSemplice(int iprec, int jprec, int iafter, int jafter, boolean exit)
 	{
-					System.out.println("Spostamento semplice. invio canMove: "+Variables.canMove+" update: "+Variables.update +
-							" giocator1_mangio: "+Variables.giocatore1_mangio);
 					((UserPlayer)this.game.getUser_player()).getClient().setMessageToSendToServer("");
 					if(!exit)
 					   this.outToServer += iprec + "," + jprec + " " + iafter + "," + jafter +"\n\n<END>";
@@ -127,14 +119,10 @@ public abstract class Player {
 						this.game.getPlay_panel().getMenu().setPanelsVisibility(this.game.getPlay_panel().getMenu().getCurrent_panel(), false);
 						this.game.getPlay_panel().getMenu().setPanelProperties(this.game.getPlay_panel().getMenu().getMyMenuPanel(), true);
 					}
-					 System.out.println("Player passaDaPawnFirstMoveToPawnAfterMove NO CAN MOVE");
-//					Variables.canMove = false;
 	}
 	
 	public void sendMangiataMultipla(ArrayList<Cell> clicked_cells, ArrayList<Cell> opponent_cells)
 	{
-			System.out.println("Mangiata multipla. invio. canMove: "+Variables.canMove+" update: "+Variables.update+
-					" giocator1_mangio: "+Variables.giocatore1_mangio);
 			((UserPlayer)this.game.getUser_player()).getClient().setMessageToSendToServer("");
 			String s_clicked_cells = this.CoordToString(clicked_cells);
 			String s_opponent_cells = this.CoordToString(opponent_cells);
@@ -142,29 +130,17 @@ public abstract class Player {
 			((UserPlayer)this.game.getUser_player()).getClient().setMessageToSendToServer(this.getOutToServer());
 			((UserPlayer)this.game.getUser_player()).getClient().sendMessageToServer();
 			this.setOutToServer("");
-			 System.out.println("MultiplPlayerMovement NO CAN MOVE");
-//			Variables.canMove = false;
 	}
 	
 	public void receiveSemplice()
 	{
 		if (!Variables.interpostaTraMovMultiploEnon) {
-//			((UserPlayer) this.game.getUser_player()).getClient().setModifiedSentence("");
-//			((UserPlayer) this.game.getUser_player()).getClient().setTemp("");
-			System.out.println("Spostamento semplice. attesa canMove: " + Variables.canMove + " update: "
-					+ Variables.update + " giocator1_mangio: " + Variables.giocatore1_mangio + " mangiata_multipla: "
-					+ Variables.mangiata_multipla+" interposta: "+Variables.interpostaTraMovMultiploEnon);
-			System.out.println("siPassaDalloUserAllAi 1");
 			((UserPlayer) this.game.getUser_player()).getClient().miMettoInAttesaDelServer();
-			System.out.println("siPassaDalloUserAllAi 2");
 			((UserPlayer) this.game.getUser_player())
 					.setInFromServer(((UserPlayer) this.game.getUser_player()).getClient().getModifiedSentence()); // stringa
-																													// ricevuta
-																													// dall'altro
 																													// giocatore
 			// devo prendere la clientSentence del client ecc
 			((UserPlayer) this.game.getUser_player()).algorythmOfTransformationPlayer();
-			System.out.println("siPassaDalloUserAllAi 3");
 		}
 	}
 	
@@ -173,21 +149,13 @@ public abstract class Player {
 //		((UserPlayer)this.game.getUser_player()).getClient().setModifiedSentence("");
 //		   ((UserPlayer)this.game.getUser_player()).getClient().setTemp("");
 		Variables.mangiata_multipla = false;
-		System.out.println("Mangiata multipla. attesa. canMove: "+Variables.canMove+" update: "+Variables.update+
-				" giocator1_mangio: "+Variables.giocatore1_mangio+" mangiata_multipla: "+Variables.mangiata_multipla+ " interposta: "+Variables.interpostaTraMovMultiploEnon);
-		System.out.println("siPassaDalloUserAllAi 1");
 		((UserPlayer) this.game.getUser_player()).getClient().miMettoInAttesaDelServer();
-		System.out.println("siPassaDalloUserAllAi 2");
 		((UserPlayer) this.game.getUser_player())
 				.setInFromServer(((UserPlayer) this.game.getUser_player()).getClient().getModifiedSentence()); // stringa
-																												// ricevuta
 																												// dall'altro
-		System.out.println("modified sentence: "+((UserPlayer) this.game.getUser_player()).getClient().getModifiedSentence());																			// giocatore
 		// devo prendere la clientSentence del client ecc
 		((AIPlayer) this.game.getAi_player()).algorythmOfTransformationPlayer();
-		System.out.println("siPassaDalloUserAllAi 3");
 		 Variables.canMove = true;
-		 System.out.println("MultiplPlayerMovement CAN MOVE");
 	}
 	
 	public void passaDaPawnFirstMoveToPawnAfterMove(int iprec, int jprec, int iafter, int jafter, Pawn pawnToEat)
@@ -198,7 +166,6 @@ public abstract class Player {
 			this.sendMovimentoSemplice(iprec, jprec, iafter, jafter, false);
 			((UserPlayer) this.game.getUser_player()).getClient().setModifiedSentence("");
 			((UserPlayer) this.game.getUser_player()).getClient().setTemp("");
-			System.out.println("passaDaPawnFirstMoveToPawnAfterMove NO CAN MOVE");
 			Variables.canMove = false;
 		}
 		
@@ -219,8 +186,6 @@ public abstract class Player {
 					this.game.getPlay_panel().repaint();
 				}
 				this.changePedinaPremutaProperties(false, iprec, jprec);
-//		System.out.println("move");
-//		this.pawnAfterMove = this.pawnFirstTomove;
 		
 		this.pawnAfterMove.setIJ(iafter, jafter);
 		this.game.getDama().getCellAtPosition(iprec, jprec).setSvuotaCella();
@@ -250,7 +215,6 @@ public abstract class Player {
 		
 		if(this.pawnToEat != null)
 		{
-//		    this.game.eatPawn(this.pawnToEat);
 			System.out.println("prima di mangiare");
 			this.game.getDama().printMatrix();
 			if(this instanceof UserPlayer)
@@ -262,13 +226,9 @@ public abstract class Player {
 			System.out.println("dopo aver aver mangiato");
 			this.game.getDama().printMatrix();
 			
-			
-			
 			if(this.verifyEndGame())
 			{
 				this.game.getPlay_panel().repaint();
-//				this.game.getMenu().dispose();
-				//deve uscire la schermata di win o perso
 				return;
 			}
 		    this.pawnToEat = null;
@@ -286,18 +246,13 @@ public abstract class Player {
     public void algorythmOfTransformationPlayer()
     {
     	Variables.update = true;
-//    	String string_dascindere = "2,0 1,5\n4,5\n";
-    	//divido la string mandatami dal server in base agli \n, suddividendola in 3 righe dell'avversario:
     	//my_cells, opponent_cell(le mie praticamente) e <END>. 
-    	System.out.println("dopo inFromServer: "+((UserPlayer) this.game.getUser_player()).getClient().getModifiedSentence());
 		String [] array_parole = ((UserPlayer) this.game.getUser_player()).getClient().getModifiedSentence().split("\n");
-		System.out.println("dopo array_parole size: "+array_parole.length+ " modifiedSentence: "+((UserPlayer) this.game.getUser_player()).getClient().getModifiedSentence());
 		//la prima righe di my_cells dell'avversario
 	    ArrayList<Cell> clicked_cells =  new ArrayList<Cell>();
 	    
 	    if(array_parole[0].contains("end"))
 	    {
-	    	System.out.println("algorytme close socket");
 	    	((UserPlayer)this.game.getUser_player()).getClient().closeConnection();
 	    	Variables.single_player = true;
 	    	this.game.getPlay_panel().getMenu().setPanelsVisibility(this.game.getPlay_panel().getMenu().getCurrent_panel(), false);
@@ -311,18 +266,9 @@ public abstract class Player {
 	   //creo un array list di opponents_cells e richiamo la clickToMove...
 	   if(array_parole.length > 1)
 	   {
-		   System.out.println("algorythmOfTransformationPlayer qui");
 		   ArrayList<Cell> opponent_cells = new ArrayList<Cell>();
 	       this.stringToCoord(opponent_cells, array_parole[1]);
-//	       Variables.canMove = false;
-//	       System.out.println("Player algorythmOfTransformationPlayer NO CAN MOVE");
-//	       Variables.giocatore1_mangio = false;
 	       ((AIPlayer)this.game.getAi_player()).moveByRightMouseClickUpdateteMovementMultiplayer(clicked_cells, opponent_cells);
-//	       ((AIPlayer)this.game.getAi_player()).moveByRightMouseClickSenzaThread(clicked_cells, opponent_cells);
-	       
-	       
-	       
-//	       this.moveByRightMouseClick(clicked_cells, opponent_cells);
 	   }
 	   //muovo semplicemente, senza mangiare
 	   else
@@ -333,11 +279,7 @@ public abstract class Player {
 		   ((AIPlayer)this.game.getAi_player()).passaDaPawnFirstMoveToPawnAfterMoveAI(clicked_cells.get(0).getI(), clicked_cells.get(0).getJ(), 
 				   clicked_cells.get(1).getI(), clicked_cells.get(1).getJ(), null);
 	   }
-	   
-//	   ((UserPlayer)this.game.getUser_player()).getClient().setModifiedSentence("");
-//	   ((UserPlayer)this.game.getUser_player()).getClient().setTemp("");
 	   Variables.update = false;
-	   System.err.println("stringa opponent_cells: "+stringa_opponent_cells);
 	    }
 	   
     }
@@ -347,20 +289,13 @@ public abstract class Player {
      */
     private void stringToCoord(ArrayList<Cell> array, String s)
     {	
-    	System.out.println("s originale: "+s);
-//    	s = s.replace('\n', ' ');
-//    	System.out.println("s dopo la replace: "+s);
     	String [] array_parole = s.split(" ");
-    	
     	char [] array_coord_string = new char[2];
+    	
     	for(String i: array_parole)
     	{
     		array_coord_string = i.toCharArray();
-    		System.out.println("pos 0: "+array_coord_string[0]+" pos 2: "+array_coord_string[2]);
     		array.add(new Cell(Character.getNumericValue(array_coord_string[0]), Character.getNumericValue(array_coord_string[2]),this.game.getAi_player().getStringColour()));
-//    		final_string += array_coord_string[0] +","+ array_coord_string[2]+" ";
-    		
-    		
     	}
     }
     
@@ -375,8 +310,6 @@ public abstract class Player {
     	for(Cell i: array)
     	{
     		final_s += i.getI() + "," + i.getJ() + " ";
-    		System.out.println("pos 0: "+i.getI()+" pos 2: "+i.getJ());
-    		
     	}
     	
     	String final_stringa = "";
@@ -384,7 +317,6 @@ public abstract class Player {
     	for(int i = 0; i < final_s.length()-1; i++)
     		final_stringa += final_s.charAt(i);
     	
-    	System.out.println("final_stringa: "+final_stringa);
     	return final_stringa + "\n";
     }
     
@@ -392,8 +324,6 @@ public abstract class Player {
 	protected void pawnAnimation(int iprec, int jprec, int iafter, int jafter) {
 		// TODO Auto-generated method stub
 		this.unpasso = Variables.w_pawn/StaticVariables.pawn_animation;
-		System.out.println("w_pawn: "+Variables.w_pawn);
-		System.out.println("unpasso: "+unpasso);
 		//se va sopra
 		if(iafter-iprec > 0)
 			this.sopraOsotto = +1;
@@ -408,16 +338,9 @@ public abstract class Player {
 		else
 			this.destraOsinistra = -1;
 		
-		System.out.println(" INIZIO tot: "+this.tot+" x imm: "+ this.game.getPlay_panel().getCaricatore_immagini().fromIdtoPawnImmagine(this.pawnFirstTomove.getId()).getX()+
-       		 " y imm: "+ this.game.getPlay_panel().getCaricatore_immagini().fromIdtoPawnImmagine(this.pawnFirstTomove.getId()).getY()+
-       		 "destraOsinistra: "+this.destraOsinistra+" sopraOsotto: "+this.sopraOsotto);
 		singlePlayerMovement = new SinglePlayerMovement(singleMovementlock);
-		System.out.println("ID PAWNFIRST TO MOVE: "+this.pawnFirstTomove.getId()+" colore pedina: "+this.pawnFirstTomove.getColour());
 		singlePlayerMovement.settoTutto(this.game,iprec,jprec,iafter,jafter,this);
 		singlePlayerMovement.start();
-		
-		System.out.println(" FINE1 tot: "+tot+" x imm: "+ this.game.getPlay_panel().getCaricatore_immagini().fromIdtoPawnImmagine(this.pawnFirstTomove.getId()).getX()+
-	       		 " y imm: "+ this.game.getPlay_panel().getCaricatore_immagini().fromIdtoPawnImmagine(this.pawnFirstTomove.getId()).getY());
 		
 	}
 	
@@ -433,28 +356,11 @@ public abstract class Player {
 			
 				if (Variables.single_player)
 					((AIPlayer) this.game.getAi_player()).chooseAIPawnToMove();
-//				else
-//				{
-//					if(!Variables.canMove)
-//					{
-//					System.out.println("siPassaDalloUserAllAi 1");
-//					((UserPlayer)this.game.getUser_player()).getClient().miMettoInAttesaDelServer();
-//					System.out.println("siPassaDalloUserAllAi 2");
-//					this.inFromServer = ((UserPlayer)this.game.getUser_player()).getClient().getModifiedSentence(); //stringa ricevuta dall'altro giocatore
-//					//devo prendere la clientSentence del client ecc
-//					System.out.println("siPassaDalloUserAllAi 3");
-////					Variables.canMove = true;
-//					}
-////					this.moveByRightMouseClick(clicked_cells, opponent_cells);
-//				}
 			 if(this.verifyEndGame())
 				{
 					this.game.getPlay_panel().repaint();
-//					this.game.getMenu().dispose();
-					//deve uscire la schermata di win o perso
 					return;
 				}
-			
 			 ((MyPlayPanel)this.game.getPlay_panel()).setTurno_ai(false);
 		}
 		}
@@ -466,8 +372,6 @@ public abstract class Player {
 	 */
 	public boolean verifyEndGame()
 	{
-//		this.opponent_player.printSetPawns();
-		System.out.println("verifygame fuori dall'if");
 		if(this.opponent_player.getPawns().isEmpty()) //se l'avversario non ha più pedine, il gioco termina
 		{
 			this.winner = true;
@@ -478,8 +382,6 @@ public abstract class Player {
 				this.game.setEND_GAME(true, false);
 			else
 				this.game.setEND_GAME(true, true);
-			
-			System.out.println("verifygame dentro l'if -> GAME OVER");
 			return true;
 		}
 		
@@ -488,7 +390,6 @@ public abstract class Player {
 			this.winner = false;
             this.opponent_player.setWinner(true);
 			this.game.setEND_GAME(true, false);
-			System.out.println("verifygame dentro l'if canImove -> GAME OVER");
 			return true;
 		}
 		return false;
@@ -522,14 +423,6 @@ public abstract class Player {
 		}
 		
 		this.game.getPlay_panel().repaint();
-		
-//		this.timer.reset();
-//		while(this.timer.getTempoTrascorso() <= 100.0)
-//		{
-////			System.out.println(this.timer.getTempoTrascorso());
-//		}
-		
-		
 		
 	}
 	
@@ -565,16 +458,6 @@ public abstract class Player {
 				else 
 					 this.game.getPlay_panel().getCaricatore_immagini().getPaws_images().get(this.pawnAfterMove.getId()).setPath(Variables.PATH_DAMA2);
 		}
-	   
-//		try {
-//			Thread.sleep(1000);
-//		} catch (InterruptedException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		this.pawnAnimation(iprec,jprec,iafter,jafter);
-//		this.game.getPlay_panel().getProporziona().setSizePawn(this.game.getPlay_panel().getCaricatore_immagini().getPaws_images().get(this.pawnAfterMove.getId()), this.pawnAfterMove.getI(), this.pawnAfterMove.getJ());
-//	    this.game.getPlay_panel().repaint();
 	}
 
 	public int getId() {
@@ -633,46 +516,29 @@ public abstract class Player {
 				 pawn = p;
 				 break;
 			}
-			
-				if(!pawn.isDama())
-				{
+			if(pawn.isDama())
+		    {
+		    	if(pawn.getI()+1 <= StaticVariables.RIGHE_COLONNE-1 && pawn.getJ()-1 >= 0 &&
+		    			(!this.game.getDama().isThereaPawn(pawn.getI()+1, pawn.getJ()-1) || (this.game.getDama().isThereaPawn(pawn.getI()+1, pawn.getJ()-1) && pawn.getI()+2 <= StaticVariables.RIGHE_COLONNE-1 && pawn.getJ()-2 >= 0 && !this.game.getDama().isThereaPawn(pawn.getI()+2, pawn.getJ()-2))) )
+		    		return true;
+		    	else if(pawn.getI()+1 <= StaticVariables.RIGHE_COLONNE-1 && pawn.getJ()+1 <= StaticVariables.RIGHE_COLONNE-1 &&
+		    			(!this.game.getDama().isThereaPawn(pawn.getI()+1, pawn.getJ()+1) || (this.game.getDama().isThereaPawn(pawn.getI()+1, pawn.getJ()+1) && pawn.getI()+2 <= StaticVariables.RIGHE_COLONNE-1 && pawn.getJ()+2 >= StaticVariables.RIGHE_COLONNE-1 && !this.game.getDama().isThereaPawn(pawn.getI()+2, pawn.getJ()+2))) )
+		    		return true;
+		    	else
+		    		return false;
+		    }
 				//se davanti alla pedina dello user player, non ci sono pedine, oppure se ci sono, ma dietro di loro non c'è nessuna pedina
 			    if(pawn.getI()-1 >= 0 && pawn.getJ()-1 >= 0 && 
 			    		(!this.game.getDama().isThereaPawn(pawn.getI()-1, pawn.getJ()-1) || (this.game.getDama().isThereaPawn(pawn.getI()-1, pawn.getJ()-1) && pawn.getI()-2 >= 0 && pawn.getJ()-2 >= 0 && !this.game.getDama().isThereaPawn(pawn.getI()-2, pawn.getJ()-2))))
 			    	return true;
-			    else
-			    	System.out.println("ERR: canImove 1");
-			    if(pawn.getI()-1 >= 0 && pawn.getJ()+1 <= StaticVariables.RIGHE_COLONNE-1 &&
+			    else if(pawn.getI()-1 >= 0 && pawn.getJ()+1 <= StaticVariables.RIGHE_COLONNE-1 &&
 			    		(!this.game.getDama().isThereaPawn(pawn.getI()-1, pawn.getJ()+1) || (this.game.getDama().isThereaPawn(pawn.getI()-1, pawn.getJ()+1) && pawn.getI()-2 >= 0 && pawn.getJ()+2 <= StaticVariables.RIGHE_COLONNE-1 && !this.game.getDama().isThereaPawn(pawn.getI()-2, pawn.getJ()+2))) )
 			    	return true;
 			    else
-			    	System.out.println("ERR: canImove 2");
-			    System.out.println("1 CAN I MOVE E' FALSE -> LA PEDINA E' BLOCCATA");
 			    return false;
-				}
-				else
-			    {
-			    	if(pawn.getI()+1 <= StaticVariables.RIGHE_COLONNE-1 && pawn.getJ()-1 >= 0 &&
-			    			(!this.game.getDama().isThereaPawn(pawn.getI()+1, pawn.getJ()-1) || (this.game.getDama().isThereaPawn(pawn.getI()+1, pawn.getJ()-1) && pawn.getI()+2 <= StaticVariables.RIGHE_COLONNE-1 && pawn.getJ()-2 >= 0 && !this.game.getDama().isThereaPawn(pawn.getI()+2, pawn.getJ()-2))) )
-			    		return true;
-			    	else
-				    	System.out.println("ERR: canImove 3");
-			        if(pawn.getI()+1 <= StaticVariables.RIGHE_COLONNE-1 && pawn.getJ()+1 <= StaticVariables.RIGHE_COLONNE-1 &&
-			    			(!this.game.getDama().isThereaPawn(pawn.getI()+1, pawn.getJ()+1) || (this.game.getDama().isThereaPawn(pawn.getI()+1, pawn.getJ()+1) && pawn.getI()+2 <= StaticVariables.RIGHE_COLONNE-1 && pawn.getJ()+2 >= StaticVariables.RIGHE_COLONNE-1 && !this.game.getDama().isThereaPawn(pawn.getI()+2, pawn.getJ()+2))) )
-			    		return true;
-			        else
-				    	System.out.println("ERR: canImove 4");
-			        System.out.println("2 CAN I MOVE E' FALSE -> LA PEDINA E' BLOCCATA");
-			        return false;
-			    }
-//			    System.out.println("CAN I MOVE alto a sinistra: "+this.game.getDama().isThereaPawn(pawn.getI()-1, pawn.getJ()-1)+
-//					"alto a destra: "+this.game.getDama().isThereaPawn(pawn.getI()-1, pawn.getJ()+1)+
-//					"basso a sinistra: "+this.game.getDama().isThereaPawn(pawn.getI()+1, pawn.getJ()-1)+
-//					"basso a destra: "+this.game.getDama().isThereaPawn(pawn.getI()+1, pawn.getJ()+1));
-			    
 		}
-		
-		return true;
+		else
+		  return true;
 	}
 	
 	protected boolean mangiataMultipla()
@@ -690,10 +556,8 @@ public abstract class Player {
 	 */
 	public void togliDoppioni(ArrayList<Cell> celle_per_pasto_consecutivo, ArrayList<Cell> opponent_cells)
 	{
-		try {
 		if(this instanceof AIPlayer && !celle_per_pasto_consecutivo.isEmpty() && !opponent_cells.isEmpty())
 		{
-//		this.print(celle_per_pasto_consecutivo, "celle_per_pasto_consecutivo prima");
 		int index = 0;
 		for(int i = 0; i < celle_per_pasto_consecutivo.size(); i++)
 		{
@@ -717,23 +581,17 @@ public abstract class Player {
 		   {
 		
 		      this.removeElementsFromAnIndex1(celle_per_pasto_consecutivo, index);
-		      this.print(celle_per_pasto_consecutivo, "celle_per_pasto_consecutivo dopo");
+//		      this.print(celle_per_pasto_consecutivo, "celle_per_pasto_consecutivo dopo");
 		
 		    if(opponent_cells.size() >= celle_per_pasto_consecutivo.size())
 		    {
-			  this.print(opponent_cells, "opponent_cells prima");
+//			  this.print(opponent_cells, "opponent_cells prima");
 			  index = celle_per_pasto_consecutivo.size()-1;
 		  	  this.removeElementsFromAnIndex2(opponent_cells, index);
-		  	  this.print(opponent_cells, "opponent_cells dopo");
+//		  	  this.print(opponent_cells, "opponent_cells dopo");
 		    }
 		   }
-		}}
-		catch(Exception e)
-		{
-			System.err.println("qualche print");
 		}
-		
-		
 		
 	}
 	
@@ -749,64 +607,18 @@ public abstract class Player {
 			   array.remove(i);
 	}
 	
-//	public void togliDoppioni(ArrayList<Cell> a)
-//	{
-//		ArrayList<Cell> cells_daeliminare = new ArrayList<Cell>();
-//		this.print(a, "a prima");
-//		for(int i = a.size()-1; i >= 0; i--)
-//		{
-//			for(int j = a.size()-1; j >= 0; j--)
-//			{
-//				if(i > j)
-//				{
-//					if(a.get(i).getI() == a.get(j).getI() && a.get(i).getJ() == a.get(j).getJ())
-//						cells_daeliminare.add(a.get(i));
-//				}
-//			}
-//		}
-//		for(Cell celldatogliere: cells_daeliminare)
-//			a.remove(celldatogliere);
-//		
-//		this.print(a, "a dopo");
-//		
-//	}
-	
-//	public void moveByRightMouseClick(ArrayList<Cell> clicked_cells, ArrayList<Cell> opponent_cells)
-//	{
-//		multiplePlayerMovement = new MultiplePlayerMovement();
-//		multiplePlayerMovement.settaTuttoMultiple(this.game, multipleMovementLock, clicked_cells, opponent_cells, this);
-//		multiplePlayerMovement.start();
-//		
-////		if(this instanceof UserPlayer)
-////			   this.siPassaDalloUserAllAi();
-//	}
-	
 	public void moveByRightMouseClick(ArrayList<Cell> clicked_cells, ArrayList<Cell> opponent_cells)
 	{
-//		Variables.mangiata_multipla = true;
-//		Variables.giocatore1_mangio = true;
-		//QUI DEVO MANDARE GLI ARRAY AL SERVER
-		System.out.println("1 moveByRightMouseClick");
-		
 		multiplePlayerMovement = new MultiplePlayerMovement();
 		multiplePlayerMovement.settaTuttoMultiple(this.game, multipleMovementLock, clicked_cells, opponent_cells, this);
 		multiplePlayerMovement.start();
-		
-		System.out.println("2 moveByRightMouseClick");
-//		Variables.mangiata_multipla = false;
 	}
 	
 	public void moveByRightMouseClickUpdateteMovementMultiplayer(ArrayList<Cell> clicked_cells, ArrayList<Cell> opponent_cells)
 	{
-//		Variables.mangiata_multipla = true;
-//		Variables.giocatore1_mangio = true;
-		//QUI DEVO MANDARE GLI ARRAY AL SERVER
-		
 		multipleMovementMultiplayer = new MultipleMovementMultiplayer();
 		multipleMovementMultiplayer.settaTuttoMultiple(this.game, multipleMovementLock, clicked_cells, opponent_cells, this);
 		multipleMovementMultiplayer.start();
-		
-//		Variables.mangiata_multipla = false;
 	}
 	
 
@@ -818,15 +630,11 @@ public abstract class Player {
 	public void moveByRightMouseClickSenzaThread(ArrayList<Cell> clicked_cells, ArrayList<Cell> opponent_cells)
 	{
 		this.togliDoppioni(clicked_cells, opponent_cells);
-//		this.print(clicked_cells, opponent_cells);
-		
 		this.sendMangiataMultipla(clicked_cells, opponent_cells);
 		
 		//cicla finché la sua size non è 1
 		while(clicked_cells.size() > 1)
 		{
-			System.out.println("cia");
-//			this.hasArrayAnElement(clicked_cells, ai_cells);
 			//la iprec e la jprec saranno SEMPRE le coordinate della cella alla posizione 0 dell'array 'clicked cells'
 			//la iafter e la jafter saranno SEMPRE le coordinate della cella alla posizione 1 dell'array 'clicked cells'
 			//la pawn to eat avrà SEMPRE le coordinate della Cell alla posizione 0 dell'array 'ai_cells' 
@@ -844,19 +652,14 @@ public abstract class Player {
 			
 			//elimino l'elemento alla posizione 0 dell'array 'clicked cells'
 			//elimino l'elemento alla posizione 0 dell'array 'ai cells'
-//			this.player.print(clicked_cells, opponent_cells);
 			
 			clicked_cells.remove(0);
 			if(!opponent_cells.isEmpty())
 			opponent_cells.remove(0);
-			
 		}
-		
 		clicked_cells.clear();
 		opponent_cells.clear();
-		
 		this.receiveMangiataMultipla();
-		
 	}
 	
 	protected boolean controllaValiditaCoord(int i, int j)

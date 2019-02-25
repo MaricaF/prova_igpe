@@ -23,8 +23,6 @@ public class TypesOfIntelligencePanel extends MyPanel{
 		
 		this.hard = new MyButton(new Immagine(StaticVariables.ID_HARD_AI, StaticVariables.PATH_HARD_AI, -1), new Immagine(StaticVariables.ID_HARD_AI, StaticVariables.PATH_HARD_AI, -1), StaticVariables.HARD_AI_NAME);
 		this.hard.proporzionaB(this.proporziona, this);
-		System.out.println("cazzu iu types of intelligence. editor: "+Variables.editor);
-		
 		this.setProperties(true);
 	}
 	
@@ -92,7 +90,6 @@ public class TypesOfIntelligencePanel extends MyPanel{
 		  }
 		else if((e.getX() >= this.back_button.getX() && e.getX() <= (this.back_button.getX()+this.back_button.getWidth())) && (e.getY() >= this.back_button.getY() && e.getY() <= (this.back_button.getY()+this.back_button.getHeight())))
 		  {
-			  System.out.println("back mytype");
 			  this.menu.setPanelsVisibility(this.menu.getCurrent_panel(), false);
 			  this.menu.setPanelProperties(this.menu.getMyTypeOfOpponentPanel(), true);
 		  }

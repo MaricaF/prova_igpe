@@ -2,14 +2,10 @@ package gui;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
-import java.awt.font.TextAttribute;
-import java.text.AttributedString;
-
 import javax.swing.JPanel;
 import core.ProporzionaImmagine;
 import interfaces.StaticVariables;
@@ -31,7 +27,6 @@ public abstract class MyPanel extends JPanel implements MouseListener, MouseMoti
 	    this.caricatore_immagini = new CaricatoreImmagini();
 	    this.proporziona = new ProporzionaImmagine(this.caricatore_immagini); 
 	    this.proporziona.setSizeBAckgroundAndScacchiera(StaticVariables.finestra_width,StaticVariables.finestra_height);
-//	    this.proporziona.setSizeBAckgroundAndScacchiera(this.menu.getWidth(),this.menu.getHeight()); //qui proporziono lo sfondo e la scacchiera, prima che venga creato il panel con il rendering
         this.proporziona.resizeOtherPopups();
        
         this.back_button = new MyButton(new Immagine(StaticVariables.ID_BACK_BUTTON, StaticVariables.PATH_BACKBUTTON,-1), 
@@ -39,7 +34,6 @@ public abstract class MyPanel extends JPanel implements MouseListener, MouseMoti
         		StaticVariables.BACK_NAME);
         this.back_button.proporzionaB(this.proporziona, this);
 		this.setPreferredSize(new Dimension(StaticVariables.finestra_width,StaticVariables.finestra_height));
-		System.out.println("mypanel. w: "+this.getWidth()+" h: "+this.getHeight());
 		this.setBackground(Color.WHITE);
         this.addMouseListener(this);
 		this.addMouseMotionListener(this);
@@ -70,7 +64,6 @@ public abstract class MyPanel extends JPanel implements MouseListener, MouseMoti
 	
 	protected void printScacchieraSfondo()
 	{
-		System.out.println("ScacchieraSfondo: ");
 		for(Immagine i: this.caricatore_immagini.getScacchieraSfondo().values())
 			System.out.println("path: "+i.getPath()+"is visible: "+i.isVisible());
 		System.out.println();

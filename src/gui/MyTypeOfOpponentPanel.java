@@ -106,7 +106,6 @@ public class MyTypeOfOpponentPanel extends MyPanel{
 		
 		if((e.getX() >= this.multiplayer.getX() && e.getX() <= (this.multiplayer.getX()+this.multiplayer.getWidth())) && (e.getY() >= this.multiplayer.getY() && e.getY() <= (this.multiplayer.getY()+this.multiplayer.getHeight())) && !this.game_is_started)
 		  {
-			System.out.println("play multiplayer");
 			this.caricatore_immagini.getScacchieraSfondo().get(StaticVariables.ID_SFONDO1).setWH(this.caricatore_immagini.getScacchieraSfondo().get(StaticVariables.ID_SFONDO1).getImageWidth(), this.caricatore_immagini.getScacchieraSfondo().get(StaticVariables.ID_SFONDO1).getImageHeight());
 			this.menu.setPanelsVisibility(this.menu.getCurrent_panel(), false);
 			Variables.single_player = false;
@@ -115,7 +114,6 @@ public class MyTypeOfOpponentPanel extends MyPanel{
 		  }
 		  else if((e.getX() >= this.ai.getX() && e.getX() <= (this.ai.getX()+this.ai.getWidth())) && (e.getY() >= this.ai.getY() && e.getY() <= (this.ai.getY()+this.ai.getHeight())) && !this.game_is_started)
 		  {
-			  System.out.println("ai");
 			    this.caricatore_immagini.getScacchieraSfondo().get(StaticVariables.ID_SFONDO1).setWH(this.caricatore_immagini.getScacchieraSfondo().get(StaticVariables.ID_SFONDO1).getImageWidth(), this.caricatore_immagini.getScacchieraSfondo().get(StaticVariables.ID_SFONDO1).getImageHeight());
 				this.menu.setPanelsVisibility(this.menu.getCurrent_panel(), false);
 				Variables.single_player = true;
@@ -125,13 +123,11 @@ public class MyTypeOfOpponentPanel extends MyPanel{
 		  else if((e.getX() >= this.exit.getX() && e.getX() <= (this.exit.getX()+this.exit.getWidth())) && (e.getY() >= this.exit.getY() && e.getY() <= (this.exit.getY()+this.exit.getHeight())))
 		  {
 			  this.exitOrNot(StaticVariables.PATH_EXITIMAGE, false);
-			  System.out.println("exit");
 		  }
 		  else if((e.getX() >= this.editor.getX() && e.getX() <= (this.editor.getX()+this.editor.getWidth())) && (e.getY() >= this.editor.getY() && e.getY() <= (this.editor.getY()+this.editor.getHeight())))
 		  {
 			  this.menu.setPanelsVisibility(this.menu.getCurrent_panel(), false);
 			  this.menu.setPanelProperties(this.menu.getEditorPanel(), true);
-			  System.out.println("editor");
 		  }
 		}
 		else //se play ed exit non sono più visibili e premibili

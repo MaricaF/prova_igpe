@@ -42,12 +42,12 @@ public class ProporzionaImmagine {
 		}
 		else if(bottone.getButton_name() == StaticVariables.YES_NAME || bottone.getButton_name() == StaticVariables.NO_NAME)
 		{
-			button.setImageWidth(this.pawnCellWidth*2);
+			button.setImageWidth(this.pawnCellWidth);
 			button.setImageHeight(button.getImageWidth());
 			if(bottone.getButton_name() == StaticVariables.YES_NAME)
-			   button.setX((width/2)-(this.pawnCellWidth*4));
+			   button.setX((StaticVariables.finestra_width/2)-(button.getImageWidth()*2));
 			else if(bottone.getButton_name() == StaticVariables.NO_NAME)
-			   button.setX((width/2)+(this.pawnCellWidth*2));
+			   button.setX((StaticVariables.finestra_width/2)+(button.getImageWidth()*2));
 		}
 		else if(bottone.getButton_name() == StaticVariables.MULTIPLAYER_NAME)
 		{
@@ -87,8 +87,10 @@ public class ProporzionaImmagine {
 		if(bottone.getButton_name().equals(StaticVariables.PLAY_NAME))
 			button.setY(button.getImageHeight()*2);
 		else if(bottone.getButton_name().equals(StaticVariables.YES_NAME) || 
-				bottone.getButton_name().equals(StaticVariables.NO_NAME) ||
-				bottone.getButton_name().equals(StaticVariables.HARD_AI_NAME) || bottone.getButton_name().equals(StaticVariables.MULTIPLAYER_NAME))
+				bottone.getButton_name().equals(StaticVariables.NO_NAME))
+			button.setY(StaticVariables.finestra_height/2);
+		else if(bottone.getButton_name().equals(StaticVariables.HARD_AI_NAME) 
+				|| bottone.getButton_name().equals(StaticVariables.MULTIPLAYER_NAME))
 			button.setY(button.getImageHeight()*4);
 		else if(bottone.getButton_name().equals(StaticVariables.RETRY_NAME) || 
 				bottone.getButton_name().equals(StaticVariables.AI_NAME) || 
@@ -115,8 +117,6 @@ public class ProporzionaImmagine {
 		bottone.setY(button.getY());
 		bottone.setWidth(button.getImageWidth());
 		bottone.setHeight(button.getImageHeight());
-		
-//		System.err.println(" widthMenu: "+width+" heightMenu: "+height+" button. w: "+button.getImageWidth()+" h: "+button.getImageHeight()+" x: "+button.getX()+" y: "+button.getY());
 	}
 	
 	public void resizeEditorButton(Immagine bottone_image, MyButton bottone)
@@ -218,8 +218,6 @@ public class ProporzionaImmagine {
 		   default: break;
 		}
 		
-//			System.err.println("button name: "+bottone.getButton_name()+" x: "+bottone_image.getX()+" y: "+bottone_image.getY());
-		
 		// aggiorno le coordinate del bottone
 		bottone.setX(bottone_image.getX());
 		bottone.setY(bottone_image.getY());
@@ -258,10 +256,6 @@ public class ProporzionaImmagine {
        	this.caricatore_immagini.getScacchieraSfondo().get(StaticVariables.ID_NASTRO).setImageHeight(this.pawnCellWidth*6);
        	this.caricatore_immagini.getScacchieraSfondo().get(StaticVariables.ID_NASTRO).setX(StaticVariables.finestra_width-
        			(this.caricatore_immagini.getScacchieraSfondo().get(StaticVariables.ID_NASTRO).getImageWidth()+StaticVariables.finestra_width/20));
-       	
-//       	System.err.println("w frame: "+width+" pawncellwidth: "+this.pawnCellWidth+ " wframe/pawncellwidth: "+this.moveToRight);
-       	
-       	
 	}
 	
 	public void resizeOtherPopups()
@@ -283,14 +277,11 @@ public class ProporzionaImmagine {
 	
 	public void setSizePawn(Immagine pawn, int i, int j)
 	{
-//		System.out.println("prima della resize. numero imm: "+pawn.getNumero_immagine()+" x: "+pawn.getX()+" y: "+pawn.getY());
 		pawn.setImageWidth(this.pawnCellWidth);
 		Variables.w_pawn = this.pawnCellWidth;
 		pawn.setImageHeight(pawn.getImageWidth()); //dato che sono quadrati
 		pawn.setX((pawn.getImageWidth()*j)+this.moveToRight);
 		pawn.setY((pawn.getImageWidth()*i)+this.moveToDown);
-//		System.err.println("dopo della resize. numero imm: "+pawn.getNumero_immagine()+" x: "+pawn.getX()+" y: "+pawn.getY());
-//		System.out.println();
 	}
 	
 	//in base alla x del mouse, mi restituisce la j della matrice

@@ -1,13 +1,9 @@
 package gui;
 
-import java.awt.GraphicsDevice;
-import java.awt.GraphicsEnvironment;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.swing.JFrame;
-
 import audio.Sounds;
+import editor.MyEditorPanel;
 import interfaces.StaticVariables;
 import interfaces.Variables;
 
@@ -41,11 +37,8 @@ public class Menu extends MyFrame{
 	
 	public void setPanelsVisibility(MyPanel panel, boolean v)
 	{
-
-		System.err.println("v: "+v);
 		if(v)
 		{
-			
 			this.all_panels.add(panel);
 			this.add(panel);
 			panel.setProperties(v);
@@ -84,21 +77,19 @@ public class Menu extends MyFrame{
 		this.myAdd(this.myMenuPanel,this.typesOfIntelligencePanel,this.playPanel,this.myTypeOfOpponentPanel,this.editorPanel);
 	}
 	
-	public void replay(MyPanel current, int state, boolean exit)
+	public void replay(MyPanel current, int state, boolean exit, MyPanel panel)
 	{
-		System.out.println("replay");
 		Variables.endGame = false;
 		Variables.editor = false;
 		this.stopAudios(state, exit);
 		this.setPanelProperties(current, false);
-		this.setPanelProperties(this.myTypeOfOpponentPanel, true);
+		this.setPanelProperties(panel, true);
 		MyPlayPanel new_game = new MyPlayPanel(this,StaticVariables.PLAY_NAME);
 		this.playPanel = new_game;
 	}
 	
 	public void disposeFrame(int state, boolean exit)
 	{
-		System.out.println("disposeFrame");
 		this.stopAudios(state, exit);
 		System.exit(0);
 	}
@@ -115,6 +106,7 @@ public class Menu extends MyFrame{
 		{
 			switch(state)
 			{
+			case(0): break;
 			case(1): Sounds.getSounds().stopAndClose(StaticVariables.PATH_AUDIO_WIN); break;
 			case(2): Sounds.getSounds().stopAndClose(StaticVariables.PATH_AUDIO_GAME_OVER); break;
 			default: break;
@@ -125,6 +117,7 @@ public class Menu extends MyFrame{
 		{
 		   switch(state)
 		   {
+		    case(0): break;
 		    case(1): Sounds.getSounds().stop(StaticVariables.PATH_AUDIO_WIN); break;
 		    case(2): Sounds.getSounds().stop(StaticVariables.PATH_AUDIO_GAME_OVER); break;
 		    default: break;

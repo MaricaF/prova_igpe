@@ -2,7 +2,6 @@ package gui;
 
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
-
 import audio.Sounds;
 import interfaces.StaticVariables;
 
@@ -13,10 +12,8 @@ public class MyMenuPanel extends MyPanel{
 	public MyMenuPanel(Menu menu, String panel_name, int frameWidth, int frameHeight)
 	{
 		super(menu, panel_name);
-//		this.proporziona.setSizeBAckgroundAndScacchiera(this.menu.getWidth(),this.menu.getHeight()); //qui proporziono lo sfondo e la scacchiera, prima che venga creato il panel con il rendering
 		this.play = new MyButton(new Immagine(StaticVariables.ID_PLAYBUTTON,StaticVariables.PATH_PLAYBUTTON,-1), new Immagine(StaticVariables.ID_PRESSEDPLAYBUTTON, StaticVariables.PATH_PRESSEDPLAYBUTTON,-1), StaticVariables.PLAY_NAME);
 		this.play.proporzionaB(this.proporziona, this);
-		
         this.setProperties(true);
         this.mainButtonsVisible = true;
 		
@@ -32,12 +29,6 @@ public class MyMenuPanel extends MyPanel{
 			for(Immagine i: this.caricatore_immagini.getScacchieraSfondo().values())
 		         if(i.isVisible())
 	               g.drawImage( i.getImage(), i.getX(), i.getY(), i.getImageWidth(), i.getImageHeight(), this); 
-//		    g.drawImage( this.caricatore_immagini.getScacchieraSfondo().get(StaticVariables.ID_SFONDO1).getImage(),
-//		    		     this.caricatore_immagini.getScacchieraSfondo().get(StaticVariables.ID_SFONDO1).getX(),
-//		    		     this.caricatore_immagini.getScacchieraSfondo().get(StaticVariables.ID_SFONDO1).getY(), 
-//		    		     this.caricatore_immagini.getScacchieraSfondo().get(StaticVariables.ID_SFONDO1).getImageWidth(), 
-//		    		     this.caricatore_immagini.getScacchieraSfondo().get(StaticVariables.ID_SFONDO1).getImageHeight(), 
-//					     this);
 		
 		        for(Immagine i: this.play.getBottoni())
 			         if(i.isVisible())
@@ -55,26 +46,18 @@ public class MyMenuPanel extends MyPanel{
 		
 		  if((e.getX() >= this.play.getX() && e.getX() <= (this.play.getX()+this.play.getWidth())) && (e.getY() >= this.play.getY() && e.getY() <= (this.play.getY()+this.play.getHeight())))
 		  {
-			System.out.println("play");
 			Sounds.getSounds().play(StaticVariables.PATH_AUDIO_PROVA);
 			this.menu.setPanelsVisibility(this.menu.getCurrent_panel(), false);
-//			this.caricatore_immagini.getScacchieraSfondo().get(StaticVariables.ID_SFONDO1).setPath(StaticVariables.PATH_SFONDO2);
 			this.caricatore_immagini.getScacchieraSfondo().get(StaticVariables.ID_SFONDO1).setWH(this.caricatore_immagini.getScacchieraSfondo().get(StaticVariables.ID_SFONDO1).getImageWidth(), this.caricatore_immagini.getScacchieraSfondo().get(StaticVariables.ID_SFONDO1).getImageHeight());
 			((MyPlayPanel)this.menu.getPlayPanel()).getGame().play();
 			this.menu.setPanelProperties(this.menu.getPlayPanel(), true);
 //			Sounds.getSounds().loop(StaticVariables.PATH_AUDIO_SOUNDTRACK);
 //			Sounds.getSounds().setVolume(StaticVariables.PATH_AUDIO_SOUNDTRACK, -10);
-//			System.out.println("dopo: "+Sounds.getSounds().getAudios_volume().get(StaticVariables.PATH_AUDIO_SOUNDTRACK).getValue());
 		  }else if((e.getX() >= this.back_button.getX() && e.getX() <= (this.back_button.getX()+this.back_button.getWidth())) && (e.getY() >= this.back_button.getY() && e.getY() <= (this.back_button.getY()+this.back_button.getHeight())))
 		  {
-			  System.out.println("back mytype");
 			  this.menu.setPanelsVisibility(this.menu.getCurrent_panel(), false);
 			  this.menu.setPanelProperties(this.menu.getTypesOfIntelligencePanel(), true);
 		  }
-		  
-		
-		System.out.println(" x cliccata: "+e.getX()+" y cliccata: "+e.getY());
-
 	}
 	
 	

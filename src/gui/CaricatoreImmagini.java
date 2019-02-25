@@ -28,12 +28,10 @@ public class CaricatoreImmagini {
 	//gli passo l indice dell array sopra perché ho bisogno del path di quell'immagine
 	protected String pathImmagini(int i)
 	{
-		System.out.println("i caricatore immagini: "+i);
 		String p = "";
 		switch(i)
 		{
 		case(StaticVariables.ID_SFONDO1): p = StaticVariables.PATH_SFONDO1; break;
-		case(StaticVariables.ID_SFONDO2): p = StaticVariables.PATH_SFONDO2; break;
 		case(StaticVariables.ID_EXITIMAGE): p = StaticVariables.PATH_EXITIMAGE; break;
 		case(StaticVariables.ID_TAVOLO): p = StaticVariables.PATH_TAVOLO; break;
 		case(StaticVariables.ID_TAVOLO_LEGNO): p = StaticVariables.PATH_TAVOLO_LEGNO; break;

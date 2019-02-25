@@ -94,7 +94,6 @@ public interface StaticVariables {
 	
 	
 	final static String PATH_SFONDO1 = "Images/sfondo_travi.jpg";
-	final static String PATH_SFONDO2 = "Images/sfondo.jpg";
 	final static String PATH_EXITIMAGE = "Images/areyousure.png";
 	final static String PATH_TAVOLO = "Images/tavolo222.png";
 	final static String PATH_TAVOLO_PRESSED = "Images/tavolo222pressed.png";
