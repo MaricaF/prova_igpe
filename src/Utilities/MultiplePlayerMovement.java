@@ -3,12 +3,14 @@ package Utilities;
 import java.util.ArrayList;
 import java.util.concurrent.locks.Lock;
 
+import audio.Sounds;
 import core.AIPlayer;
 import core.Cell;
 import core.Game;
 import core.Player;
 import core.UserPlayer;
 import gui.MyPlayPanel;
+import interfaces.StaticVariables;
 import interfaces.Variables;
 
 public class MultiplePlayerMovement extends Thread{
@@ -54,7 +56,7 @@ public class MultiplePlayerMovement extends Thread{
 			//la pawn aftermove = pawn after to move
 			this.player.setPawnAfterMove(this.player.getPawnFirstTomove());
 			try {
-				Thread.sleep(2000);
+				Thread.sleep(1500);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

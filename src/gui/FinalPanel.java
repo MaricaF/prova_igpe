@@ -2,6 +2,8 @@ package gui;
 
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
+
+import audio.Sounds;
 import interfaces.StaticVariables;
 import interfaces.Variables;
 
@@ -49,7 +51,12 @@ public class FinalPanel extends MyPanel{
          }
          else       
 			    {
-        	 
+        	 g.drawImage( this.caricatore_immagini.getScacchieraSfondo().get(StaticVariables.ID_SFONDO1).getImage(),
+	    		     this.caricatore_immagini.getScacchieraSfondo().get(StaticVariables.ID_SFONDO1).getX(),
+	    		     this.caricatore_immagini.getScacchieraSfondo().get(StaticVariables.ID_SFONDO1).getY(), 
+	    		     this.caricatore_immagini.getScacchieraSfondo().get(StaticVariables.ID_SFONDO1).getImageWidth(), 
+	    		     this.caricatore_immagini.getScacchieraSfondo().get(StaticVariables.ID_SFONDO1).getImageHeight(), 
+				     this);
 			        	for(Immagine i: this.yes.getBottoni())
 				            if(i.isVisible())
 			                  g.drawImage( i.getImage(), i.getX(), i.getY(), i.getImageWidth(), i.getImageHeight(), this); 
@@ -66,6 +73,7 @@ public class FinalPanel extends MyPanel{
 		{
 		  if((e.getX() >= this.retry.getX() && e.getX() <= (this.retry.getX()+this.retry.getWidth())) && (e.getY() >= this.retry.getY() && e.getY() <= (this.retry.getY()+this.retry.getHeight())))
 		  {
+			  Sounds.getSounds().play(StaticVariables.PATH_AUDIO_MENU_CLICK);
 			  if(win)
 				  this.dispose_state = 1;
 			  else
@@ -75,7 +83,7 @@ public class FinalPanel extends MyPanel{
 		  }
 		  else if((e.getX() >= this.exit.getX() && e.getX() <= (this.exit.getX()+this.exit.getWidth())) && (e.getY() >= this.exit.getY() && e.getY() <= (this.exit.getY()+this.exit.getHeight())))
 		  {
-		  
+			  Sounds.getSounds().play(StaticVariables.PATH_AUDIO_MENU_CLICK);
 			  this.exitOrNot(StaticVariables.PATH_EXITIMAGE, false);
 		  }
 		 }
@@ -83,11 +91,12 @@ public class FinalPanel extends MyPanel{
 		{
 			if((e.getX() >= this.yes.getX() && e.getX() <= (this.yes.getX()+this.yes.getWidth())) && (e.getY() >= this.yes.getY() && e.getY() <= (this.yes.getY()+this.yes.getHeight())))
 			{
-				
+				 Sounds.getSounds().play(StaticVariables.PATH_AUDIO_MENU_CLICK);
 			   this.menu.disposeFrame(0, true); //chiude il frame.
 			}
 			else if((e.getX() >= this.no.getX() && e.getX() <= (this.no.getX()+this.no.getWidth())) && (e.getY() >= this.no.getY() && e.getY() <= (this.no.getY()+this.yes.getHeight())))
 			{
+				Sounds.getSounds().loop(StaticVariables.PATH_AUDIO_WIN);
 				this.exitOrNot(StaticVariables.PATH_SFONDO1, true);
 			}
 		}
@@ -96,11 +105,9 @@ public class FinalPanel extends MyPanel{
 	public void init()
 	{
 		
-		this.yes = new MyButton(new Immagine(StaticVariables.ID_YESBUTTON,StaticVariables.PATH_YESBUTTON,-1), new Immagine(StaticVariables.ID_PRESSEDYESBUTTON,StaticVariables.PATH_PRESSEDYESBUTTON,-1), StaticVariables.YES_NAME);
-	    this.yes.proporzionaB(this.proporziona, this);
+		this.yes = ((MyTypeOfOpponentPanel)this.menu.getMyTypeOfOpponentPanel()).getYes();
 	        
-	    this.no = new MyButton(new Immagine(StaticVariables.ID_NOBUTTON,StaticVariables.PATH_NOBUTTON,-1), new Immagine(StaticVariables.ID_PRESSEDNOBUTTON,StaticVariables.PATH_PRESSEDNOBUTTON,-1), StaticVariables.NO_NAME);
-	    this.no.proporzionaB(this.proporziona, this);
+	    this.no = ((MyTypeOfOpponentPanel)this.menu.getMyTypeOfOpponentPanel()).getNo();
 		this.mainButtonsVisible = true;
 		
 		this.back_button.getBottoni().get(0).setVisible(false);

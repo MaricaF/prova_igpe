@@ -29,14 +29,13 @@ public class Sounds {
 		this.clips = new HashMap<String, Clip>();
 		this.sounds = new HashMap<String, AudioInputStream>();
 		this.audios_volume = new HashMap<String, FloatControl>();
-		this.openFile(StaticVariables.PATH_AUDIO_PROVA);
-		this.openFile(StaticVariables.PATH_AUDIO_SOUNDTRACK);
-		this.setVolume(StaticVariables.PATH_AUDIO_SOUNDTRACK, -10);
 		this.openFile(StaticVariables.PATH_AUDIO_ALERT);
 		this.openFile(StaticVariables.PATH_AUDIO_PAWN_MOVE);
 		this.setVolume(StaticVariables.PATH_AUDIO_PAWN_MOVE, +5);
 		this.openFile(StaticVariables.PATH_AUDIO_WIN);
 		this.openFile(StaticVariables.PATH_AUDIO_GAME_OVER);
+		this.openFile(StaticVariables.PATH_AUDIO_EAT);
+		this.openFile(StaticVariables.PATH_AUDIO_MENU_CLICK);
 	}
 	
 	public static Sounds getSounds()

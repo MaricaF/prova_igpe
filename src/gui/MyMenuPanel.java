@@ -46,15 +46,14 @@ public class MyMenuPanel extends MyPanel{
 		
 		  if((e.getX() >= this.play.getX() && e.getX() <= (this.play.getX()+this.play.getWidth())) && (e.getY() >= this.play.getY() && e.getY() <= (this.play.getY()+this.play.getHeight())))
 		  {
-			Sounds.getSounds().play(StaticVariables.PATH_AUDIO_PROVA);
-			this.menu.setPanelsVisibility(this.menu.getCurrent_panel(), false);
+			  Sounds.getSounds().play(StaticVariables.PATH_AUDIO_MENU_CLICK);
+			  this.menu.setPanelsVisibility(this.menu.getCurrent_panel(), false);
 			this.caricatore_immagini.getScacchieraSfondo().get(StaticVariables.ID_SFONDO1).setWH(this.caricatore_immagini.getScacchieraSfondo().get(StaticVariables.ID_SFONDO1).getImageWidth(), this.caricatore_immagini.getScacchieraSfondo().get(StaticVariables.ID_SFONDO1).getImageHeight());
 			((MyPlayPanel)this.menu.getPlayPanel()).getGame().play();
 			this.menu.setPanelProperties(this.menu.getPlayPanel(), true);
-//			Sounds.getSounds().loop(StaticVariables.PATH_AUDIO_SOUNDTRACK);
-//			Sounds.getSounds().setVolume(StaticVariables.PATH_AUDIO_SOUNDTRACK, -10);
 		  }else if((e.getX() >= this.back_button.getX() && e.getX() <= (this.back_button.getX()+this.back_button.getWidth())) && (e.getY() >= this.back_button.getY() && e.getY() <= (this.back_button.getY()+this.back_button.getHeight())))
 		  {
+			  Sounds.getSounds().play(StaticVariables.PATH_AUDIO_MENU_CLICK);
 			  this.menu.setPanelsVisibility(this.menu.getCurrent_panel(), false);
 			  this.menu.setPanelProperties(this.menu.getTypesOfIntelligencePanel(), true);
 		  }

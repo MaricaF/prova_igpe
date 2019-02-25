@@ -2,6 +2,8 @@ package gui;
 
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
+
+import audio.Sounds;
 import interfaces.StaticVariables;
 import interfaces.Variables;
 
@@ -106,6 +108,7 @@ public class MyTypeOfOpponentPanel extends MyPanel{
 		
 		if((e.getX() >= this.multiplayer.getX() && e.getX() <= (this.multiplayer.getX()+this.multiplayer.getWidth())) && (e.getY() >= this.multiplayer.getY() && e.getY() <= (this.multiplayer.getY()+this.multiplayer.getHeight())) && !this.game_is_started)
 		  {
+			 Sounds.getSounds().play(StaticVariables.PATH_AUDIO_MENU_CLICK);
 			this.caricatore_immagini.getScacchieraSfondo().get(StaticVariables.ID_SFONDO1).setWH(this.caricatore_immagini.getScacchieraSfondo().get(StaticVariables.ID_SFONDO1).getImageWidth(), this.caricatore_immagini.getScacchieraSfondo().get(StaticVariables.ID_SFONDO1).getImageHeight());
 			this.menu.setPanelsVisibility(this.menu.getCurrent_panel(), false);
 			Variables.single_player = false;
@@ -114,6 +117,7 @@ public class MyTypeOfOpponentPanel extends MyPanel{
 		  }
 		  else if((e.getX() >= this.ai.getX() && e.getX() <= (this.ai.getX()+this.ai.getWidth())) && (e.getY() >= this.ai.getY() && e.getY() <= (this.ai.getY()+this.ai.getHeight())) && !this.game_is_started)
 		  {
+			  Sounds.getSounds().play(StaticVariables.PATH_AUDIO_MENU_CLICK);
 			    this.caricatore_immagini.getScacchieraSfondo().get(StaticVariables.ID_SFONDO1).setWH(this.caricatore_immagini.getScacchieraSfondo().get(StaticVariables.ID_SFONDO1).getImageWidth(), this.caricatore_immagini.getScacchieraSfondo().get(StaticVariables.ID_SFONDO1).getImageHeight());
 				this.menu.setPanelsVisibility(this.menu.getCurrent_panel(), false);
 				Variables.single_player = true;
@@ -122,10 +126,12 @@ public class MyTypeOfOpponentPanel extends MyPanel{
 		  }
 		  else if((e.getX() >= this.exit.getX() && e.getX() <= (this.exit.getX()+this.exit.getWidth())) && (e.getY() >= this.exit.getY() && e.getY() <= (this.exit.getY()+this.exit.getHeight())))
 		  {
+			  Sounds.getSounds().play(StaticVariables.PATH_AUDIO_MENU_CLICK);
 			  this.exitOrNot(StaticVariables.PATH_EXITIMAGE, false);
 		  }
 		  else if((e.getX() >= this.editor.getX() && e.getX() <= (this.editor.getX()+this.editor.getWidth())) && (e.getY() >= this.editor.getY() && e.getY() <= (this.editor.getY()+this.editor.getHeight())))
 		  {
+			  Sounds.getSounds().play(StaticVariables.PATH_AUDIO_MENU_CLICK);
 			  this.menu.setPanelsVisibility(this.menu.getCurrent_panel(), false);
 			  this.menu.setPanelProperties(this.menu.getEditorPanel(), true);
 		  }
@@ -134,10 +140,12 @@ public class MyTypeOfOpponentPanel extends MyPanel{
 		{
 			if((e.getX() >= this.yes.getX() && e.getX() <= (this.yes.getX()+this.yes.getWidth())) && (e.getY() >= this.yes.getY() && e.getY() <= (this.yes.getY()+this.yes.getHeight())))
 			{
+				 Sounds.getSounds().play(StaticVariables.PATH_AUDIO_MENU_CLICK);
 			   this.menu.disposeFrame(0, true); //chiude il frame.
 			}
 			else if((e.getX() >= this.no.getX() && e.getX() <= (this.no.getX()+this.no.getWidth())) && (e.getY() >= this.no.getY() && e.getY() <= (this.no.getY()+this.yes.getHeight())))
 			{
+				 Sounds.getSounds().play(StaticVariables.PATH_AUDIO_MENU_CLICK);
 				this.exitOrNot(StaticVariables.PATH_SFONDO1, true);
 			}
 		}

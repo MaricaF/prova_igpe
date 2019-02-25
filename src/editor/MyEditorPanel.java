@@ -4,6 +4,8 @@ import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.util.HashMap;
 import javax.swing.JOptionPane;
+
+import audio.Sounds;
 import gui.Immagine;
 import gui.Menu;
 import gui.MyButton;
@@ -112,6 +114,7 @@ public class MyEditorPanel extends MyPanel{
 		{
 			if(this.controlloSave())
 			{
+				 Sounds.getSounds().play(StaticVariables.PATH_AUDIO_MENU_CLICK);
 				this.click_ai_pawn = this.click_user_pawn = this.click_table = false;
 				this.id_table_pressed = this.id_ai_pressed = this.id_user_pressed = -1;
 				Variables.editor = true;
@@ -126,6 +129,7 @@ public class MyEditorPanel extends MyPanel{
 		}
 		else if((e.getX() >= this.back_button.getX() && e.getX() <= (this.back_button.getX()+this.back_button.getWidth())) && (e.getY() >= this.back_button.getY() && e.getY() <= (this.back_button.getY()+this.back_button.getHeight())))
 		  {
+			 Sounds.getSounds().play(StaticVariables.PATH_AUDIO_MENU_CLICK);
 			this.click_ai_pawn = this.click_user_pawn = this.click_table = false;
 			this.id_table_pressed = this.id_ai_pressed = this.id_user_pressed = -1;
 			  this.menu.setPanelsVisibility(this.menu.getCurrent_panel(), false);
@@ -134,18 +138,21 @@ public class MyEditorPanel extends MyPanel{
 		  }
 		else if((e.getX() >= this.user_pawn.getX() && e.getX() <= (this.user_pawn.getX()+this.user_pawn.getWidth())) && (e.getY() >= this.user_pawn.getY() && e.getY() <= (this.user_pawn.getY()+this.user_pawn.getHeight())))
 		  {
+			 Sounds.getSounds().play(StaticVariables.PATH_AUDIO_MENU_CLICK);
 			this.click_user_pawn = true;
 			this.click_ai_pawn = false;
 			this.click_table = false;
 		  }
 		else if((e.getX() >= this.ai_pawn.getX() && e.getX() <= (this.ai_pawn.getX()+this.ai_pawn.getWidth())) && (e.getY() >= this.ai_pawn.getY() && e.getY() <= (this.ai_pawn.getY()+this.ai_pawn.getHeight())))
 		  {
+			 Sounds.getSounds().play(StaticVariables.PATH_AUDIO_MENU_CLICK);
 			this.click_ai_pawn = true;
 			this.click_user_pawn = false;
 			this.click_table = false;
 		  }
 	    else if((e.getX() >= this.editor_buttons.get(StaticVariables.ID_TAVOLO).getX() && e.getX() <= (this.editor_buttons.get(StaticVariables.ID_TAVOLO).getX()+this.editor_buttons.get(StaticVariables.ID_TAVOLO).getWidth())) && (e.getY() >= this.editor_buttons.get(StaticVariables.ID_TAVOLO).getY() && e.getY() <= (this.editor_buttons.get(StaticVariables.ID_TAVOLO).getY()+this.editor_buttons.get(StaticVariables.ID_TAVOLO).getHeight())))
 		  {
+	    	 Sounds.getSounds().play(StaticVariables.PATH_AUDIO_MENU_CLICK);
 			   this.editor_buttons.get(StaticVariables.ID_TAVOLO).changeImage();
 			   this.click_table = true;
 			   this.click_user_pawn = false;
@@ -157,6 +164,7 @@ public class MyEditorPanel extends MyPanel{
 			
 	    else if((e.getX() >= this.editor_buttons.get(StaticVariables.ID_TAVOLO_UNIVERSO).getX() && e.getX() <= (this.editor_buttons.get(StaticVariables.ID_TAVOLO_UNIVERSO).getX()+this.editor_buttons.get(StaticVariables.ID_TAVOLO_UNIVERSO).getWidth())) && (e.getY() >= this.editor_buttons.get(StaticVariables.ID_TAVOLO_UNIVERSO).getY() && e.getY() <= (this.editor_buttons.get(StaticVariables.ID_TAVOLO_UNIVERSO).getY()+this.editor_buttons.get(StaticVariables.ID_TAVOLO_UNIVERSO).getHeight())))
 			{
+	    	   Sounds.getSounds().play(StaticVariables.PATH_AUDIO_MENU_CLICK);
 			   this.editor_buttons.get(StaticVariables.ID_TAVOLO_UNIVERSO).changeImage();
 			   this.click_table = true;
 			   this.click_user_pawn = false;
@@ -167,6 +175,7 @@ public class MyEditorPanel extends MyPanel{
 			}
 	    else  if((e.getX() >= this.editor_buttons.get(StaticVariables.ID_TAVOLO_VERDE).getX() && e.getX() <= (this.editor_buttons.get(StaticVariables.ID_TAVOLO_VERDE).getX()+this.editor_buttons.get(StaticVariables.ID_TAVOLO_VERDE).getWidth())) && (e.getY() >= this.editor_buttons.get(StaticVariables.ID_TAVOLO_VERDE).getY() && e.getY() <= (this.editor_buttons.get(StaticVariables.ID_TAVOLO_VERDE).getY()+this.editor_buttons.get(StaticVariables.ID_TAVOLO_VERDE).getHeight())))
 			{
+	    	   Sounds.getSounds().play(StaticVariables.PATH_AUDIO_MENU_CLICK);
 			   this.editor_buttons.get(StaticVariables.ID_TAVOLO_VERDE).changeImage();
 			   this.click_table = true;
 			   this.click_user_pawn = false;
@@ -177,6 +186,7 @@ public class MyEditorPanel extends MyPanel{
 			}
 	    else if((e.getX() >= this.editor_buttons.get(StaticVariables.ID_PEDINA_BIANCA).getX() && e.getX() <= (this.editor_buttons.get(StaticVariables.ID_PEDINA_BIANCA).getX()+this.editor_buttons.get(StaticVariables.ID_PEDINA_BIANCA).getWidth())) && (e.getY() >= this.editor_buttons.get(StaticVariables.ID_PEDINA_BIANCA).getY() && e.getY() <= (this.editor_buttons.get(StaticVariables.ID_PEDINA_BIANCA).getY()+this.editor_buttons.get(StaticVariables.ID_PEDINA_BIANCA).getHeight())))
 			{
+	    	   Sounds.getSounds().play(StaticVariables.PATH_AUDIO_MENU_CLICK);
 			   this.editor_buttons.get(StaticVariables.ID_PEDINA_BIANCA).changeImage();
 			   this.path_image = StaticVariables.PATH_PEDINA_BIANCA;
 			   this.path_dama = StaticVariables.PATH_PEDINA_DAMABIANCA;
@@ -186,6 +196,7 @@ public class MyEditorPanel extends MyPanel{
 			
 	    else if((e.getX() >= this.editor_buttons.get(StaticVariables.ID_PEDINA_NERA).getX() && e.getX() <= (this.editor_buttons.get(StaticVariables.ID_PEDINA_NERA).getX()+this.editor_buttons.get(StaticVariables.ID_PEDINA_NERA).getWidth())) && (e.getY() >= this.editor_buttons.get(StaticVariables.ID_PEDINA_NERA).getY() && e.getY() <= (this.editor_buttons.get(StaticVariables.ID_PEDINA_NERA).getY()+this.editor_buttons.get(StaticVariables.ID_PEDINA_NERA).getHeight())))
 			{
+	    	   Sounds.getSounds().play(StaticVariables.PATH_AUDIO_MENU_CLICK);
 			   this.editor_buttons.get(StaticVariables.ID_PEDINA_NERA).changeImage();
 			   this.path_image = StaticVariables.PATH_PEDINA_NERA;
 			   this.path_dama = StaticVariables.PATH_PEDINA_DAMANERA;
@@ -195,6 +206,7 @@ public class MyEditorPanel extends MyPanel{
 		   
 	    else if((e.getX() >= this.editor_buttons.get(StaticVariables.ID_PEDINA_BIANCABIANCA).getX() && e.getX() <= (this.editor_buttons.get(StaticVariables.ID_PEDINA_BIANCABIANCA).getX()+this.editor_buttons.get(StaticVariables.ID_PEDINA_BIANCABIANCA).getWidth())) && (e.getY() >= this.editor_buttons.get(StaticVariables.ID_PEDINA_BIANCABIANCA).getY() && e.getY() <= (this.editor_buttons.get(StaticVariables.ID_PEDINA_BIANCABIANCA).getY()+this.editor_buttons.get(StaticVariables.ID_PEDINA_BIANCABIANCA).getHeight())))
 			{
+	    	   Sounds.getSounds().play(StaticVariables.PATH_AUDIO_MENU_CLICK);
 			   this.editor_buttons.get(StaticVariables.ID_PEDINA_BIANCABIANCA).changeImage();
 			   this.path_image = StaticVariables.PATH_PEDINA_BIANCABIANCA;
 			   this.path_dama = StaticVariables.PATH_PEDINA_BIANCABIANCA_DAMA;
@@ -203,7 +215,8 @@ public class MyEditorPanel extends MyPanel{
 			}
 		   
 	    else if((e.getX() >= this.editor_buttons.get(StaticVariables.ID_PEDINA_BIANCASPIRALE).getX() && e.getX() <= (this.editor_buttons.get(StaticVariables.ID_PEDINA_BIANCASPIRALE).getX()+this.editor_buttons.get(StaticVariables.ID_PEDINA_BIANCASPIRALE).getWidth())) && (e.getY() >= this.editor_buttons.get(StaticVariables.ID_PEDINA_BIANCASPIRALE).getY() && e.getY() <= (this.editor_buttons.get(StaticVariables.ID_PEDINA_BIANCASPIRALE).getY()+this.editor_buttons.get(StaticVariables.ID_PEDINA_BIANCASPIRALE).getHeight())))
-			{
+			{ 
+	    	   Sounds.getSounds().play(StaticVariables.PATH_AUDIO_MENU_CLICK);
 			   this.editor_buttons.get(StaticVariables.ID_PEDINA_BIANCASPIRALE).changeImage();
 			   this.path_image = StaticVariables.PATH_PEDINA_BIANCASPIRALE;
 			   this.path_dama = StaticVariables.PATH_PEDINA_BIANCASPIRALE_DAMA;
@@ -213,6 +226,7 @@ public class MyEditorPanel extends MyPanel{
 		   
 	    else if((e.getX() >= this.editor_buttons.get(StaticVariables.ID_PEDINA_MARRONE_SPIRALE).getX() && e.getX() <= (this.editor_buttons.get(StaticVariables.ID_PEDINA_MARRONE_SPIRALE).getX()+this.editor_buttons.get(StaticVariables.ID_PEDINA_MARRONE_SPIRALE).getWidth())) && (e.getY() >= this.editor_buttons.get(StaticVariables.ID_PEDINA_MARRONE_SPIRALE).getY() && e.getY() <= (this.editor_buttons.get(StaticVariables.ID_PEDINA_MARRONE_SPIRALE).getY()+this.editor_buttons.get(StaticVariables.ID_PEDINA_MARRONE_SPIRALE).getHeight())))
 			{
+	    	   Sounds.getSounds().play(StaticVariables.PATH_AUDIO_MENU_CLICK);
 			   this.editor_buttons.get(StaticVariables.ID_PEDINA_MARRONE_SPIRALE).changeImage();
 			   this.path_image = StaticVariables.PATH_PEDINA_MARRONE_SPIRALE;
 			   this.path_dama = StaticVariables.PATH_PEDINA_MARRONE_SPRIRALE_DAMA;
@@ -222,6 +236,7 @@ public class MyEditorPanel extends MyPanel{
 		   
 	    else if((e.getX() >= this.editor_buttons.get(StaticVariables.ID_PEDINA_ROSA).getX() && e.getX() <= (this.editor_buttons.get(StaticVariables.ID_PEDINA_ROSA).getX()+this.editor_buttons.get(StaticVariables.ID_PEDINA_ROSA).getWidth())) && (e.getY() >= this.editor_buttons.get(StaticVariables.ID_PEDINA_ROSA).getY() && e.getY() <= (this.editor_buttons.get(StaticVariables.ID_PEDINA_ROSA).getY()+this.editor_buttons.get(StaticVariables.ID_PEDINA_ROSA).getHeight())))
 			{
+	    	   Sounds.getSounds().play(StaticVariables.PATH_AUDIO_MENU_CLICK);
 			   this.editor_buttons.get(StaticVariables.ID_PEDINA_ROSA).changeImage();
 			   this.path_image = StaticVariables.PATH_PEDINA_ROSA;
 			   this.path_dama = StaticVariables.PATH_PEDINA_ROSA_DAMA;

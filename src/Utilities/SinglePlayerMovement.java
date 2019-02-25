@@ -79,7 +79,7 @@ public class SinglePlayerMovement extends Thread{
 		this.game.getPlay_panel().getProporziona().setSizePawn(this.game.getPlay_panel().getCaricatore_immagini().fromIdtoPawnImmagine(this.pawnFirstTomove.getId()), iafter, jafter);
 		this.game.getPlay_panel().repaint();
 		}
-		Sounds.getSounds().play(StaticVariables.PATH_AUDIO_PAWN_MOVE);
+		    Sounds.getSounds().play(StaticVariables.PATH_AUDIO_PAWN_MOVE);
 		this.game.getPlay_panel().repaint();
 		
 		((MyPlayPanel)this.game.getPlay_panel()).setTurno_ai(true);

@@ -158,12 +158,12 @@ public interface StaticVariables {
 	final static String PATH_USER_PAWN ="Images/user_pawn.png";
 	final static String PATH_EDITOR_BUTTON = "Images/editor22.png";
 	
-	final static String PATH_AUDIO_PROVA = "audios/click_x.wav";
-	final static String PATH_AUDIO_SOUNDTRACK = "audios/tick.wav";
 	final static String PATH_AUDIO_ALERT = "audios/alert.wav";
 	final static String PATH_AUDIO_PAWN_MOVE = "audios/button12.wav";
 	final static String PATH_AUDIO_WIN = "audios/fireworks.wav";
 	final static String PATH_AUDIO_GAME_OVER = "audios/rain.wav";
+	final static String PATH_AUDIO_EAT = "audios/mangio.wav";
+	final static String PATH_AUDIO_MENU_CLICK = "audios/button6.wav";
 	
 	final static String PLAY_NAME = "Play";
 	final static String FINAL_NAME = "Final";

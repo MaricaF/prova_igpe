@@ -2,6 +2,7 @@ package core;
 
 import javax.swing.JOptionPane;
 
+import audio.Sounds;
 import gui.MyPlayPanel;
 import interfaces.StaticVariables;
 import interfaces.Variables;
@@ -21,6 +22,7 @@ public class UserPlayer extends Player{
 	@Override
 	public void eatOpponentPawn(Pawn p)
 	{
+		Sounds.getSounds().play(StaticVariables.PATH_AUDIO_EAT);
 		//rimuovo la pedina dalla struttura dati dell'avversario
 		this.game.getAi_player().getPawns().remove(p.getId());
 		//richiamo la funzione che mi elimina questa stessa pedina dalle altre strutture dati

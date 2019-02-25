@@ -3,6 +3,7 @@ package gui;
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 
+import audio.Sounds;
 import interfaces.StaticVariables;
 import interfaces.Variables;
 
@@ -67,7 +68,7 @@ public class TypesOfIntelligencePanel extends MyPanel{
 		
 		if((e.getX() >= this.simple.getX() && e.getX() <= (this.simple.getX()+this.simple.getWidth())) && (e.getY() >= this.simple.getY() && e.getY() <= (this.simple.getY()+this.simple.getHeight())))
 		  {
-//			this.caricatore_immagini.getScacchieraSfondo().get(StaticVariables.ID_SFONDO1).setPath(StaticVariables.PATH_SFONDO2);
+			 Sounds.getSounds().play(StaticVariables.PATH_AUDIO_MENU_CLICK);
 			this.caricatore_immagini.getScacchieraSfondo().get(StaticVariables.ID_SFONDO1).setWH(this.caricatore_immagini.getScacchieraSfondo().get(StaticVariables.ID_SFONDO1).getImageWidth(), this.caricatore_immagini.getScacchieraSfondo().get(StaticVariables.ID_SFONDO1).getImageHeight());
 			this.menu.setPanelsVisibility(this.menu.getCurrent_panel(), false);
 			((MyPlayPanel)this.menu.getPlayPanel()).getGame().setType_of_intelligence(this.simple.getButton_name());
@@ -75,7 +76,7 @@ public class TypesOfIntelligencePanel extends MyPanel{
 		  }
 		else if((e.getX() >= this.medium.getX() && e.getX() <= (this.medium.getX()+this.medium.getWidth())) && (e.getY() >= this.medium.getY() && e.getY() <= (this.medium.getY()+this.medium.getHeight())))
 		  {
-//			this.caricatore_immagini.getScacchieraSfondo().get(StaticVariables.ID_SFONDO1).setPath(StaticVariables.PATH_SFONDO2);
+			 Sounds.getSounds().play(StaticVariables.PATH_AUDIO_MENU_CLICK);
 			this.caricatore_immagini.getScacchieraSfondo().get(StaticVariables.ID_SFONDO1).setWH(this.caricatore_immagini.getScacchieraSfondo().get(StaticVariables.ID_SFONDO1).getImageWidth(), this.caricatore_immagini.getScacchieraSfondo().get(StaticVariables.ID_SFONDO1).getImageHeight());
 			this.menu.setPanelsVisibility(this.menu.getCurrent_panel(), false);
 			((MyPlayPanel)this.menu.getPlayPanel()).getGame().setType_of_intelligence(this.medium.getButton_name());
@@ -83,6 +84,7 @@ public class TypesOfIntelligencePanel extends MyPanel{
 		  }
 		else if((e.getX() >= this.hard.getX() && e.getX() <= (this.hard.getX()+this.hard.getWidth())) && (e.getY() >= this.hard.getY() && e.getY() <= (this.hard.getY()+this.hard.getHeight())))
 		  {
+			 Sounds.getSounds().play(StaticVariables.PATH_AUDIO_MENU_CLICK);
 			this.caricatore_immagini.getScacchieraSfondo().get(StaticVariables.ID_SFONDO1).setWH(this.caricatore_immagini.getScacchieraSfondo().get(StaticVariables.ID_SFONDO1).getImageWidth(), this.caricatore_immagini.getScacchieraSfondo().get(StaticVariables.ID_SFONDO1).getImageHeight());
 			this.menu.setPanelsVisibility(this.menu.getCurrent_panel(), false);
 			((MyPlayPanel)this.menu.getPlayPanel()).getGame().setType_of_intelligence(this.hard.getButton_name());
@@ -90,6 +92,7 @@ public class TypesOfIntelligencePanel extends MyPanel{
 		  }
 		else if((e.getX() >= this.back_button.getX() && e.getX() <= (this.back_button.getX()+this.back_button.getWidth())) && (e.getY() >= this.back_button.getY() && e.getY() <= (this.back_button.getY()+this.back_button.getHeight())))
 		  {
+			 Sounds.getSounds().play(StaticVariables.PATH_AUDIO_MENU_CLICK);
 			  this.menu.setPanelsVisibility(this.menu.getCurrent_panel(), false);
 			  this.menu.setPanelProperties(this.menu.getMyTypeOfOpponentPanel(), true);
 		  }

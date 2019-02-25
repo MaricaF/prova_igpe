@@ -144,8 +144,6 @@ public class MyPlayPanel extends MyPanel {
 
 	public void createFinalPanel(boolean winOrNot) {
 		
-		Sounds.getSounds().stop(StaticVariables.PATH_AUDIO_SOUNDTRACK);
-		
 		if(winOrNot)
 			Sounds.getSounds().loop(StaticVariables.PATH_AUDIO_WIN);
 		else
@@ -229,9 +227,8 @@ public class MyPlayPanel extends MyPanel {
 			  if(!Variables.single_player)
 			  this.game.getUser_player().sendMovimentoSemplice(-1, -1, -1, -1, true);
 			  
+			  Sounds.getSounds().play(StaticVariables.PATH_AUDIO_MENU_CLICK);
 			  this.menu.replay(this,0, true, this.menu.getMyTypeOfOpponentPanel());
-//			  this.menu.setPanelsVisibility(this.menu.getCurrent_panel(), false);
-//			  this.menu.setPanelProperties(this.menu.getMyMenuPanel(), true);
 		  }
 		
 	}
