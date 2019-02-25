@@ -130,7 +130,7 @@ public class MyPlayPanel extends MyPanel {
 				System.out.println("string multiplayer: "+this.string_multiplayer);
 				this.inizializeStringMultiplayer();
 				g.drawString(this.font_multiplayer.getIterator(), 0,
-						0);
+						StaticVariables.finestra_height/7);
 			}
 		}catch(Exception e)
 		{
