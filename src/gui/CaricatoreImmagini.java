@@ -18,6 +18,8 @@ public class CaricatoreImmagini {
 		this.scacchieraSfondo.put(StaticVariables.ID_TAVOLO, new Immagine(StaticVariables.ID_TAVOLO,this.pathImmagini(StaticVariables.ID_TAVOLO),-1));
 		this.scacchieraSfondo.put(StaticVariables.ID_TAVOLO_LEGNO, new Immagine(StaticVariables.ID_TAVOLO_LEGNO,this.pathImmagini(StaticVariables.ID_TAVOLO_LEGNO),-1));
 		this.scacchieraSfondo.put(StaticVariables.ID_NASTRO, new Immagine(StaticVariables.ID_NASTRO, StaticVariables.PATH_NASTRO, -1));
+		//questo popup sarà visibile solo quando è necessaario
+		this.scacchieraSfondo.put(StaticVariables.ID_CHOOSEAIPAWN, new Immagine(StaticVariables.ID_CHOOSEAIPAWN, StaticVariables.PATH_CHOOSEAIPAWN, -1));
 		
 		this.scacchieraSfondo.put(StaticVariables.ID_PAPER_YOUWON, new Immagine(StaticVariables.ID_PAPER_YOUWON,StaticVariables.PATH_PAPER_YOUWON,-1));
 		this.scacchieraSfondo.put(StaticVariables.ID_PAPER_YOULOST, new Immagine(StaticVariables.ID_PAPER_YOULOST,StaticVariables.PATH_PAPER_YOULOST,-1));
