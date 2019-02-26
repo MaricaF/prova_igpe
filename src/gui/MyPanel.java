@@ -18,7 +18,7 @@ public abstract class MyPanel extends JPanel implements MouseListener, MouseMoti
 	protected Menu menu;
 	protected boolean mainButtonsVisible; //è la booleana che indica se i bottoni Play ed Exit sono visibili e premibili.
 	protected int tavolo_w, tavolo_h, tavolo_x, tavolo_y;
-	protected MyButton back_button;
+	protected MyButton back_button, ok_button;
 	
 	public MyPanel(Menu menu, String panel_name)
 	{
@@ -33,6 +33,12 @@ public abstract class MyPanel extends JPanel implements MouseListener, MouseMoti
         		new Immagine(StaticVariables.ID_PRESSEBACKBUTTON, StaticVariables.PATH_BACKBUTTON,-1), 
         		StaticVariables.BACK_NAME);
         this.back_button.proporzionaB(this.proporziona, this);
+        
+        this.ok_button = new MyButton(new Immagine(StaticVariables.ID_OK, StaticVariables.PATH_OK, -1), 
+        		new Immagine(StaticVariables.ID_OK, StaticVariables.PATH_OK, -1),StaticVariables.OK_NAME);
+        this.ok_button.proporzionaB(this.proporziona, this);
+        this.ok_button.getBottoni().get(0).setVisible(false);
+        
 		this.setPreferredSize(new Dimension(StaticVariables.finestra_width,StaticVariables.finestra_height));
 		this.setBackground(Color.WHITE);
         this.addMouseListener(this);

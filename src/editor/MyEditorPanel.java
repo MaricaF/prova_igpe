@@ -61,14 +61,15 @@ public class MyEditorPanel extends MyPanel{
 	{
 		super.paint(g);
 		
+		
 		if(this.isVisible())
 		{
-			g.drawImage( this.caricatore_immagini.getScacchieraSfondo().get(StaticVariables.ID_SFONDO1).getImage(),
-	    		     this.caricatore_immagini.getScacchieraSfondo().get(StaticVariables.ID_SFONDO1).getX(),
-	    		     this.caricatore_immagini.getScacchieraSfondo().get(StaticVariables.ID_SFONDO1).getY(), 
-	    		     this.caricatore_immagini.getScacchieraSfondo().get(StaticVariables.ID_SFONDO1).getImageWidth(), 
-	    		     this.caricatore_immagini.getScacchieraSfondo().get(StaticVariables.ID_SFONDO1).getImageHeight(), 
-				     this);
+			if(!Variables.show_popup)
+		{
+			for (Immagine i : this.caricatore_immagini.getScacchieraSfondo().values()) {
+				if (i.isVisible())
+					g.drawImage(i.getImage(), i.getX(), i.getY(), i.getImageWidth(), i.getImageHeight(), this);
+			}
 			
 			for(MyButton b: this.editor_buttons.values())
 			{
@@ -95,6 +96,20 @@ public class MyEditorPanel extends MyPanel{
 				              g.drawImage( i.getImage(), i.getX(), i.getY(), i.getImageWidth(), i.getImageHeight(), this);
 			}
 		}
+			
+			else
+			{
+						g.drawImage(this.caricatore_immagini.getScacchieraSfondo().get(StaticVariables.ID_CHOOSEAIPAWN).getImage(), 
+								this.caricatore_immagini.getScacchieraSfondo().get(StaticVariables.ID_CHOOSEAIPAWN).getX(),
+								this.caricatore_immagini.getScacchieraSfondo().get(StaticVariables.ID_CHOOSEAIPAWN).getY(), 
+								this.caricatore_immagini.getScacchieraSfondo().get(StaticVariables.ID_CHOOSEAIPAWN).getImageWidth(), 
+								this.caricatore_immagini.getScacchieraSfondo().get(StaticVariables.ID_CHOOSEAIPAWN).getImageHeight(), this);
+				
+				 for(Immagine i: this.ok_button.getBottoni())
+				        if(i.isVisible())
+				              g.drawImage( i.getImage(), i.getX(), i.getY(), i.getImageWidth(), i.getImageHeight(), this);
+			}
+		}
 	}
 	
 	private void add(int id, String path, int id2, String name, String pathImagePressed)
@@ -109,6 +124,17 @@ public class MyEditorPanel extends MyPanel{
 	@Override
 	public void mouseClicked(MouseEvent e)
 	{
+		
+		if(Variables.show_popup)
+		{
+			if((e.getX() >= this.ok_button.getX() && e.getX() <= (this.ok_button.getX()+this.ok_button.getWidth())) && (e.getY() >= this.ok_button.getY() && e.getY() <= (this.ok_button.getY()+this.ok_button.getHeight())))
+			{
+				 Sounds.getSounds().play(StaticVariables.PATH_AUDIO_MENU_CLICK);
+				Variables.show_popup = false;
+				this.caricatore_immagini.getScacchieraSfondo().get(StaticVariables.ID_CHOOSEAIPAWN).setVisible(false);
+			}
+		}
+		else {
 		
 		if((e.getX() >= this.save.getX() && e.getX() <= (this.save.getX()+this.save.getWidth())) && (e.getY() >= this.save.getY() && e.getY() <= (this.save.getY()+this.save.getHeight())))
 		{
@@ -243,11 +269,31 @@ public class MyEditorPanel extends MyPanel{
 			   this.setPathImage(StaticVariables.ID_PEDINA_ROSA, this.path_image, this.path_dama);
 				this.repaint();
 			}
+		}
 	}
 	
    @Override
 	public void mouseMoved(MouseEvent e) {
 		// TODO Auto-generated method stub
+	   
+	   if(Variables.show_popup)
+	   {
+		   if((e.getX() >= this.ok_button.getX() && e.getX() <= (this.ok_button.getX()+this.ok_button.getWidth())) && (e.getY() >= this.ok_button.getY() && e.getY() <= (this.ok_button.getY()+this.ok_button.getHeight())))
+			{
+			   this.ok_button.changeImage();
+				this.repaint();
+			}
+			
+			else 
+			{
+				this.ok_button.returnToFirstImage();
+				this.repaint();
+			}
+	   }
+	   else
+	   {
+	   
+	   
 	   if((e.getX() >= this.editor_buttons.get(StaticVariables.ID_TAVOLO).getX() && e.getX() <= (this.editor_buttons.get(StaticVariables.ID_TAVOLO).getX()+this.editor_buttons.get(StaticVariables.ID_TAVOLO).getWidth())) && (e.getY() >= this.editor_buttons.get(StaticVariables.ID_TAVOLO).getY() && e.getY() <= (this.editor_buttons.get(StaticVariables.ID_TAVOLO).getY()+this.editor_buttons.get(StaticVariables.ID_TAVOLO).getHeight())))
 		{
 		   this.editor_buttons.get(StaticVariables.ID_TAVOLO).changeImage();
@@ -416,7 +462,7 @@ public class MyEditorPanel extends MyPanel{
 				this.repaint();
 	    }
 	   
-		
+	   }
 	}
    
    /**
@@ -432,11 +478,33 @@ public class MyEditorPanel extends MyPanel{
 			return true;
 	   }
 	   else if(Variables.PATH_TAVOLO.isEmpty())
-		   JOptionPane.showMessageDialog(this, "devi scegliere una scacchiera.");
+	   {
+		   System.out.println("miao1");
+		   Variables.show_popup = true;
+		   this.caricatore_immagini.getScacchieraSfondo().get(StaticVariables.ID_CHOOSEAIPAWN).setPath(StaticVariables.PATH_CHOOSEACHESSBOARD);
+		   this.caricatore_immagini.getScacchieraSfondo().get(StaticVariables.ID_CHOOSEAIPAWN).setVisible(true);
+		   this.repaint();
+//		   JOptionPane.showMessageDialog(this, "devi scegliere una scacchiera.");
+	   }
 	   else if(Variables.PATH_PEDINA1.isEmpty())
-		   JOptionPane.showMessageDialog(this, "devi scegliere la tua pedina.");
+	   {
+		   System.out.println("miao2");
+		   Variables.show_popup = true;
+		   this.caricatore_immagini.getScacchieraSfondo().get(StaticVariables.ID_CHOOSEAIPAWN).setPath(StaticVariables.PATH_CHOOSEYOURPAWN);
+		   this.caricatore_immagini.getScacchieraSfondo().get(StaticVariables.ID_CHOOSEAIPAWN).setVisible(true);
+		   this.repaint();
+//		   JOptionPane.showMessageDialog(this, "devi scegliere la tua pedina.");
+	   }
 	   else if(Variables.PATH_PEDINA2.isEmpty())
-		   JOptionPane.showMessageDialog(this, "devi mangiare la pedina dell'ai.");
+	   {
+		   System.out.println("miao3");
+		   Variables.show_popup = true;
+		   this.caricatore_immagini.getScacchieraSfondo().get(StaticVariables.ID_CHOOSEAIPAWN).setPath(StaticVariables.PATH_CHOOSEAIPAWN);
+		   this.caricatore_immagini.getScacchieraSfondo().get(StaticVariables.ID_CHOOSEAIPAWN).setVisible(true);
+		   
+		   this.repaint();
+//		   JOptionPane.showMessageDialog(this, "devi mangiare la pedina dell'ai.");
+	   }
 	   
 	   return false;
 	   
@@ -475,7 +543,12 @@ public class MyEditorPanel extends MyPanel{
 		   this.editor_buttons.get(id_image).changeImage();
 	   }
 	   else
-		   JOptionPane.showMessageDialog(this, "seleziona a destra il tipo di pedina da scegliere, se la pedina dell'ai opppure la tua.");
+	   {
+		   Variables.show_popup = true;
+		   this.caricatore_immagini.getScacchieraSfondo().get(StaticVariables.ID_CHOOSEAIPAWN).setPath(StaticVariables.PATH_SELECT);
+		   this.caricatore_immagini.getScacchieraSfondo().get(StaticVariables.ID_CHOOSEAIPAWN).setVisible(true);
+//		   JOptionPane.showMessageDialog(this, "seleziona a destra il tipo di pedina da scegliere, se la pedina dell'ai opppure la tua.");
+	   }
 	  this.repaint();
    }
    

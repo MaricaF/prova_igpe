@@ -2,16 +2,13 @@ package gui;
 
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
-
 import audio.Sounds;
 import interfaces.StaticVariables;
-import interfaces.Variables;
 
 public class TypesOfIntelligencePanel extends MyPanel{
 
 	private MyButton simple;
 	private MyButton medium;
-	private MyButton hard;
 	
 	public TypesOfIntelligencePanel(Menu menu, String panel_name, int frameWidth, int frameHeight) {
 		super(menu, panel_name);
@@ -22,8 +19,6 @@ public class TypesOfIntelligencePanel extends MyPanel{
 		this.medium = new MyButton(new Immagine(StaticVariables.ID_MEDIUM_AI, StaticVariables.PATH_MEDIUM_AI, -1), new Immagine(StaticVariables.ID_MEDIUM_AI, StaticVariables.PATH_MEDIUM_AI, -1), StaticVariables.MEDIUM_AI_NAME);
 		this.medium.proporzionaB(this.proporziona, this);
 		
-		this.hard = new MyButton(new Immagine(StaticVariables.ID_HARD_AI, StaticVariables.PATH_HARD_AI, -1), new Immagine(StaticVariables.ID_HARD_AI, StaticVariables.PATH_HARD_AI, -1), StaticVariables.HARD_AI_NAME);
-		this.hard.proporzionaB(this.proporziona, this);
 		this.setProperties(true);
 	}
 	
@@ -54,9 +49,6 @@ public class TypesOfIntelligencePanel extends MyPanel{
 			         if(i.isVisible())
 		               g.drawImage( i.getImage(), i.getX(), i.getY(), i.getImageWidth(), i.getImageHeight(), this); 
 		        
-		        for(Immagine i: this.hard.getBottoni())
-			         if(i.isVisible())
-		               g.drawImage( i.getImage(), i.getX(), i.getY(), i.getImageWidth(), i.getImageHeight(), this); 
 		        for(Immagine i: this.back_button.getBottoni())
 			        if(i.isVisible())
 			              g.drawImage( i.getImage(), i.getX(), i.getY(), i.getImageWidth(), i.getImageHeight(), this);
@@ -80,14 +72,6 @@ public class TypesOfIntelligencePanel extends MyPanel{
 			this.caricatore_immagini.getScacchieraSfondo().get(StaticVariables.ID_SFONDO1).setWH(this.caricatore_immagini.getScacchieraSfondo().get(StaticVariables.ID_SFONDO1).getImageWidth(), this.caricatore_immagini.getScacchieraSfondo().get(StaticVariables.ID_SFONDO1).getImageHeight());
 			this.menu.setPanelsVisibility(this.menu.getCurrent_panel(), false);
 			((MyPlayPanel)this.menu.getPlayPanel()).getGame().setType_of_intelligence(this.medium.getButton_name());
-			this.menu.setPanelProperties(this.menu.getMyMenuPanel(), true);
-		  }
-		else if((e.getX() >= this.hard.getX() && e.getX() <= (this.hard.getX()+this.hard.getWidth())) && (e.getY() >= this.hard.getY() && e.getY() <= (this.hard.getY()+this.hard.getHeight())))
-		  {
-			 Sounds.getSounds().play(StaticVariables.PATH_AUDIO_MENU_CLICK);
-			this.caricatore_immagini.getScacchieraSfondo().get(StaticVariables.ID_SFONDO1).setWH(this.caricatore_immagini.getScacchieraSfondo().get(StaticVariables.ID_SFONDO1).getImageWidth(), this.caricatore_immagini.getScacchieraSfondo().get(StaticVariables.ID_SFONDO1).getImageHeight());
-			this.menu.setPanelsVisibility(this.menu.getCurrent_panel(), false);
-			((MyPlayPanel)this.menu.getPlayPanel()).getGame().setType_of_intelligence(this.hard.getButton_name());
 			this.menu.setPanelProperties(this.menu.getMyMenuPanel(), true);
 		  }
 		else if((e.getX() >= this.back_button.getX() && e.getX() <= (this.back_button.getX()+this.back_button.getWidth())) && (e.getY() >= this.back_button.getY() && e.getY() <= (this.back_button.getY()+this.back_button.getHeight())))
@@ -123,18 +107,6 @@ public class TypesOfIntelligencePanel extends MyPanel{
 			else 
 			{
 				this.medium.returnToFirstImage();
-				this.repaint();
-			}
-		 
-		 if((e.getX() >= this.hard.getX() && e.getX() <= (this.hard.getX()+this.hard.getWidth())) && (e.getY() >= this.hard.getY() && e.getY() <= (this.hard.getY()+this.hard.getHeight())))
-			{
-				this.hard.changeImage();
-				this.repaint();
-			}
-			
-			else 
-			{
-				this.hard.returnToFirstImage();
 				this.repaint();
 			}
 		 

@@ -34,6 +34,8 @@ public class MyPlayPanel extends MyPanel {
 	private AttributedString font_string, font_multiplayer;
 	private Font font;
 	private String string_multiplayer;
+	private MyButton yes;
+	private MyButton no;
 
 	public MyPlayPanel(Menu menu, String panel_name) {
 		super(menu, panel_name);
@@ -59,6 +61,9 @@ public class MyPlayPanel extends MyPanel {
 		this.pedina_che_diventera_dama = false;
 		
 		this.caricatore_immagini.getScacchieraSfondo().get(StaticVariables.ID_TAVOLO_LEGNO).setVisible(true);
+		this.yes = ((MyTypeOfOpponentPanel)this.menu.getMyTypeOfOpponentPanel()).getYes();
+        
+	    this.no = ((MyTypeOfOpponentPanel)this.menu.getMyTypeOfOpponentPanel()).getNo();
 		
 //		if(!Variables.single_player)
 //		{
@@ -94,6 +99,8 @@ public class MyPlayPanel extends MyPanel {
 		
 		if (this.isVisible()) {
 
+			if(!Variables.show_popup)
+			{
 				for (Immagine i : this.caricatore_immagini.getScacchieraSfondo().values()) {
 					if (i.isVisible())
 						g.drawImage(i.getImage(), i.getX(), i.getY(), i.getImageWidth(), i.getImageHeight(), this);
@@ -116,8 +123,7 @@ public class MyPlayPanel extends MyPanel {
 			        if(i.isVisible())
 			              g.drawImage( i.getImage(), i.getX(), i.getY(), i.getImageWidth(), i.getImageHeight(), this);
 				
-			}
-
+			
 		this.createChronometerString();
 		g.drawString(font_string.getIterator(), (StaticVariables.finestra_width / 15) * 7,
 				StaticVariables.finestra_height / 10);
@@ -127,6 +133,25 @@ public class MyPlayPanel extends MyPanel {
 				g.drawString(this.font_multiplayer.getIterator(), 0,
 						StaticVariables.finestra_height/7);
 			}
+			}
+		
+		else
+		{
+					g.drawImage(this.caricatore_immagini.getScacchieraSfondo().get(StaticVariables.ID_CHOOSEAIPAWN).getImage(), 
+							this.caricatore_immagini.getScacchieraSfondo().get(StaticVariables.ID_CHOOSEAIPAWN).getX(),
+							this.caricatore_immagini.getScacchieraSfondo().get(StaticVariables.ID_CHOOSEAIPAWN).getY(), 
+							this.caricatore_immagini.getScacchieraSfondo().get(StaticVariables.ID_CHOOSEAIPAWN).getImageWidth(), 
+							this.caricatore_immagini.getScacchieraSfondo().get(StaticVariables.ID_CHOOSEAIPAWN).getImageHeight(), this);
+			
+					for(Immagine i: this.yes.getBottoni())
+			            if(i.isVisible())
+		                  g.drawImage( i.getImage(), i.getX(), i.getY(), i.getImageWidth(), i.getImageHeight(), this); 
+		
+		           for(Immagine i: this.no.getBottoni())
+			           if(i.isVisible())
+			              g.drawImage( i.getImage(), i.getX(), i.getY(), i.getImageWidth(), i.getImageHeight(), this);
+		}
+		}
 		}catch(Exception e)
 		{
 			System.err.println("eccezione");
@@ -169,6 +194,27 @@ public class MyPlayPanel extends MyPanel {
 	@Override
 	public void mouseClicked(MouseEvent e) {
 
+		if(Variables.show_popup)
+		{
+
+			if((e.getX() >= this.yes.getX() && e.getX() <= (this.yes.getX()+this.yes.getWidth())) && (e.getY() >= this.yes.getY() && e.getY() <= (this.yes.getY()+this.yes.getHeight())))
+			{
+				 Sounds.getSounds().play(StaticVariables.PATH_AUDIO_MENU_CLICK);
+				 if(!Variables.single_player)
+					  this.game.getUser_player().sendMovimentoSemplice(-1, -1, -1, -1, true);
+					  this.menu.replay(this,0, true, this.menu.getMyTypeOfOpponentPanel());
+			}
+			else if((e.getX() >= this.no.getX() && e.getX() <= (this.no.getX()+this.no.getWidth())) && (e.getY() >= this.no.getY() && e.getY() <= (this.no.getY()+this.yes.getHeight())))
+			{
+				Sounds.getSounds().play(StaticVariables.PATH_AUDIO_MENU_CLICK);
+				Variables.show_popup = false;
+				   this.caricatore_immagini.getScacchieraSfondo().get(StaticVariables.ID_CHOOSEAIPAWN).setVisible(false);
+				   this.repaint();
+			}
+		}
+		else {
+			
+		
 		if(Variables.canMove)
 		{
 		if (e.getButton() == MouseEvent.BUTTON3) {
@@ -224,18 +270,28 @@ public class MyPlayPanel extends MyPanel {
 		}//fine if(canMove)
 		if((e.getX() >= this.back_button.getX() && e.getX() <= (this.back_button.getX()+this.back_button.getWidth())) && (e.getY() >= this.back_button.getY() && e.getY() <= (this.back_button.getY()+this.back_button.getHeight())))
 		  {
-			  if(!Variables.single_player)
-			  this.game.getUser_player().sendMovimentoSemplice(-1, -1, -1, -1, true);
-			  
-			  Sounds.getSounds().play(StaticVariables.PATH_AUDIO_MENU_CLICK);
-			  this.menu.replay(this,0, true, this.menu.getMyTypeOfOpponentPanel());
+			 Variables.show_popup = true;
+			   this.caricatore_immagini.getScacchieraSfondo().get(StaticVariables.ID_CHOOSEAIPAWN).setPath(StaticVariables.PATH_COMEBACK);
+			   this.caricatore_immagini.getScacchieraSfondo().get(StaticVariables.ID_CHOOSEAIPAWN).setVisible(true);
+			   this.repaint();
+//			  if(!Variables.single_player)
+//			  this.game.getUser_player().sendMovimentoSemplice(-1, -1, -1, -1, true);
+//			  
+//			  Sounds.getSounds().play(StaticVariables.PATH_AUDIO_MENU_CLICK);
+//			  
+//			  this.menu.replay(this,0, true, this.menu.getMyTypeOfOpponentPanel());
 		  }
+		}
+		
 		
 	}
 	
 	@Override
 	public void mouseMoved(MouseEvent e) {
 		// TODO Auto-generated method stub
+		
+		if(!Variables.show_popup)
+		{
 		if((e.getX() >= this.back_button.getX() && e.getX() <= (this.back_button.getX()+this.back_button.getWidth())) && (e.getY() >= this.back_button.getY() && e.getY() <= (this.back_button.getY()+this.back_button.getHeight())))
 		 {
 			 this.back_button.changeImage();
@@ -246,6 +302,33 @@ public class MyPlayPanel extends MyPanel {
 				this.back_button.returnToFirstImage();
 				this.repaint();
 			}
+		}
+		else
+		{
+			if((e.getX() >= this.yes.getX() && e.getX() <= (this.yes.getX()+this.yes.getWidth())) && (e.getY() >= this.yes.getY() && e.getY() <= (this.yes.getY()+this.yes.getHeight())))
+			{
+				this.yes.changeImage();
+				this.repaint();
+			}
+			
+			else
+			{
+				this.yes.returnToFirstImage();
+				this.repaint();
+			}
+			
+		    if((e.getX() >= this.no.getX() && e.getX() <= (this.no.getX()+this.no.getWidth())) && (e.getY() >= this.no.getY() && e.getY() <= (this.no.getY()+this.no.getHeight())))
+			{
+				this.no.changeImage();
+				this.repaint();
+			}
+			 
+			 else
+				{
+					this.no.returnToFirstImage();
+					this.repaint();
+				}
+		}
 
 	}
 

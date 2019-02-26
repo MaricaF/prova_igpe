@@ -90,6 +90,12 @@ public interface StaticVariables {
 	final static int ID_AI_PAWN = 60;
 	final static int ID_USER_PAWN = 61;
 	final static int ID_NASTRO = 62;
+	final static int ID_HAVETOEAT = 63;
+	final static int ID_CHOOSEACHESSBOARD = 64;
+	final static int ID_CHOOSEYOURPAWN = 65;
+	final static int ID_CHOOSEAIPAWN = 66;
+	final static int ID_COMEBACK = 67;
+	final static int ID_OK = 68;
 	
 	
 	
@@ -130,6 +136,13 @@ public interface StaticVariables {
 	final static String PATH_TAVOLO_VERDE = "Images/tavolo_verde.png";
 	final static String PATH_TAVOLO_VERDE_PRESSED = "Images/tavolo_verdepressed.png";
 	final static String PATH_NASTRO = "Images/nastrod.png";
+	final static String PATH_HAVETOEAT = "Images/eat.png";
+	final static String PATH_CHOOSEACHESSBOARD = "Images/chessboard2.png";
+	final static String PATH_CHOOSEYOURPAWN = "Images/chooseyourpawn3.png";
+	final static String PATH_CHOOSEAIPAWN = "Images/chooseaipawn2.png";
+	final static String PATH_COMEBACK = "Images/come_back.png";
+	final static String PATH_SELECT = "Images/select2.png";
+	final static String PATH_OK = "Images/ok.png";
 	
 	
 	final static String PATH_PLAYBUTTON = "Images/play_gold.png";
@@ -192,6 +205,7 @@ public interface StaticVariables {
 	final static String NERASTANDARD_NAME = "Pedina nera standard";
     final static String EDITOR_NAME = "Editor";
     final static String SAVE_NAME = "Save";
+    final static String OK_NAME = "OK";
 }
 
 

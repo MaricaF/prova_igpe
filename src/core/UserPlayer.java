@@ -41,7 +41,8 @@ public class UserPlayer extends Player{
 			{
 				if(!this.isMyPositionValid(iafter,jafter))
 				{
-				 JOptionPane.showMessageDialog(this.game.getPlay_panel(), "devi mangiare obbligatoriamente");
+//				 JOptionPane.showMessageDialog(this.game.getPlay_panel(), "devi mangiare obbligatoriamente");
+					((MyPlayPanel)this.game.getPlay_panel()).getCaricatore_immagini().getScacchieraSfondo().get(StaticVariables.ID_CHOOSEAIPAWN).setVisible(true);
 				 return;
 				}
 			}

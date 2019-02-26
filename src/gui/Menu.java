@@ -1,7 +1,12 @@
 package gui;
 
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.swing.JFrame;
+
 import audio.Sounds;
 import editor.MyEditorPanel;
 import interfaces.StaticVariables;
@@ -24,10 +29,10 @@ public class Menu extends MyFrame{
 	{
 		super();
 		this.setTitle("Menu");
-//		this.setExtendedState(JFrame.MAXIMIZED_BOTH);
-//		java.awt.GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-//		GraphicsDevice cc = ge.getDefaultScreenDevice();
-//		cc.setFullScreenWindow(this);
+		this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+		java.awt.GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+		GraphicsDevice cc = ge.getDefaultScreenDevice();
+		cc.setFullScreenWindow(this);
 		this.all_panels = new ArrayList<MyPanel>();
 		this.createPanels();
 		this.pack();

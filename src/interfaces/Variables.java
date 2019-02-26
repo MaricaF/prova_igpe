@@ -28,6 +28,9 @@ public class Variables {
 	//è true quando una pedina deve mangiare
 	public static boolean giocatore1_mangio = false;
 	public static boolean giocatore2_mangio = false;
+	
+	//è true quando qualche popup deve essere visualizzato
+	public static boolean show_popup = false;
 		
 	public static boolean interpostaTraMovMultiploEnon = false;
 	//se è il mio turno di muovere, me lo dirà il server la prima volta, nel caso del multiplayer

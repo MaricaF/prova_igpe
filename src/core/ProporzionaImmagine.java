@@ -49,6 +49,12 @@ public class ProporzionaImmagine {
 			else if(bottone.getButton_name() == StaticVariables.NO_NAME)
 			   button.setX((StaticVariables.finestra_width/2)+(button.getImageWidth()*2));
 		}
+		else if(bottone.getButton_name() == StaticVariables.OK_NAME)
+		{
+			button.setImageWidth(this.pawnCellWidth);
+			button.setImageHeight(button.getImageWidth()/2);
+			button.setY((StaticVariables.finestra_height/2)+(button.getImageHeight()*2));
+		}
 		else if(bottone.getButton_name() == StaticVariables.MULTIPLAYER_NAME)
 		{
 			button.setImageWidth(this.pawnCellWidth*12);
@@ -83,6 +89,9 @@ public class ProporzionaImmagine {
 		
 		if(bottone.getButton_name() != StaticVariables.YES_NAME && bottone.getButton_name() != StaticVariables.NO_NAME)
 		button.setX(((width/2)-button.getImageWidth())+(button.getImageWidth()/2));
+		
+		if(bottone.getButton_name() == StaticVariables.OK_NAME)
+			button.setX((StaticVariables.finestra_width/2)+(button.getImageHeight()/3));
 		
 		if(bottone.getButton_name().equals(StaticVariables.PLAY_NAME))
 			button.setY(button.getImageHeight()*2);
@@ -225,6 +234,10 @@ public class ProporzionaImmagine {
 		bottone.setHeight(bottone_image.getImageHeight());
 	}
 	
+	/**
+	 * @param width
+	 * @param height
+	 */
 	public void setSizeBAckgroundAndScacchiera(int width, int height)
 	{
        	this.caricatore_immagini.getScacchieraSfondo().get(StaticVariables.ID_SFONDO1).setImageHeight(height);
@@ -256,6 +269,10 @@ public class ProporzionaImmagine {
        	this.caricatore_immagini.getScacchieraSfondo().get(StaticVariables.ID_NASTRO).setImageHeight(this.pawnCellWidth*6);
        	this.caricatore_immagini.getScacchieraSfondo().get(StaticVariables.ID_NASTRO).setX(StaticVariables.finestra_width-
        			(this.caricatore_immagini.getScacchieraSfondo().get(StaticVariables.ID_NASTRO).getImageWidth()+StaticVariables.finestra_width/20));
+       	
+       	this.caricatore_immagini.getScacchieraSfondo().get(StaticVariables.ID_CHOOSEAIPAWN).setImageWidth(StaticVariables.screen_width);
+       	this.caricatore_immagini.getScacchieraSfondo().get(StaticVariables.ID_CHOOSEAIPAWN).setImageHeight(StaticVariables.screen_height);
+	
 	}
 	
 	public void resizeOtherPopups()
